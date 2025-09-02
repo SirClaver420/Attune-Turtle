@@ -63,8 +63,9 @@ Thank you for your interest.
 
 1. **Download the latest release** from the [Releases page](../../releases)
 2. Extract to your `World of Warcraft\Interface\AddOns\` folder
-3. Restart WoW or reload UI with `/reload`
-4. Type `/attune` to open or click the minimap icon
+3. Rename the folder to `Attune-Turtle`
+4. Restart WoW or reload UI with `/reload`
+5. Type `/attune` to open or click the minimap icon
 
 ## Usage
 
@@ -156,6 +157,7 @@ This addon is released under the [MIT License](LICENSE) - see the LICENSE file f
 
 
 *Happy raiding, adventurers!* ⚔️
+
 
 
 
