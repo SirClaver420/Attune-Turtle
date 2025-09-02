@@ -5,7 +5,7 @@ An attunement tracking addon for [Turtle WoW](https://turtle-wow.org), helping p
 ## Who am I
 
 I am but a simple man trying something new while playing one of my favorite games: World of Warcraft. 
-I am working on this totally by myself, in my own free time after work and are by no means affiliated in any way with either TurtleWoW or Blizzard.
+I am working on this totally by myself, in my own free time after work and I'm by no means affiliated in any way with either TurtleWoW or Blizzard.
 I liked the official addon while playing SoD a few years ago and was surprised nobody has ported it to TWoW so I thougt I'd try to do it myself.
 Any suggestions and help is much appreciated.
 
@@ -153,5 +153,6 @@ This addon is released under the [MIT License](LICENSE) - see the LICENSE file f
 - **[Report an Issue](../../issues/new)** 🐛
 - **[View Source Code](../../)** 💻
 - **[Turtle WoW Homepage](https://turtle-wow.org)** 🐢
+
 
 *Happy raiding, adventurers!* ⚔️
