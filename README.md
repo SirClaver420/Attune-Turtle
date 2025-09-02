@@ -98,7 +98,7 @@ For more commands, see the [Turtle WoW Console Commands](https://turtle-wow.fand
 - Custom scrolling system optimized for vanilla WoW
 - SavedVariables for persistent progress tracking
 
-**Supported Client:** [Turtle WoW](https://turtle-wow.org) Version 1.18.0 
+**Supported Client:** [Turtle WoW](https://turtle-wow.org) Version 1.18.0
 **Dependencies:** None (all libraries included)
 
 ## Development
@@ -156,5 +156,6 @@ This addon is released under the [MIT License](LICENSE) - see the LICENSE file f
 
 
 *Happy raiding, adventurers!* ⚔️
+
 
 
