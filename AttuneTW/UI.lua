@@ -353,7 +353,7 @@ function AT_CreateAttunementView(attunementKey)
         local stepHeight = 60 -- Reduced from 70 for better spacing
         local stepSpacing = 10
         local totalSteps = #attunementData.steps
-        local totalContentHeight = titleHeight + (totalSteps * stepHeight) + ((totalSteps - 1) * stepSpacing) + 20 -- Extra padding
+        local totalContentHeight = titleHeight + (totalSteps * stepHeight) + (math.max(0, totalSteps - 1) * stepSpacing) + 20 -- Extra padding
         
         -- Set the flowchart height to contain all content
         AT.contentFrame.flowchart:SetHeight(math.max(totalContentHeight, AT.contentFrame.scrollFrame:GetHeight()))
