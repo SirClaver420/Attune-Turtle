@@ -1,0 +1,15 @@
+## Interface: 11200
+## Title: |cff00ff00Attune|r |cffffffffTurtle|r
+## Notes: Attunement tracker for dungeons and raids
+## Author: SirClaver420 (Backport)
+## Version: 0.1
+## SavedVariables: AttuneTurtle_Data
+
+# Load data first - This must be first to initialize AttuneTurtle
+AttuneTW\Data.lua
+
+# Then UI components
+AttuneTW\UI.lua
+
+# Finally load core functionality
+Core.lua
