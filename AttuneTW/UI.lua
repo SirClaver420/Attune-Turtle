@@ -298,15 +298,30 @@ function AT_CreateAttunementView(attunementKey)
     end
 
     -- Clear previous content
-    if AT.contentFrame.flowchart then
-        AT.contentFrame.flowchart:Hide()
-        AT.contentFrame.flowchart = nil
+    if AT.contentFrame.scrollFrame then
+        AT.contentFrame.scrollFrame:Hide()
+        AT.contentFrame.scrollFrame = nil
     end
     
-    -- Create a container for the flowchart
-    AT.contentFrame.flowchart = CreateFrame("Frame", "AttuneTurtleFlowchart", AT.contentFrame)
-    AT.contentFrame.flowchart:SetPoint("TOPLEFT", AT.contentFrame, "TOPLEFT", 5, -5)
-    AT.contentFrame.flowchart:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -5, 5)
+    -- Create a ScrollFrame for the flowchart
+    AT.contentFrame.scrollFrame = CreateFrame("ScrollFrame", "AttuneTurtleScrollFrame", AT.contentFrame)
+    AT.contentFrame.scrollFrame:SetPoint("TOPLEFT", AT.contentFrame, "TOPLEFT", 5, -5)
+    AT.contentFrame.scrollFrame:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -25, 5) -- Leave space for scrollbar
+    
+    -- Create the scrollable content frame
+    AT.contentFrame.flowchart = CreateFrame("Frame", "AttuneTurtleFlowchart", AT.contentFrame.scrollFrame)
+    AT.contentFrame.flowchart:SetWidth(AT.contentFrame.scrollFrame:GetWidth() - 10)
+    AT.contentFrame.flowchart:SetHeight(1) -- Will be resized based on content
+    
+    -- Set up the ScrollFrame
+    AT.contentFrame.scrollFrame:SetScrollChild(AT.contentFrame.flowchart)
+    AT.contentFrame.scrollFrame:EnableMouseWheel(true)
+    AT.contentFrame.scrollFrame:SetScript("OnMouseWheel", function(self, delta)
+        local current = self:GetVerticalScroll()
+        local maxScroll = self:GetVerticalScrollRange()
+        local newScroll = math.max(0, math.min(maxScroll, current - (delta * 20)))
+        self:SetVerticalScroll(newScroll)
+    end)
     
     -- Get the selected attunement data
     local attunementData = AT.attunements[attunementKey]
@@ -333,10 +348,19 @@ function AT_CreateAttunementView(attunementKey)
     
     -- Create step boxes based on the attunement data
     if attunementData.steps then
-        -- For now, create a simple vertical list of steps
-        local yPos = -70 -- Start below the title
+        -- Calculate total content height needed
+        local titleHeight = 60
+        local stepHeight = 60 -- Reduced from 70 for better spacing
+        local stepSpacing = 10
+        local totalSteps = #attunementData.steps
+        local totalContentHeight = titleHeight + (totalSteps * stepHeight) + ((totalSteps - 1) * stepSpacing) + 20 -- Extra padding
         
-        -- This is a simplified implementation - will need proper flowchart layout later
+        -- Set the flowchart height to contain all content
+        AT.contentFrame.flowchart:SetHeight(math.max(totalContentHeight, AT.contentFrame.scrollFrame:GetHeight()))
+        
+        -- Create a simple vertical list of steps
+        local yPos = -titleHeight -- Start below the title
+        
         for i, step in ipairs(attunementData.steps) do
             -- Create a green border box for this step
             local stepBox = CreateFrame("Frame", "AttuneTurtleStep" .. i, AT.contentFrame.flowchart)
@@ -389,16 +413,16 @@ function AT_CreateAttunementView(attunementKey)
                 locationText:SetText(step.location)
             end
             
-            yPos = yPos - 70 -- Move down for next step
+            yPos = yPos - stepHeight -- Move down for next step
             
             -- If this step has a previous step, draw a connection line
             if step.previousStep and i > 1 then
                 -- Simple vertical line for now - we'll improve this later
                 local line = AT.contentFrame.flowchart:CreateTexture(nil, "ARTWORK")
                 line:SetTexture("Interface/TRIBUTEFRAME/HorizontalTick")
-                line:SetHeight(20) -- Length of the line
+                line:SetHeight(10) -- Reduced line height for better spacing
                 line:SetWidth(2)   -- Width of the line
-                line:SetPoint("TOP", stepBox, "TOP", 0, 20)
+                line:SetPoint("TOP", stepBox, "TOP", 0, 10)
             end
         end
     end
