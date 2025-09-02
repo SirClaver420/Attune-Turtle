@@ -24,6 +24,8 @@ What I want Attune-Turtle to do:
 
 ## Features / What Attune-Turtle can actually do right now
 
+![Click here to see what it looks like for now.](https://i.imgur.com/nYhBzVA.png)
+
 This is the very first release of this addon. It is still very naked but I wanted to show the community that I am dedicated on creating a great and working replica of the official version.
 
 What is working now if you decide to install Attune-Turtle:
@@ -157,6 +159,7 @@ This addon is released under the [MIT License](LICENSE) - see the LICENSE file f
 
 
 *Happy raiding, adventurers!* ⚔️
+
 
 
 
