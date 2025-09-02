@@ -1,15 +1,22 @@
 ## Interface: 11200
 ## Title: |cff00ff00Attune|r |cffffffffTurtle|r
-## Notes: Attunement tracker for dungeons and raids
-## Author: SirClaver420 (Backport)
-## Version: 0.1
-## SavedVariables: AttuneTurtle_Data
+## Notes: Track attunement progress for dungeons and raids on Turtle WoW
+## Author: SirClaver420
+## Version: 1.0.0
+## SavedVariables: AttuneTurtleDB
+## DefaultState: Enabled
+## LoadOnDemand: 0
 
-# Load data first - This must be first to initialize AttuneTurtle
-AttuneTW\Data.lua
+# Libraries
+libs\LibStub.lua
+libs\AceCore-3.0.lua
+libs\CallbackHandler-1.0.lua
+libs\AceHook-3.0.lua
+libs\LibDataBroker-1.1.lua
+libs\LibDBIcon-1.0.lua
 
-# Then UI components
-AttuneTW\UI.lua
-
-# Finally load core functionality
+# Core files
 Core.lua
+data\Data.lua
+data\UI.lua
+data\MinimapButton.lua
