@@ -46,7 +46,7 @@ I want (the addon) to
 			- show me the goal (Acquire the Mallet of Zul'Farrak to be able to summon the last boss.)
 			- show me the benefits of acquiring the mallet (Loot from Gahz'rilla and quest rewards like the riding carrot.) but also tell me that only one group member really needs to have it.
 			- show me the first step: Obtain "Sacred Mallet" from a mob called "Qiaga the Keeper" atop the Altar of Zul in the Hinterlands (with coordinates or maybe even something clickable to show on map).
-				- tell me that she is an elite mob and can be difficult to kill her alone (if your character is in that level range) so I might better find another person or two to group up
+			- tell me that she is an elite mob and can be difficult to kill her alone (if your character is in that level range) so I might better find another person or two to group up
 			- show me the second step: Use the mallet at the other location at the altar to create the "Mallet of Zul'Farrak"
 			- tell that with the now acquired item I can summon the last boss in Zul'Farrak and that I am done
 			- either track the progress automatically or make it so I can click a checkmark for every step I already did
@@ -156,3 +156,4 @@ This addon is released under the [MIT License](LICENSE) - see the LICENSE file f
 
 
 *Happy raiding, adventurers!* ⚔️
+
