@@ -5,6 +5,29 @@
 AttuneTurtle = AttuneTurtle or {}
 local AT = AttuneTurtle  -- Local reference for faster access
 
+-- Add the RefreshIcons function to update dynamic icons
+function AT:RefreshIcons(itemID)
+    -- Update any icon frames associated with this item ID
+    if AT.iconFrames and AT.iconFrames[itemID] then
+        local texture = AT:GetItemIcon(itemID)
+        for _, frameData in pairs(AT.iconFrames[itemID]) do
+            if frameData.icon then
+                frameData.icon:SetTexture(texture)
+            end
+        end
+    end
+    
+    -- Also refresh the main view if needed
+    if AT.mainFrame and AT.mainFrame:IsVisible() then
+        if AT.selectedAttunement then
+            local attunement = AT.attunements[AT.selectedAttunement]
+            if attunement and attunement.itemID == itemID then
+                AT_CreateAttunementView(AT.selectedAttunement)
+            end
+        end
+    end
+end
+
 -- Create the main UI frame
 function AT_CreateMainFrame()
     -- Main frame
@@ -459,7 +482,8 @@ function AT_CreateSidebarItem(attunementKey, yPos)
     icon:SetWidth(16)
     icon:SetHeight(16)
     icon:SetPoint("LEFT", itemFrame, "LEFT", 0, 0)
-    icon:SetTexture(attunement.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
+    -- Use our new GetAttunementIcon function
+    icon:SetTexture(AT:GetAttunementIcon(attunement))
     
     -- Create the item text
     local text = itemFrame:CreateFontString(nil, "OVERLAY")
@@ -494,6 +518,13 @@ function AT_CreateSidebarItem(attunementKey, yPos)
     
     -- Set initial selected state (will be false for landing page)
     itemFrame:SetSelected(attunementKey == AT.selectedAttunement)
+    
+    -- Store the item frame for later updates if the icon loads dynamically
+    if attunement.itemID then
+        if not AT.iconFrames then AT.iconFrames = {} end
+        if not AT.iconFrames[attunement.itemID] then AT.iconFrames[attunement.itemID] = {} end
+        table.insert(AT.iconFrames[attunement.itemID], {frame = itemFrame, icon = icon})
+    end
     
     return itemFrame
 end
@@ -665,7 +696,8 @@ function AT_CreateAttunementView(attunementKey)
     titleIcon:SetWidth(32)
     titleIcon:SetHeight(32)
     titleIcon:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, -15)
-    titleIcon:SetTexture(attunementData.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
+    -- Use our new GetAttunementIcon function
+    titleIcon:SetTexture(AT:GetAttunementIcon(attunementData))
     
     local attunementTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     attunementTitle:SetFont("Fonts\\FRIZQT__.TTF", 18, "OUTLINE")

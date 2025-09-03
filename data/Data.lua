@@ -6,8 +6,19 @@ AttuneTurtle = AttuneTurtle or {}
 local AT = AttuneTurtle  -- Local reference for faster access
 
 -- Version information
-AT.version = "v.1.0.0"
+AT.version = "v.1.1.0"  -- Changed from "v.1.0.0"
 AT.author = "SirClaver420"
+
+-- Item Constants
+AT.ITEM_IDS = {
+    -- Naxxramas items
+    RESTRAINED_ESSENCE = 23046, -- The Restrained Essence of Sapphiron
+    
+    -- Other notable items for future use
+    SULFURAS = 17182, -- Sulfuras, Hand of Ragnaros
+    ONYXIA_HEAD = 18423, -- Head of Onyxia
+    BLACKWING_TALON = 19003, -- Head of Nefarian
+}
 
 -- Icons for attunements
 AT.icons = {
@@ -27,6 +38,80 @@ AT.icons = {
         Naxx = "Interface\\Icons\\INV_Jewelry_Talisman_13", -- The Restrained Essence of Sapphiron icon
     }
 }
+
+-- Function to get item icon by item ID (caches results for performance)
+local itemIconCache = {}
+function AT:GetItemIcon(itemID)
+    if itemIconCache[itemID] then
+        return itemIconCache[itemID]
+    end
+    
+    -- Try to get the icon from the item
+    local _, _, _, _, _, _, _, _, _, itemTexture = GetItemInfo(itemID)
+    if itemTexture then
+        itemIconCache[itemID] = itemTexture
+        return itemTexture
+    end
+    
+    -- Fallback for items not in cache yet
+    -- We'll queue this item to try again later when it might be available
+    AT:QueueIconRequest(itemID)
+    
+    -- Return path-based icon as fallback
+    if itemID == AT.ITEM_IDS.RESTRAINED_ESSENCE then
+        return "Interface\\Icons\\INV_Jewelry_Talisman_13"
+    elseif itemID == AT.ITEM_IDS.SULFURAS then
+        return "Interface\\Icons\\INV_Hammer_Unique_Sulfuras"
+    elseif itemID == AT.ITEM_IDS.ONYXIA_HEAD then
+        return "Interface\\Icons\\INV_Misc_Head_Dragon_01"
+    elseif itemID == AT.ITEM_IDS.BLACKWING_TALON then
+        return "Interface\\Icons\\INV_Misc_Head_Dragon_Black"
+    end
+    
+    return "Interface\\Icons\\INV_Misc_QuestionMark"
+end
+
+-- Queue system for item icons that aren't in cache yet
+AT.iconQueue = {}
+function AT:QueueIconRequest(itemID)
+    if not AT.iconQueue[itemID] then
+        AT.iconQueue[itemID] = true
+        if not AT.iconQueueFrame then
+            AT.iconQueueFrame = CreateFrame("Frame")
+            AT.iconQueueFrame:SetScript("OnUpdate", function()
+                for queuedID in pairs(AT.iconQueue) do
+                    local _, _, _, _, _, _, _, _, _, itemTexture = GetItemInfo(queuedID)
+                    if itemTexture then
+                        itemIconCache[queuedID] = itemTexture
+                        AT.iconQueue[queuedID] = nil
+                        -- Update UI if this icon is being used
+                        AT:RefreshIcons(queuedID)
+                    end
+                end
+                
+                -- If queue is empty, stop checking
+                if not next(AT.iconQueue) then
+                    AT.iconQueueFrame:SetScript("OnUpdate", nil)
+                end
+            end)
+        else
+            AT.iconQueueFrame:SetScript("OnUpdate", AT.iconQueueFrame:GetScript("OnUpdate"))
+        end
+    end
+end
+
+-- Refresh icons in the UI
+function AT:RefreshIcons(itemID)
+    -- This will be called when an icon is loaded
+    -- For now, it just refreshes the main frame if it's open
+    if AT.mainFrame and AT.mainFrame:IsVisible() then
+        if AT.selectedAttunement then
+            AT_CreateAttunementView(AT.selectedAttunement)
+        else
+            AT_CreateLandingPage()
+        end
+    end
+end
 
 -- Categories for organization (ordered by level requirement)
 AT.categories = {
@@ -394,7 +479,7 @@ AT.attunements = {
         phase = 6,
         minLevel = 60,
         category = "Attunements",
-        icon = AT.icons.raid.Naxx,
+        itemID = AT.ITEM_IDS.RESTRAINED_ESSENCE, -- Use item ID for icon
         completed = true,
         steps = {
             {
@@ -432,6 +517,21 @@ AT.attunements = {
         },
     },
 }
+
+-- Modify the existing GetIcon method to handle item IDs
+function AT:GetAttunementIcon(attunement)
+    if not attunement then return "Interface\\Icons\\INV_Misc_QuestionMark" end
+    
+    -- If attunement has an itemID, use that to get the icon
+    if attunement.itemID then
+        return AT:GetItemIcon(attunement.itemID)
+    -- Otherwise fall back to the icon property
+    elseif attunement.icon then
+        return attunement.icon
+    else
+        return "Interface\\Icons\\INV_Misc_QuestionMark"
+    end
+end
 
 -- Function to check if player has completed a quest
 function AT_HasCompletedQuest(questID)
