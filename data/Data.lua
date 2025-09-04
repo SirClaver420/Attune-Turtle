@@ -18,6 +18,10 @@ AT.ITEM_IDS = {
     SULFURAS = 17182, -- Sulfuras, Hand of Ragnaros
     ONYXIA_HEAD = 18423, -- Head of Onyxia
     BLACKWING_TALON = 19003, -- Head of Nefarian
+    
+    -- ZF Mallet items
+    SACRED_MALLET = 9240, -- Sacred Mallet
+    ZF_MALLET = 9241, -- Mallet of Zul'Farrak
 }
 
 -- Icons for attunements
@@ -30,6 +34,8 @@ AT.icons = {
     level = "Interface\\Icons\\INV_Misc_Gem_Pearl_02",
     interact = "Interface\\Icons\\INV_Misc_Gear_02",
     reward = "Interface\\Icons\\INV_Misc_Gem_Sapphire_02",
+    travel = "Interface\\Icons\\Ability_Tracking",
+    boss = "Interface\\Icons\\Ability_Creature_Cursed_05",
     checkmark = "Interface\\Buttons\\UI-CheckBox-Check",
     raid = {
         MC = "Interface\\Icons\\INV_Hammer_Unique_Sulfuras", -- Sulfuras icon
@@ -66,6 +72,10 @@ function AT:GetItemIcon(itemID)
         return "Interface\\Icons\\INV_Misc_Head_Dragon_01"
     elseif itemID == AT.ITEM_IDS.BLACKWING_TALON then
         return "Interface\\Icons\\INV_Misc_Head_Dragon_Black"
+    elseif itemID == AT.ITEM_IDS.SACRED_MALLET then
+        return "Interface\\Icons\\INV_Hammer_19"
+    elseif itemID == AT.ITEM_IDS.ZF_MALLET then
+        return "Interface\\Icons\\INV_Hammer_19"
     end
     
     return "Interface\\Icons\\INV_Misc_QuestionMark"
@@ -192,27 +202,132 @@ AT.attunements = {
         icon = "Interface\\Icons\\INV_Hammer_19",
         category = "Dungeons / Keys",
         completed = false,
+        
+        -- Enhanced dungeon information
+        dungeon = {
+            location = "Tanaris",
+            coordinates = "39, 21",
+            levelRange = "44-54",
+            type = "Dungeon",
+            instanceId = 209,
+        },
+        
+        -- Benefits and overview
+        overview = {
+            goal = "Acquire the Mallet of Zul'Farrak to summon Gahz'rilla, the final boss of Zul'Farrak.",
+            benefits = {
+                "Access to Gahz'rilla loot table",
+                "Quest completion for 'Gahz'rilla' (Carrot on a Stick reward)",
+                "Achievement credit for dungeon completion",
+                "Only one group member needs the mallet"
+            },
+            warnings = {
+                "Qiaga the Keeper is elite and difficult to solo",
+                "Recommend bringing a group to obtain the Sacred Mallet",
+                "The altar area can have additional hostile NPCs"
+            }
+        },
+        
         steps = {
             {
                 id = "ZF_001",
-                text = "Obtain Sacred Mallet",
-                location = "Zul'Farrak",
-                type = "quest",
+                text = "Travel to the Altar of Zul in The Hinterlands",
+                description = "Locate the Altar of Zul in the southeastern part of The Hinterlands. This is where you'll find Qiaga the Keeper.",
+                location = "The Hinterlands",
+                coordinates = "76, 74",
+                type = "travel",
                 completed = false,
-                x = 0,
-                y = 0,
+                warnings = {"Bring a group - the area has elite mobs"},
+                tips = {"The altar is recognizable by its large stone structure"}
             },
             {
-                id = "ZF_002",
-                text = "Use mallet to summon Gahz'rilla",
-                location = "Zul'Farrak",
-                type = "interact",
+                id = "ZF_002", 
+                text = "Defeat Qiaga the Keeper",
+                description = "Kill Qiaga the Keeper at the Altar of Zul to obtain the Sacred Mallet. She is an elite level 46 mob.",
+                location = "The Hinterlands - Altar of Zul",
+                coordinates = "76, 74",
+                type = "kill",
                 previousStep = "ZF_001",
                 completed = false,
-                x = 0,
-                y = 60,
+                mobId = 7267,
+                mobLevel = 46,
+                mobType = "Elite",
+                warnings = {
+                    "Level 46 Elite - very difficult to solo",
+                    "Recommend 2-3 players minimum", 
+                    "Has area effect abilities"
+                },
+                tips = {
+                    "Can be done with any level 44+ group",
+                    "Respawns after ~10 minutes if needed"
+                }
             },
-        },
+            {
+                id = "ZF_003",
+                text = "Obtain the Sacred Mallet",
+                description = "Loot the Sacred Mallet from Qiaga the Keeper's corpse. This item is required for the next step.",
+                location = "The Hinterlands - Altar of Zul", 
+                coordinates = "76, 74",
+                type = "item",
+                previousStep = "ZF_002",
+                completed = false,
+                itemId = 9240,
+                itemName = "Sacred Mallet",
+                tips = {"The Sacred Mallet is 100% drop rate from Qiaga"}
+            },
+            {
+                id = "ZF_004",
+                text = "Use Sacred Mallet at the Altar",
+                description = "Right-click the Sacred Mallet while standing at the Altar of Zul to transform it into the Mallet of Zul'Farrak.",
+                location = "The Hinterlands - Altar of Zul",
+                coordinates = "76, 74", 
+                type = "interact",
+                previousStep = "ZF_003",
+                completed = false,
+                resultItem = 9241,
+                resultItemName = "Mallet of Zul'Farrak",
+                tips = {
+                    "Must be used at the exact altar location",
+                    "Creates the final mallet needed for the dungeon"
+                }
+            },
+            {
+                id = "ZF_005",
+                text = "Enter Zul'Farrak",
+                description = "Travel to Zul'Farrak in Tanaris and enter the dungeon. You're now ready to summon Gahz'rilla.",
+                location = "Tanaris - Zul'Farrak",
+                coordinates = "39, 21",
+                type = "travel",
+                previousStep = "ZF_004",
+                completed = false,
+                tips = {
+                    "Dungeon entrance is in the large temple structure",
+                    "Recommended group size: 5 players level 44-54"
+                }
+            },
+            {
+                id = "ZF_006",
+                text = "Summon and defeat Gahz'rilla",
+                description = "Navigate to the Gahz'rilla summoning pool in Zul'Farrak. Use the Mallet of Zul'Farrak to summon the boss, then defeat him.",
+                location = "Zul'Farrak - Gahz'rilla Pool",
+                type = "boss", 
+                previousStep = "ZF_005",
+                completed = false,
+                bossId = 7273,
+                bossName = "Gahz'rilla",
+                warnings = {"Final boss - requires full group coordination"},
+                tips = {
+                    "Only one group member needs to use the mallet",
+                    "Boss has a knockback ability",
+                    "Drops unique loot and quest items"
+                },
+                rewards = {
+                    "Gahz'rilla's loot table",
+                    "Gahz'rilla Scale Armor quest completion",
+                    "Dungeon completion achievement"
+                }
+            }
+        }
     },
     
     ["ScholomanceKey"] = {

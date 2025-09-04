@@ -42,8 +42,11 @@ function AT_CreateMainFrame()
         insets = { left = 4, right = 4, top = 4, bottom = 4 }
     })
     AT.mainFrame:SetBackdropColor(0, 0, 0, 0.8)
+    AT.mainFrame:SetMinResize(600, 400) -- Minimum window size
+    AT.mainFrame:SetMaxResize(1200, 800) -- Maximum window size
     AT.mainFrame:EnableMouse(true)
     AT.mainFrame:SetMovable(true)
+    AT.mainFrame:SetResizable(true) -- Make window resizable
     
     -- Register for ESC key
     tinsert(UISpecialFrames, "AttuneTurtleMainFrame")
@@ -55,6 +58,11 @@ function AT_CreateMainFrame()
     end)
     AT.mainFrame:SetScript("OnDragStop", function() 
         AT.mainFrame:StopMovingOrSizing() 
+    end)
+    
+    -- Add resize handler
+    AT.mainFrame:SetScript("OnSizeChanged", function()
+        AT:UpdateScrollbarPosition()
     end)
     
     -- Title bar
@@ -74,11 +82,26 @@ function AT_CreateMainFrame()
     closeButton:SetPoint("TOPRIGHT", AT.mainFrame, "TOPRIGHT", -5, -5)
     closeButton:SetScript("OnClick", function() AT.mainFrame:Hide() end)
     
-    -- Create sidebar (left panel)
+    -- Add resize grip (bottom right corner)
+    local resizeGrip = CreateFrame("Button", nil, AT.mainFrame)
+    resizeGrip:SetWidth(16)
+    resizeGrip:SetHeight(16)
+    resizeGrip:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -2, 2)
+    resizeGrip:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    resizeGrip:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+    resizeGrip:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+    resizeGrip:SetScript("OnMouseDown", function()
+        AT.mainFrame:StartSizing("BOTTOMRIGHT")
+    end)
+    resizeGrip:SetScript("OnMouseUp", function()
+        AT.mainFrame:StopMovingOrSizing()
+    end)
+    
+    -- Create sidebar (left panel) - DYNAMIC ANCHORING
     AT.sidebarFrame = CreateFrame("Frame", "AttuneTurtleSidebar", AT.mainFrame)
     AT.sidebarFrame:SetWidth(200)
     AT.sidebarFrame:SetPoint("TOPLEFT", AT.mainFrame, "TOPLEFT", 10, -30)
-    AT.sidebarFrame:SetPoint("BOTTOMLEFT", AT.mainFrame, "BOTTOMLEFT", 10, 45) -- Raised to make room for bigger bottom panel
+    AT.sidebarFrame:SetPoint("BOTTOMLEFT", AT.mainFrame, "BOTTOMLEFT", 10, 45) 
     AT.sidebarFrame:SetBackdrop({
         bgFile = "Interface/Tooltips/UI-Tooltip-Background",
         edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
@@ -87,10 +110,10 @@ function AT_CreateMainFrame()
     })
     AT.sidebarFrame:SetBackdropColor(0, 0, 0, 0.5)
     
-    -- Create main content area (this will be the container for the scroll frame)
+    -- Create main content area - DYNAMIC ANCHORING  
     AT.contentFrame = CreateFrame("Frame", "AttuneTurtleContent", AT.mainFrame)
     AT.contentFrame:SetPoint("TOPLEFT", AT.sidebarFrame, "TOPRIGHT", 10, 0)
-    AT.contentFrame:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -10, 45) -- Raised to make room for bigger bottom panel
+    AT.contentFrame:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -10, 45) -- This will resize automatically
     AT.contentFrame:SetBackdrop({
         bgFile = "Interface/Tooltips/UI-Tooltip-Background",
         edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
@@ -99,33 +122,20 @@ function AT_CreateMainFrame()
     })
     AT.contentFrame:SetBackdropColor(0, 0, 0, 0.3)
     
-    -- Create simple scroll frame using basic WoW components
+    -- Create scroll frame - DYNAMIC ANCHORING
     AT.scrollFrame = CreateFrame("ScrollFrame", "AttuneTurtleScrollFrame", AT.contentFrame)
     AT.scrollFrame:SetPoint("TOPLEFT", AT.contentFrame, "TOPLEFT", 8, -8)
-    AT.scrollFrame:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -30, 8) -- More room for scrollbar
+    AT.scrollFrame:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -28, 8) -- Leave room for scrollbar
     
-    -- Create scroll bar
-    AT.scrollBar = CreateFrame("Slider", "AttuneTurtleScrollBar", AT.scrollFrame)
-    AT.scrollBar:SetPoint("TOPRIGHT", AT.contentFrame, "TOPRIGHT", -8, -8)
-    AT.scrollBar:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -8, 8)
+    -- Create PROPER WoW-style scroll bar - DYNAMIC POSITIONING
+    AT.scrollBar = CreateFrame("Slider", "AttuneTurtleScrollBar", AT.contentFrame, "UIPanelScrollBarTemplate")
     AT.scrollBar:SetWidth(16)
+    -- Use dynamic positioning instead of fixed offsets
+    AT.scrollBar:SetPoint("TOPRIGHT", AT.contentFrame, "TOPRIGHT", -6, -20) -- Account for frame border
+    AT.scrollBar:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -6, 20) -- Account for frame border
     AT.scrollBar:SetMinMaxValues(0, 100)
     AT.scrollBar:SetValue(0)
     AT.scrollBar:SetValueStep(1)
-    
-    -- Add scroll bar textures
-    AT.scrollBar:SetBackdrop({
-        bgFile = "Interface/Buttons/UI-SliderBar-Background",
-        edgeFile = "Interface/Buttons/UI-SliderBar-Border",
-        tile = true, tileSize = 8, edgeSize = 8,
-        insets = { left = 3, right = 3, top = 3, bottom = 3 }
-    })
-    
-    local scrollThumb = AT.scrollBar:CreateTexture(nil, "OVERLAY")
-    scrollThumb:SetTexture("Interface/Buttons/UI-SliderBar-Button-Horizontal")
-    scrollThumb:SetWidth(16)
-    scrollThumb:SetHeight(24)
-    AT.scrollBar:SetThumbTexture(scrollThumb)
     
     -- Create the scrollable content container
     AT.scrollChild = CreateFrame("Frame", "AttuneTurtleScrollChild", AT.scrollFrame)
@@ -133,10 +143,14 @@ function AT_CreateMainFrame()
     AT.scrollChild:SetHeight(1) -- Will be set dynamically
     AT.scrollFrame:SetScrollChild(AT.scrollChild)
     
-    -- Custom scrolling logic
+    -- Enhanced scrolling logic with proper error checking
     local function UpdateScrollRange()
-        local contentHeight = AT.scrollChild:GetHeight()
-        local frameHeight = AT.scrollFrame:GetHeight()
+        if not AT.scrollChild or not AT.scrollFrame or not AT.scrollBar then
+            return
+        end
+        
+        local contentHeight = AT.scrollChild:GetHeight() or 1
+        local frameHeight = AT.scrollFrame:GetHeight() or 1
         local maxScroll = math.max(0, contentHeight - frameHeight)
         
         AT.scrollBar:SetMinMaxValues(0, maxScroll)
@@ -148,14 +162,19 @@ function AT_CreateMainFrame()
         end
     end
     
+    -- Fix the error by checking if SetVerticalScroll exists and is valid
     AT.scrollBar:SetScript("OnValueChanged", function()
-        local value = AT.scrollBar:GetValue()
-        AT.scrollFrame:SetVerticalScroll(value)
+        if AT.scrollFrame and AT.scrollFrame.SetVerticalScroll then
+            local value = AT.scrollBar:GetValue()
+            AT.scrollFrame:SetVerticalScroll(value)
+        end
     end)
     
-    -- Enable mouse wheel scrolling
+    -- Enable mouse wheel scrolling with error checking
     AT.scrollFrame:EnableMouseWheel(true)
     AT.scrollFrame:SetScript("OnMouseWheel", function()
+        if not AT.scrollBar then return end
+        
         local delta = arg1
         local current = AT.scrollBar:GetValue()
         local min, max = AT.scrollBar:GetMinMaxValues()
@@ -168,6 +187,28 @@ function AT_CreateMainFrame()
     
     -- Store the update function for later use
     AT.UpdateScrollRange = UpdateScrollRange
+    
+    -- Function to update scrollbar position dynamically
+    function AT:UpdateScrollbarPosition()
+        if AT.scrollBar and AT.contentFrame then
+            -- Recalculate scrollbar position based on current content frame size
+            AT.scrollBar:ClearAllPoints()
+            AT.scrollBar:SetPoint("TOPRIGHT", AT.contentFrame, "TOPRIGHT", -6, -20)
+            AT.scrollBar:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -6, 20)
+            
+            -- Update scroll frame to account for new size
+            if AT.scrollFrame then
+                AT.scrollFrame:ClearAllPoints()
+                AT.scrollFrame:SetPoint("TOPLEFT", AT.contentFrame, "TOPLEFT", 8, -8)
+                AT.scrollFrame:SetPoint("BOTTOMRIGHT", AT.contentFrame, "BOTTOMRIGHT", -28, 8)
+            end
+            
+            -- Update scroll range
+            if AT.UpdateScrollRange then
+                AT.UpdateScrollRange()
+            end
+        end
+    end
     
     -- BIGGER Bottom panel area (almost touching the sides)
     local bottomPanel = CreateFrame("Frame", nil, AT.mainFrame)
@@ -226,6 +267,8 @@ function AT_CreateMainFrame()
             if initTimer.timeElapsed >= 0.1 then -- 100ms delay
                 initTimer:SetScript("OnUpdate", nil)
                 AT_CreateLandingPage() -- Show landing page instead of attunement
+                -- Update scrollbar position after initial setup
+                AT:UpdateScrollbarPosition()
             end
         end)
     end)
@@ -625,10 +668,218 @@ function AT_PopulateSidebar()
     end
 end
 
+-- Create enhanced attunement view for detailed step-by-step guides
+function AT_CreateEnhancedAttunementView(attunementKey)
+    -- Clear previous content
+    if AT.scrollChild then
+        local children = {AT.scrollChild:GetChildren()}
+        for _, child in ipairs(children) do
+            child:Hide()
+            child:SetParent(nil)
+        end
+        
+        local regions = {AT.scrollChild:GetRegions()}
+        for _, region in ipairs(regions) do
+            if region:GetObjectType() == "FontString" or region:GetObjectType() == "Texture" then
+                region:Hide()
+                region:SetParent(nil)
+            end
+        end
+    end
+    
+    local attunementData = AT.attunements[attunementKey]
+    if not attunementData then return end
+    
+    local availableWidth = AT.contentFrame:GetWidth() - 60
+    AT.scrollChild:SetWidth(availableWidth)
+    
+    local yPos = -15
+    
+    -- Enhanced header with dungeon info
+    local headerIcon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
+    headerIcon:SetWidth(48)
+    headerIcon:SetHeight(48)
+    headerIcon:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, yPos)
+    headerIcon:SetTexture(AT:GetAttunementIcon(attunementData))
+    
+    local headerTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+    headerTitle:SetFont("Fonts\\FRIZQT__.TTF", 20, "OUTLINE")
+    headerTitle:SetPoint("LEFT", headerIcon, "RIGHT", 15, 8)
+    headerTitle:SetText(attunementData.name)
+    
+    local headerInfo = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+    headerInfo:SetFont("Fonts\\FRIZQT__.TTF", 12)
+    headerInfo:SetPoint("LEFT", headerIcon, "RIGHT", 15, -8)
+    headerInfo:SetTextColor(0.8, 0.8, 1.0)
+    
+    if attunementData.dungeon then
+        headerInfo:SetText("Level " .. attunementData.minLevel .. "-" .. attunementData.maxLevel .. " | " .. attunementData.dungeon.location)
+    end
+    
+    yPos = yPos - 70
+    
+    -- Overview section
+    if attunementData.overview then
+        local overviewTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+        overviewTitle:SetFont("Fonts\\FRIZQT__.TTF", 16, "OUTLINE")
+        overviewTitle:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, yPos)
+        overviewTitle:SetText("|cfffff000Overview|r")
+        yPos = yPos - 25
+        
+        local goalText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+        goalText:SetFont("Fonts\\FRIZQT__.TTF", 12)
+        goalText:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, yPos)
+        goalText:SetWidth(availableWidth - 30)
+        goalText:SetJustifyH("LEFT")
+        goalText:SetText(attunementData.overview.goal)
+        yPos = yPos - 40
+        
+        -- Benefits
+        if attunementData.overview.benefits then
+            local benefitsTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+            benefitsTitle:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
+            benefitsTitle:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, yPos)
+            benefitsTitle:SetText("|cff00ff00Benefits:|r")
+            yPos = yPos - 20
+            
+            for i, benefit in ipairs(attunementData.overview.benefits) do
+                local benefitText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+                benefitText:SetFont("Fonts\\FRIZQT__.TTF", 11)
+                benefitText:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 30, yPos)
+                benefitText:SetWidth(availableWidth - 45)
+                benefitText:SetJustifyH("LEFT")
+                benefitText:SetText("• " .. benefit)
+                yPos = yPos - 15
+            end
+            yPos = yPos - 10
+        end
+        
+        -- Warnings
+        if attunementData.overview.warnings then
+            local warningsTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+            warningsTitle:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
+            warningsTitle:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, yPos)
+            warningsTitle:SetText("|cffff8000Warnings:|r")
+            yPos = yPos - 20
+            
+            for i, warning in ipairs(attunementData.overview.warnings) do
+                local warningText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+                warningText:SetFont("Fonts\\FRIZQT__.TTF", 11)
+                warningText:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 30, yPos)
+                warningText:SetWidth(availableWidth - 45)
+                warningText:SetJustifyH("LEFT")
+                warningText:SetTextColor(1.0, 0.8, 0.5)
+                warningText:SetText("⚠ " .. warning)
+                yPos = yPos - 15
+            end
+            yPos = yPos - 10
+        end
+    end
+    
+    -- Steps section
+    local stepsTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
+    stepsTitle:SetFont("Fonts\\FRIZQT__.TTF", 16, "OUTLINE")
+    stepsTitle:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, yPos)
+    stepsTitle:SetText("|cfffff000Step-by-Step Guide|r")
+    yPos = yPos - 30
+    
+    if attunementData.steps then
+        for i, step in ipairs(attunementData.steps) do
+            -- Step container
+            local stepContainer = CreateFrame("Frame", nil, AT.scrollChild)
+            stepContainer:SetWidth(availableWidth - 30)
+            stepContainer:SetHeight(120) -- Will adjust based on content
+            stepContainer:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 15, yPos)
+            stepContainer:SetBackdrop({
+                bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+                edgeFile = "Interface/DialogFrame/UI-DialogBox-Border",
+                tile = true, tileSize = 16, edgeSize = 16,
+                insets = { left = 4, right = 4, top = 4, bottom = 4 }
+            })
+            stepContainer:SetBackdropColor(0, 0.3, 0.6, 0.7)
+            
+            -- Step number and completion checkbox
+            local stepNumber = stepContainer:CreateFontString(nil, "OVERLAY")
+            stepNumber:SetFont("Fonts\\FRIZQT__.TTF", 16, "OUTLINE")
+            stepNumber:SetPoint("TOPLEFT", stepContainer, "TOPLEFT", 15, -10)
+            stepNumber:SetText("|cfffff000Step " .. i .. "|r")
+            
+            -- Checkbox for manual completion tracking
+            local checkbox = CreateFrame("CheckButton", "ATStepCheck_" .. step.id, stepContainer, "UICheckButtonTemplate")
+            checkbox:SetWidth(20)
+            checkbox:SetHeight(20)
+            checkbox:SetPoint("LEFT", stepNumber, "RIGHT", 10, 0)
+            checkbox:SetChecked(step.completed)
+            checkbox:SetScript("OnClick", function()
+                step.completed = checkbox:GetChecked()
+                -- Save to database here
+                print("|cff00ff00Attune Turtle:|r Step " .. (checkbox:GetChecked() and "completed" or "uncompleted"))
+            end)
+            
+            -- Step title
+            local stepTitle = stepContainer:CreateFontString(nil, "OVERLAY") 
+            stepTitle:SetFont("Fonts\\FRIZQT__.TTF", 13, "OUTLINE")
+            stepTitle:SetPoint("TOPLEFT", stepContainer, "TOPLEFT", 15, -35)
+            stepTitle:SetWidth(availableWidth - 80)
+            stepTitle:SetJustifyH("LEFT")
+            stepTitle:SetText(step.text)
+            
+            -- Step description
+            if step.description then
+                local stepDesc = stepContainer:CreateFontString(nil, "OVERLAY")
+                stepDesc:SetFont("Fonts\\FRIZQT__.TTF", 11)
+                stepDesc:SetPoint("TOPLEFT", stepTitle, "BOTTOMLEFT", 0, -10)
+                stepDesc:SetWidth(availableWidth - 80)
+                stepDesc:SetJustifyH("LEFT")
+                stepDesc:SetText(step.description)
+            end
+            
+            -- Location and coordinates
+            if step.location and step.coordinates then
+                local locationText = stepContainer:CreateFontString(nil, "OVERLAY")
+                locationText:SetFont("Fonts\\FRIZQT__.TTF", 11)
+                locationText:SetPoint("BOTTOMLEFT", stepContainer, "BOTTOMLEFT", 15, 10)
+                locationText:SetTextColor(0.9, 0.9, 0.6)
+                locationText:SetText("📍 " .. step.location .. " (" .. step.coordinates .. ")")
+            end
+            
+            -- Add clickable links for items, quests, NPCs
+            if step.itemId then
+                local itemLink, itemButton = AT:CreateClickableText(stepContainer, step.itemName or "Item", "item", step.itemId, step.itemName)
+                itemLink:SetPoint("TOPRIGHT", stepContainer, "TOPRIGHT", -15, -10)
+            end
+            
+            if step.mobId then
+                local mobLink, mobButton = AT:CreateClickableText(stepContainer, step.mobType and (step.mobType .. " Mob") or "NPC", "npc", step.mobId, "")
+                mobLink:SetPoint("TOPRIGHT", stepContainer, "TOPRIGHT", -15, -30)
+            end
+            
+            yPos = yPos - 130
+        end
+    end
+    
+    -- Set scroll height
+    AT.scrollChild:SetHeight(math.abs(yPos) + 50)
+    
+    if AT.UpdateScrollRange then
+        AT.UpdateScrollRange()
+    end
+    
+    if AT.scrollBar then
+        AT.scrollBar:SetValue(0)
+    end
+end
+
 -- Create the attunement flowchart view with better panel alignment
 function AT_CreateAttunementView(attunementKey)
     -- Use parameter or fallback to selected attunement
     attunementKey = attunementKey or AT.selectedAttunement
+    
+    -- Check if we should use enhanced view for ZF
+    if attunementKey == "ZFMallet" then
+        AT_CreateEnhancedAttunementView(attunementKey)
+        return
+    end
     
     -- Safety check
     if not attunementKey or not AT.attunements[attunementKey] then
