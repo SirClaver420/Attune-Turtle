@@ -1,6 +1,6 @@
 # Attune-Turtle
 
-## Current Version: `1.0.1`
+## Current Version: `1.0.0`
 
 An addon for Turtle WoW that helps players track their attunement progress for dungeons and raids. This is a custom version inspired by the original [Attune](https://www.curseforge.com/wow/addons/attune) addon, tailored specifically for the Turtle WoW 1.12 client.
 
@@ -81,7 +81,7 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 
 This addon is under active development. Here is the planned feature release schedule:
 
--   **v1.0.1 - Foundation & Core UI**
+-   **v1.0.0 - Foundation & Core UI**
     -   ✅ Basic UI frame and layout.
     -   ✅ Sidebar with collapsible categories.
     -   ✅ Scrollable content area.
@@ -108,12 +108,10 @@ This addon is under active development. Here is the planned feature release sche
 
 ## Version History
 
--   **v1.0.1 (2025-09-06)**
+-   **v1.0.0 (2025-09-06)**
     -   Initial release.
     -   Established core UI, data structure, and basic functionality.
     -   Cleaned up and standardized all project files.
--   **v1.0.0 (2025-09-06)**
-    -   Initial commit and project setup.
 
 ---
 
@@ -121,8 +119,8 @@ This addon is under active development. Here is the planned feature release sche
 
 This project follows a semantic versioning pattern of **MAJOR.MINOR.PATCH**.
 
--   **MAJOR (1.x.x):** Incremented for massive, a new, significant feature is added that changes the overall addon behaviour (e.g., the release of automatic progress tracking).
--   **MINOR (x.1.x):** Incremented when new, smaller features are added, such as a new attunement section for a custom raid.
+-   **MAJOR (1.x.x):** Incremented for massive, potentially incompatible changes or the completion of a major development phase (e.g., the release of automatic progress tracking).
+-   **MINOR (x.1.x):** Incremented when new, significant features are added, such as interactive tooltips, database links, or a new attunement section for a custom raid.
 -   **PATCH (x.x.1):** Incremented for backwards-compatible bug fixes, text corrections, or other small tweaks.
 
 ---
