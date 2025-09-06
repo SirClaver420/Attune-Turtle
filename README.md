@@ -80,27 +80,27 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 This addon is under active development. Here is the planned feature release schedule:
 
 -   **v1.0.0 - Foundation & UI**
-    -   [x] Basic UI frame and layout.
-    -   [x] Sidebar with collapsible categories.
-    -   [x] Scrollable content area.
-    -   [x] Placeholder data for all major attunements.
-    -   [x] Minimap icon and slash commands.
-    -   [x] Detailed flowchart view for Onyxia's Lair (Horde).
+    -   ✅ Basic UI frame and layout.
+    -   ✅ Sidebar with collapsible categories.
+    -   ✅ Scrollable content area.
+    -   ✅ Placeholder data for all major attunements.
+    -   ✅ Minimap icon and slash commands.
+    -   ✅ Detailed flowchart view for Onyxia's Lair (Horde).
 
 -   **v1.0.1 - Zul'Farrak Mallet**
-    -   [ ] Implement the full attunement steps for the Mallet of Zul'Farrak.
+    -   🔳 Implement the full attunement steps for the Mallet of Zul'Farrak.
 
 -   **v1.0.2 - UBRS Key**
-    -   [ ] Implement the full attunement steps for the Seal of Ascension (UBRS Key).
+    -   🔳 Implement the full attunement steps for the Seal of Ascension (UBRS Key).
 
 -   **v1.1.0 - Automatic Progress Tracking**
-    -   [ ] Implement functionality to automatically detect and mark completed quests.
-    -   [ ] Add character-specific progress saving.
+    -   🔳 Implement functionality to automatically detect and mark completed quests.
+    -   🔳 Add character-specific progress saving.
 
 -   **Future Plans**
-    -   [ ] Full implementation for all keys and attunements.
-    -   [ ] Alliance-specific quest chains.
-    -   [ ] Settings panel for customization.
+    -   🔳 Full implementation for all keys and attunements.
+    -   🔳 Alliance-specific quest chains.
+    -   🔳 Settings panel for customization.
 
 ---
 
