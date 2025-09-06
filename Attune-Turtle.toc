@@ -2,12 +2,12 @@
 ## Title: |cff00ff00Attune|r |cffffffffTurtle|r
 ## Notes: Track attunement progress for dungeons and raids on Turtle WoW
 ## Author: SirClaver420
-## Version: 1.0.1
+## Version: 1.0.2
 ## SavedVariables: AttuneTurtleDB
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 
-# @version 1.0.1
+# @version 1.0.2
 
 # Libraries
 libs\LibStub.lua

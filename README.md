@@ -1,6 +1,6 @@
 # Attune-Turtle
 
-## Current Version: `1.0.1`
+## Current Version: `1.0.2`
 
 An addon for Turtle WoW that helps players track their attunement progress for dungeons and raids. This is a custom version inspired by the original [Attune](https://www.curseforge.com/wow/addons/attune) addon, tailored specifically for the Turtle WoW 1.12 client.
 
@@ -47,6 +47,7 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 ## Features
 
 - **Attunement Tracking:** Clear, step-by-step guides for all major attunements.
+- **Dynamic UI:** Main window is fully resizable and remembers its position and dimensions.
 - **Dungeon & Raid Keys:** Track progress for essential keys like the Mallet of Zul'Farrak, UBRS key, and more.
 - **Intuitive UI:** A clean, modern interface to easily view your progress.
 - **Minimap Button:** Quick access via a LibDataBroker (LDB) minimap icon.
@@ -69,7 +70,7 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
     -   `/attune` or `/at`: Toggles the main window.
     -   `/attune help`: Shows a list of available commands.
     -   `/attune version`: Displays the current addon version.
-    -   `/attune reset`: Resets the minimap button position.
+    -   `/attune reset`: Resets addon settings to default, including window size and position.
 
 -   **Minimap Icon:**
     -   **Left-Click:** Toggles the main window.
@@ -81,9 +82,10 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 
 This addon is under active development. The goal is to first build a robust, feature-rich foundation before populating all the attunement data.
 
-### Phase 1: Static UI Foundation (v1.0.1) - ✅ Complete
+### Phase 1: UI Foundation (v1.0.2) - ✅ Complete
 
--   ✅ Build a stable, non-resizable UI window.
+-   ✅ Build a stable UI window.
+-   ✅ Make the main window resizable and dynamic.
 -   ✅ Create the sidebar, content area, and scroll frames.
 -   ✅ Implement a landing page and basic attunement views.
 -   ✅ Add a minimap icon and slash commands.
@@ -93,8 +95,6 @@ This addon is under active development. The goal is to first build a robust, fea
 
 The primary focus is on building the core systems that will power the addon.
 
--   **Dynamic Window:**
-    -   🔳 Make the main window resizable and dynamic.
 -   **Per-Character Progress:**
     -   🔳 Modify the database (`SavedVariables`) to store attunement progress on a per-character basis.
 -   **Automatic Faction Detection:**
@@ -121,6 +121,10 @@ Once the foundation is complete, the focus will shift to adding all the specific
 
 ## Version History
 
+-   **v1.0.2 (2025-09-06)**
+    -   Implemented a fully resizable and draggable main window.
+    -   Window size and position are now saved between sessions.
+    -   Fixed numerous bugs related to UI scripts and frame handling.
 -   **v1.0.1 (2025-09-06)**
     -   Finalized and polished the static UI layout.
     -   Cleaned up code and added comments across all files.
@@ -154,7 +158,7 @@ This addon would not have been possible without the incredible work of the addon
 
 -   **CixiDelmont** for creating the original [Attune addon](https://www.curseforge.com/wow/addons/attune), which was the inspiration for this entire project.
 -   The authors of the **Ace3 library framework**, whose work provides the stable and powerful foundation for this addon. This includes LibStub, AceCore, AceHook, CallbackHandler, LibDataBroker, and LibDBIcon.
--   The creators of other fantastic Turtle WoW addons like **AtlasLoot** and **pfUI**, which served as invaluable references for learning how to code in this environment.
+-   The creators of other fantastic Turtle WoW addons like **AtlasLoot**, **pfUI**, and **ShaguDPS** which served as invaluable references for learning how to code in this environment.
 -   **Wowhead** and the **Turtle WoW Wiki** for being indispensable resources for game data.
 -   This project was developed with the assistance of **GitHub Copilot**, which helped guide the development process and write the code.
 

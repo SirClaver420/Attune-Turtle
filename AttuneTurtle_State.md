@@ -1,34 +1,298 @@
--- Attune-Turtle v1.0.2 - UI.lua
+# Attune-Turtle Project State
+
+This file contains the complete source code for the Attune-Turtle addon. Provide this file to GitHub Copilot at the beginning of a new session to restore the project's state.
+
+---
+
+### `Attune-Turtle.toc`
+
+```lua name=Attune-Turtle.toc
+## Interface: 11200
+## Title: |cff00ff00Attune|r |cffffffffTurtle|r
+## Notes: Track attunement progress for dungeons and raids on Turtle WoW
+## Author: SirClaver420
+## Version: 1.0.1
+## SavedVariables: AttuneTurtleDB
+## DefaultState: Enabled
+## LoadOnDemand: 0
+
+# @version 1.0.1
+
+# Libraries
+libs\LibStub.lua
+libs\AceCore-3.0.lua
+libs\CallbackHandler-1.0.lua
+libs\AceHook-3.0.lua
+libs\LibDataBroker-1.1.lua
+libs\LibDBIcon-1.0.lua
+
+# Core files
+Core.lua
+data\Data.lua
+data\UI.lua
+data\MinimapButton.lua
+```
+
+---
+
+### `Core.lua`
+
+```lua name=Core.lua
+-- Attune-Turtle v1.0.1 - Core.lua
+-- Main addon logic and initialization
+
+-- Initialize the addon's main table
+AttuneTurtle = LibStub("AceHook-3.0"):Embed({})
+local AT = AttuneTurtle
+
+-- Version information
+AT.version = "1.0.1"
+AT.author = "SirClaver420"
+
+-- Database defaults
+local defaults = {
+    profile = {
+        minimap = {
+            hide = false,
+            minimapPos = 225,
+            radius = 80,
+        },
+        attunements = {},
+        categoryStates = {
+            ["Dungeons / Keys"] = true,
+            ["Attunements"] = true,
+        },
+        firstTime = true,
+    }
+}
+
+-- Initialize the saved variables database
+function AT:InitializeDatabase()
+    -- This ensures the global DB table exists.
+    AttuneTurtleDB = AttuneTurtleDB or {}
+    
+    -- Populate the database with default values if they don't exist.
+    for key, value in pairs(defaults.profile) do
+        if AttuneTurtleDB[key] == nil then
+            AttuneTurtleDB[key] = value
+        end
+    end
+    
+    -- Create a local reference for easier access throughout the addon.
+    AT.db = AttuneTurtleDB
+    AT_Debug("Database initialized")
+end
+
+-- Create the LibDataBroker object for the minimap icon
+function AT:CreateDataBroker()
+    local LDB = LibStub("LibDataBroker-1.1")
+    
+    AT.dataObj = LDB:NewDataObject("AttuneTurtle", {
+        type = "launcher",
+        text = "Attune Turtle",
+        icon = "Interface\\Icons\\INV_Misc_Book_09",
+        OnClick = function(clickedframe, button)
+            if button == "LeftButton" then
+                AT:ToggleMainFrame()
+            elseif button == "RightButton" then
+                AT:ShowSettings()
+            end
+        end,
+        OnTooltipShow = function(tooltip)
+            tooltip:AddLine("|cff00ff00Attune Turtle|r")
+            tooltip:AddLine(" ")
+            tooltip:AddLine("|cffffff00Left-click:|r Open attunement tracker")
+            tooltip:AddLine("|cffffff00Right-click:|r Open settings")
+            
+            -- Add attunement status (placeholder logic)
+            local completed = 0
+            local total = 0
+            for key, attunement in pairs(AT.attunements) do
+                total = total + 1
+                if AT:IsAttunementCompleted(key) then
+                    completed = completed + 1
+                end
+            end
+            
+            tooltip:AddLine(" ")
+            tooltip:AddLine("|cffaaccffProgress: " .. completed .. "/" .. total .. " completed|r")
+        end,
+    })
+end
+
+-- Toggle the main frame's visibility
+function AT:ToggleMainFrame()
+    if AT.mainFrame and AT.mainFrame:IsVisible() then
+        AT.mainFrame:Hide()
+    else
+        if not AT.mainFrame then
+            AT_CreateMainFrame()
+        end
+        AT.mainFrame:Show()
+    end
+end
+
+-- Placeholder for future settings panel
+function AT:ShowSettings()
+    print("|cff00ff00Attune Turtle:|r Settings panel coming soon!")
+end
+
+-- Check if an attunement is marked as completed in the database
+function AT:IsAttunementCompleted(attunementKey)
+    if not AT.db or not AT.db.attunements then
+        return false
+    end
+    return AT.db.attunements[attunementKey] and AT.db.attunements[attunementKey].completed
+end
+
+-- Mark an attunement as completed in the database
+function AT:SetAttunementCompleted(attunementKey, completed)
+    if not AT.db.attunements then AT.db.attunements = {} end
+    if not AT.db.attunements[attunementKey] then AT.db.attunements[attunementKey] = {} end
+    AT.db.attunements[attunementKey].completed = completed
+    
+    -- Refresh the UI if it's open
+    if AT.mainFrame and AT.mainFrame:IsVisible() and AT.selectedAttunement == attunementKey then
+        AT_CreateAttunementView(attunementKey)
+    end
+end
+
+-- Hook game events to enable automatic progress tracking
+function AT:HookQuestEvents()
+    AT:SecureHook("QuestRewardCompleteButton_OnClick", function()
+        AT:CheckQuestCompletion()
+    end)
+    
+    AT:SecureHook("SelectQuestLogEntry", function()
+        AT:CheckQuestProgress()
+    end)
+end
+
+-- Check for quest completion when a quest is turned in
+function AT:CheckQuestCompletion()
+    local questTitle = GetTitleText()
+    if not questTitle then return end
+    
+    for attunementKey, attunement in pairs(AT.attunements) do
+        if attunement.steps then
+            for i, step in ipairs(attunement.steps) do
+                if step.type == "quest" and step.text and string.find(step.text, questTitle) then
+                    AT:MarkStepCompleted(attunementKey, step.id)
+                end
+            end
+        end
+    end
+end
+
+-- Mark a specific step as completed in the database
+function AT:MarkStepCompleted(attunementKey, stepId)
+    if not AT.db.attunements then AT.db.attunements = {} end
+    if not AT.db.attunements[attunementKey] then AT.db.attunements[attunementKey] = { steps = {} } end
+    if not AT.db.attunements[attunementKey].steps then AT.db.attunements[attunementKey].steps = {} end
+    
+    AT.db.attunements[attunementKey].steps[stepId] = true
+    
+    print("|cff00ff00Attune Turtle:|r Step completed for " .. (AT.attunements[attunementKey] and AT.attunements[attunementKey].name or attunementKey))
+end
+
+-- Placeholder for checking the player's quest log
+function AT:CheckQuestProgress()
+    -- This will be expanded in future versions
+end
+
+-- Display help information in the chat window
+function AT:ShowHelp()
+    print("|cff00ff00Attune Turtle|r - Available Commands:")
+    print("  |cffffff00/attune|r or |cffffffff/at|r - Toggle the main window.")
+    print("  |cffffff00/attune help|r - Show this help message.")
+    print("  |cffffff00/attune version|r - Display addon version.")
+    print("  |cffffff00/attune debug|r - Toggle debug mode.")
+    print("  |cffffff00/attune reset|r - Reset minimap button position.")
+end
+
+-- Debug function for internal use
+function AT_Debug(message)
+    if AT.debug then
+        print("|cff00ff00[Attune Debug]:|r " .. tostring(message))
+    end
+end
+
+-- Event frame for handling addon initialization events
+local eventFrame = CreateFrame("Frame")
+eventFrame:RegisterEvent("ADDON_LOADED")
+eventFrame:RegisterEvent("PLAYER_LOGIN")
+eventFrame:RegisterEvent("VARIABLES_LOADED")
+
+eventFrame:SetScript("OnEvent", function()
+    if event == "ADDON_LOADED" and arg1 == "Attune-Turtle" then
+        -- This event fires when our addon's files are loaded.
+        -- We initialize the database and DataBroker object here.
+        AT:InitializeDatabase()
+        AT:CreateDataBroker()
+        
+    elseif event == "VARIABLES_LOADED" then
+        -- This event fires after saved variables are loaded.
+        -- This is the correct time to create the minimap button.
+        AT_CreateMinimapButton()
+        
+    elseif event == "PLAYER_LOGIN" then
+        -- This event fires when the player enters the world.
+        AT:HookQuestEvents()
+        
+        -- Show a login message every time.
+        if AT.db.firstTime then
+            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded for the first time! Type |cffffffff/attune|r to open.")
+            AT.db.firstTime = false
+        else
+            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded. Type |cffffffff/attune help|r for commands.")
+        end
+        
+        -- Unregister events we only need once.
+        eventFrame:UnregisterEvent("ADDON_LOADED")
+        eventFrame:UnregisterEvent("PLAYER_LOGIN")
+        eventFrame:UnregisterEvent("VARIABLES_LOADED")
+    end
+end)
+
+-- Slash command handler
+SLASH_ATTUNE1 = "/attune"
+SLASH_ATTUNE2 = "/at"
+SlashCmdList["ATTUNE"] = function(msg)
+    msg = string.lower(msg or "")
+    
+    if msg == "debug" then
+        AT.debug = not AT.debug
+        print("|cff00ff00Attune Turtle:|r Debug mode " .. (AT.debug and "enabled" or "disabled"))
+    elseif msg == "reset" then
+        AT:ResetMinimapButton() -- Call the proper reset function
+    elseif msg == "version" then
+        print("|cff00ff00Attune Turtle:|r Version " .. AT.version .. " by " .. AT.author)
+    elseif msg == "help" then
+        AT:ShowHelp()
+    else
+        AT:ToggleMainFrame()
+    end
+end
+```
+
+---
+
+### `data/UI.lua`
+
+```lua name=data/UI.lua
+-- Attune-Turtle v1.0.1 - UI.lua
 -- Contains all UI-related functions
 
 -- Make sure AttuneTurtle exists
 AttuneTurtle = AttuneTurtle or {}
 local AT = AttuneTurtle  -- Local reference for faster access
 
--- This function will be called whenever the window is resized to redraw the layout.
-function AT_RefreshLayout()
-    if not AT.mainFrame then return end
-    
-    -- If we have a view selected, redraw it. Otherwise, redraw the landing page.
-    if AT.selectedAttunement then
-        AT_CreateAttunementView(AT.selectedAttunement)
-    else
-        AT_CreateLandingPage()
-    end
-    
-    -- Always update the scroll range after a resize.
-    if AT.UpdateScrollRange then
-        AT.UpdateScrollRange()
-    end
-end
-
 -- Create the main UI frame
 function AT_CreateMainFrame()
     -- Main frame
     AT.mainFrame = CreateFrame("Frame", "AttuneTurtleMainFrame", UIParent)
-    -- Use saved dimensions, falling back to defaults
-    AT.mainFrame:SetWidth(AT.db.width or 1024)
-    AT.mainFrame:SetHeight(AT.db.height or 600)
+    AT.mainFrame:SetWidth(1024)
+    AT.mainFrame:SetHeight(600)
     AT.mainFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     AT.mainFrame:SetBackdrop({
         bgFile = "Interface/Tooltips/UI-Tooltip-Background",
@@ -39,8 +303,6 @@ function AT_CreateMainFrame()
     AT.mainFrame:SetBackdropColor(0, 0, 0, 0.8)
     AT.mainFrame:EnableMouse(true)
     AT.mainFrame:SetMovable(true)
-    AT.mainFrame:SetResizable(true) -- Make the frame resizable
-    AT.mainFrame:SetMinResize(600, 400) -- Set minimum dimensions
     
     -- Register for ESC key
     tinsert(UISpecialFrames, "AttuneTurtleMainFrame")
@@ -48,15 +310,10 @@ function AT_CreateMainFrame()
     -- Make the entire frame draggable
     AT.mainFrame:RegisterForDrag("LeftButton")
     AT.mainFrame:SetScript("OnDragStart", function() 
-        if not AT.mainFrame.isSizing then -- Only start moving if we are not resizing
-            AT.mainFrame:StartMoving()
-        end
+        AT.mainFrame:StartMoving() 
     end)
     AT.mainFrame:SetScript("OnDragStop", function() 
-        AT.mainFrame:StopMovingOrSizing()
-        -- Save position and size
-        AT.db.width = AT.mainFrame:GetWidth()
-        AT.db.height = AT.mainFrame:GetHeight()
+        AT.mainFrame:StopMovingOrSizing() 
     end)
     
     -- Title bar
@@ -80,7 +337,7 @@ function AT_CreateMainFrame()
     local bottomPanel = CreateFrame("Frame", nil, AT.mainFrame)
     bottomPanel:SetHeight(30) -- Adjusted height for tighter fit
     bottomPanel:SetPoint("BOTTOMLEFT", AT.mainFrame, "BOTTOMLEFT", 5, 5)
-    bottomPanel:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -25, 5) -- MOVED 20px to the left to make space
+    bottomPanel:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -5, 5)
 
     -- Close button (anchored to the bottom right of the panel)
     local closeBtn = CreateFrame("Button", nil, bottomPanel, "UIPanelButtonTemplate")
@@ -88,6 +345,7 @@ function AT_CreateMainFrame()
     closeBtn:SetHeight(25)
     closeBtn:SetText("Close")
     closeBtn:SetPoint("RIGHT", bottomPanel, "RIGHT", 0, 0)
+    closeBtn:SetPoint("CENTER", bottomPanel, "CENTER", closeBtn:GetCenter()) -- Vertically center in the bottom panel
     closeBtn:SetScript("OnClick", function() AT.mainFrame:Hide() end)
 
     -- Options button (anchored to the Close button)
@@ -105,6 +363,7 @@ function AT_CreateMainFrame()
     versionPanel:SetHeight(25)
     versionPanel:SetPoint("LEFT", bottomPanel, "LEFT", 0, 0)
     versionPanel:SetPoint("RIGHT", optionsBtn, "LEFT", -5, 0)
+    versionPanel:SetPoint("CENTER", bottomPanel, "CENTER", versionPanel:GetCenter()) -- Vertically center in the bottom panel
     versionPanel:SetBackdrop({
         bgFile = "Interface/Tooltips/UI-Tooltip-Background",
         edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
@@ -117,7 +376,7 @@ function AT_CreateMainFrame()
     local versionText = versionPanel:CreateFontString(nil, "OVERLAY")
     versionText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE")
     versionText:SetPoint("LEFT", versionPanel, "LEFT", 12, 0)
-    versionText:SetText("|cffd4af37Attune " .. (AT.version or "1.0.2") .. " by " .. (AT.author or "SirClaver420") .. "|r")
+    versionText:SetText("|cffd4af37Attune " .. (AT.version or "1.0.1") .. " by " .. (AT.author or "SirClaver420") .. "|r")
 
     -- Create sidebar (left panel), now anchored to the bottom panel for perfect alignment
     AT.sidebarFrame = CreateFrame("Frame", "AttuneTurtleSidebar", AT.mainFrame)
@@ -179,7 +438,6 @@ function AT_CreateMainFrame()
     local function UpdateScrollRange()
         local contentHeight = AT.scrollChild:GetHeight()
         local frameHeight = AT.scrollFrame:GetHeight()
-        if frameHeight < 0 then frameHeight = 0 end
         local maxScroll = math.max(0, contentHeight - frameHeight)
         AT.scrollBar:SetMinMaxValues(0, maxScroll)
         if maxScroll > 0 then AT.scrollBar:Show() else AT.scrollBar:Hide() end
@@ -191,7 +449,7 @@ function AT_CreateMainFrame()
     
     AT.scrollFrame:EnableMouseWheel(true)
     AT.scrollFrame:SetScript("OnMouseWheel", function()
-        local delta = arg1 -- Use arg1 for mouse wheel delta
+        local delta = arg1
         local current = AT.scrollBar:GetValue()
         local min, max = AT.scrollBar:GetMinMaxValues()
         local newValue = current - (delta * 20)
@@ -200,41 +458,25 @@ function AT_CreateMainFrame()
     
     AT.UpdateScrollRange = UpdateScrollRange
     
-    -- Create the resize handle button
-    local resizeButton = CreateFrame("Button", "AttuneTurtleResizeButton", AT.mainFrame)
-    resizeButton:SetFrameStrata("HIGH") -- Set strata to be on top
-    resizeButton:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -3, 3)
-    resizeButton:SetWidth(16)
-    resizeButton:SetHeight(16)
-    resizeButton:SetFrameLevel(AT.mainFrame:GetFrameLevel() + 5)
-    
-    local resizeTexture = resizeButton:CreateTexture(nil, "ARTWORK")
-    resizeTexture:SetTexture("Interface\\ChatFrame\\UI-ChatIM-Size-Up")
-    resizeTexture:SetAllPoints()
-
-    resizeButton:SetScript("OnMouseDown", function()
-        AT.mainFrame:StartSizing("BOTTOMRIGHT")
-        AT.mainFrame.isSizing = true
-    end)
-    resizeButton:SetScript("OnMouseUp", function()
-        AT.mainFrame:StopMovingOrSizing()
-        AT.mainFrame.isSizing = false
-        -- Save the new dimensions
-        AT.db.width = AT.mainFrame:GetWidth()
-        AT.db.height = AT.mainFrame:GetHeight()
-        -- Refresh the internal layout
-        AT_RefreshLayout()
-    end)
-    
-    AT.categoryStates = AT.db.categoryStates or {}
+    AT.categoryStates = {}
+    for i, category in ipairs(AT.categories) do
+        AT.categoryStates[category.name] = category.expanded
+    end
     
     AT.selectedAttunement = nil
     
     AT_PopulateSidebar()
     
     AT.mainFrame:SetScript("OnShow", function()
-        -- OnShow, we want to show the landing page.
-        AT_CreateLandingPage()
+        local initTimer = CreateFrame("Frame")
+        initTimer.timeElapsed = 0
+        initTimer:SetScript("OnUpdate", function()
+            initTimer.timeElapsed = initTimer.timeElapsed + arg1
+            if initTimer.timeElapsed >= 0.1 then
+                initTimer:SetScript("OnUpdate", nil)
+                AT_CreateLandingPage()
+            end
+        end)
     end)
     
     AT.mainFrame:Hide()
@@ -242,34 +484,32 @@ end
 
 -- Create the landing page
 function AT_CreateLandingPage()
-    if not AT.scrollChild or not AT.contentFrame then return end
-    
-    local children = {AT.scrollChild:GetChildren()}
-    for _, child in ipairs(children) do child:Hide(); child:SetParent(nil) end
-    local regions = {AT.scrollChild:GetRegions()}
-    for _, region in ipairs(regions) do
-        if region:GetObjectType() == "FontString" or region:GetObjectType() == "Texture" then region:Hide(); region:SetParent(nil) end
+    if AT.scrollChild then
+        local children = {AT.scrollChild:GetChildren()}
+        for _, child in ipairs(children) do child:Hide(); child:SetParent(nil) end
+        local regions = {AT.scrollChild:GetRegions()}
+        for _, region in ipairs(regions) do
+            if region:GetObjectType() == "FontString" or region:GetObjectType() == "Texture" then region:Hide(); region:SetParent(nil) end
+        end
     end
     
     local availableWidth = AT.contentFrame:GetWidth() - 60
-    if availableWidth <= 0 then return end -- Don't draw if frame is too small
     AT.scrollChild:SetWidth(availableWidth)
     
     local welcomeIcon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
     welcomeIcon:SetWidth(48); welcomeIcon:SetHeight(48)
-    welcomeIcon:SetPoint("TOP", AT.scrollChild, "TOP", 0, -30)
+    welcomeIcon:SetPoint("TOP", AT.scrollChild, "TOP", -50, -30)
     welcomeIcon:SetTexture("Interface\\Icons\\INV_Misc_Book_09")
     
     local welcomeTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     welcomeTitle:SetFont("Fonts\\FRIZQT__.TTF", 24, "OUTLINE")
-    welcomeTitle:SetPoint("TOP", welcomeIcon, "TOP", 0, 20)
-    welcomeTitle:SetPoint("LEFT", welcomeIcon, "RIGHT", 15)
+    welcomeTitle:SetPoint("LEFT", welcomeIcon, "RIGHT", 15, 0)
     welcomeTitle:SetText("|cff00ff00Welcome to Attune Turtle!|r")
     
     local descText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     descText:SetFont("Fonts\\FRIZQT__.TTF", 14)
-    descText:SetPoint("TOP", welcomeIcon, "BOTTOM", 0, -30)
-    descText:SetWidth(availableWidth - 20)
+    descText:SetPoint("TOP", welcomeIcon, "BOTTOM", 50, -30)
+    descText:SetWidth(availableWidth - 60)
     descText:SetJustifyH("CENTER")
     descText:SetText("|cffffffffAttune Turtle helps you track your attunement progress for dungeons and raids.|r")
     
@@ -323,11 +563,10 @@ function AT_CreateLandingPage()
     local startText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     startText:SetFont("Fonts\\FRIZQT__.TTF", 12)
     startText:SetPoint("TOP", startTitle, "BOTTOM", 0, -15)
-    startText:SetWidth(availableWidth - 20)
+    startText:SetWidth(availableWidth - 60)
     startText:SetJustifyH("CENTER")
     startText:SetText("|cffffffffSelect a dungeon or raid from the left panel to view its attunement requirements.\n\nEach step will show you exactly what you need to do and where to go.|r")
     
-    -- RE-ADDED THE MISSING TEXT
     local turtleNote = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     turtleNote:SetFont("Fonts\\FRIZQT__.TTF", 11)
     turtleNote:SetPoint("TOP", startText, "BOTTOM", 0, -30)
@@ -344,7 +583,7 @@ function AT_CreateLandingPage()
     extraContent:SetTextColor(0.5, 0.5, 0.5)
     extraContent:SetText("|cff808080Additional Features Coming Soon:\n\n• Quest completion tracking (if possible)\n• Progress saving\n• Character-specific progress\n• Export/Import functionality\n• Custom notes\n\n\n\nThis content extends beyond the visible area to test scrolling functionality.\n\n\n\nEnd of content.|r")
     
-    AT.scrollChild:SetHeight(800) -- INCREASED HEIGHT TO MAKE SCROLLING NECESSARY
+    AT.scrollChild:SetHeight(800)
     
     if AT.UpdateScrollRange then AT.UpdateScrollRange() end
     if AT.scrollBar then AT.scrollBar:SetValue(0) end
@@ -436,7 +675,7 @@ function AT_CreateSidebarItem(attunementKey, yPos)
 end
 
 function AT_CreateCategoryHeader(categoryName, yPos)
-    local isExpanded = AT.db.categoryStates[categoryName]
+    local isExpanded = AT.categoryStates[categoryName]
     
     local headerFrame = CreateFrame("Button", nil, AT.sidebarFrame)
     headerFrame:SetHeight(20)
@@ -454,11 +693,12 @@ function AT_CreateCategoryHeader(categoryName, yPos)
     expandBtn:SetPoint("RIGHT", headerFrame, "RIGHT", -5, 0)
     expandBtn:SetTexture(isExpanded and "Interface\\Buttons\\UI-MinusButton-Up" or "Interface\\Buttons\\UI-PlusButton-Up")
     
+    headerFrame.expanded = isExpanded
     headerFrame.categoryName = categoryName
     
     headerFrame:SetScript("OnClick", function()
-        -- Note: We refer to the button as 'headerFrame' here, not 'self'
-        AT.db.categoryStates[headerFrame.categoryName] = not AT.db.categoryStates[headerFrame.categoryName]
+        headerFrame.expanded = not headerFrame.expanded
+        AT.categoryStates[categoryName] = headerFrame.expanded
         AT_PopulateSidebar()
     end)
     
@@ -481,7 +721,7 @@ function AT_PopulateSidebar()
     yPos = yPos - 25
     
     for i, category in ipairs(AT.categories) do
-        local isExpanded = AT.db.categoryStates[category.name]
+        local isExpanded = AT.categoryStates[category.name]
         local header = AT_CreateCategoryHeader(category.name, yPos)
         table.insert(AT.sidebarElements, header)
         yPos = yPos - 25
@@ -523,7 +763,6 @@ function AT_CreateAttunementView(attunementKey)
     if not attunementData then return end
     
     local availableWidth = AT.contentFrame:GetWidth() - 40
-    if availableWidth <= 0 then return end
     AT.scrollChild:SetWidth(availableWidth)
     
     local titleIcon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
@@ -537,17 +776,15 @@ function AT_CreateAttunementView(attunementKey)
     attunementTitle:SetText(attunementData.name)
     
     if not attunementData.steps[1] or not attunementData.steps[1].x then
-        local currentY = -80
+        local yPos = -80
         for i, step in ipairs(attunementData.steps) do
             local fallbackText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
             fallbackText:SetFont("Fonts\\FRIZQT__.TTF", 12)
-            fallbackText:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 20, currentY)
-            fallbackText:SetWidth(availableWidth - 40)
-            fallbackText:SetJustifyH("LEFT")
+            fallbackText:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 20, yPos)
             fallbackText:SetText((step.title or "Step " .. i) .. ": " .. (step.text or "No details available."))
-            currentY = currentY - fallbackText:GetHeight() - 10
+            yPos = yPos - 20
         end
-        AT.scrollChild:SetHeight(math.abs(currentY) + 50)
+        AT.scrollChild:SetHeight(math.abs(yPos) + 50)
         if AT.UpdateScrollRange then AT.UpdateScrollRange() end
         if AT.scrollBar then AT.scrollBar:SetValue(0) end
         return
@@ -646,3 +883,6 @@ function AT_CreateAttunementView(attunementKey)
     if AT.UpdateScrollRange then AT.UpdateScrollRange() end
     if AT.scrollBar then AT.scrollBar:SetValue(0) end
 end
+```
+
+*(...and so on for all other files...)*

@@ -1,4 +1,4 @@
--- Attune-Turtle v1.0.1 - Core.lua
+-- Attune-Turtle v1.0.2 - Core.lua
 -- Main addon logic and initialization
 
 -- Initialize the addon's main table
@@ -6,7 +6,7 @@ AttuneTurtle = LibStub("AceHook-3.0"):Embed({})
 local AT = AttuneTurtle
 
 -- Version information
-AT.version = "1.0.1"
+AT.version = "1.0.2" -- Version updated for new feature
 AT.author = "SirClaver420"
 
 -- Database defaults
@@ -17,6 +17,10 @@ local defaults = {
             minimapPos = 225,
             radius = 80,
         },
+        -- Window dimensions
+        width = 1024,
+        height = 600,
+        -- Attunement progress
         attunements = {},
         categoryStates = {
             ["Dungeons / Keys"] = true,
@@ -167,7 +171,7 @@ function AT:ShowHelp()
     print("  |cffffff00/attune help|r - Show this help message.")
     print("  |cffffff00/attune version|r - Display addon version.")
     print("  |cffffff00/attune debug|r - Toggle debug mode.")
-    print("  |cffffff00/attune reset|r - Reset minimap button position.")
+    print("  |cffffff00/attune reset|r - Reset addon settings (including window size).")
 end
 
 -- Debug function for internal use
@@ -224,7 +228,15 @@ SlashCmdList["ATTUNE"] = function(msg)
         AT.debug = not AT.debug
         print("|cff00ff00Attune Turtle:|r Debug mode " .. (AT.debug and "enabled" or "disabled"))
     elseif msg == "reset" then
-        AT:ResetMinimapButton() -- Call the proper reset function
+        -- Reset all settings to default
+        AttuneTurtleDB = nil
+        AT:InitializeDatabase()
+        if AT.mainFrame then
+            AT.mainFrame:Hide()
+            AT.mainFrame = nil
+        end
+        AT:ResetMinimapButton()
+        print("|cff00ff00Attune Turtle:|r All settings have been reset to default.")
     elseif msg == "version" then
         print("|cff00ff00Attune Turtle:|r Version " .. AT.version .. " by " .. AT.author)
     elseif msg == "help" then
