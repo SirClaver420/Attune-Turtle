@@ -1,4 +1,4 @@
--- Attune-Turtle UI
+-- Attune-Turtle v1.0.0 - UI.lua
 -- Contains all UI-related functions
 
 -- Make sure AttuneTurtle exists

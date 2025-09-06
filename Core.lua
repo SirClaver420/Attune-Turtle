@@ -1,4 +1,4 @@
--- Attune-Turtle Core
+-- Attune-Turtle v1.0.0 - Core.lua
 -- Main addon logic and initialization
 
 -- Initialize the addon

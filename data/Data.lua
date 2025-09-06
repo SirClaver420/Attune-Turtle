@@ -1,9 +1,9 @@
--- Attune-Turtle Data
+-- Attune-Turtle v1.0.0 - Data.lua
 -- Contains all data for attunements
 
 -- Make sure AttuneTurtle exists
 AttuneTurtle = AttuneTurtle or {}
-local AT = AttuneTurtle  -- Local reference
+local AT = AttuneTurtle
 
 -- Icon paths for different step types
 AT.icons = {
@@ -101,7 +101,7 @@ AT.attunements = {
                 subtext = "Quest in Badlands",
                 type = "quest",
                 previousStep = "ony_reach_level",
-                x = 0, y = -190 -- Increased Y spacing
+                x = 0, y = -190
             },
             {
                 id = "ony_kill_warchief",
@@ -109,7 +109,7 @@ AT.attunements = {
                 subtext = "Item in Lower Blackrock...",
                 type = "item",
                 previousStep = "ony_warlords_command",
-                x = -300, y = -280 -- Spread out X, Increased Y spacing
+                x = -300, y = -280
             },
             {
                 id = "ony_kill_overlord",
@@ -117,7 +117,7 @@ AT.attunements = {
                 subtext = "Kill in Lower Blackrock...",
                 type = "kill",
                 previousStep = "ony_warlords_command",
-                x = -100, y = -280 -- Spread out X, Increased Y spacing
+                x = -100, y = -280
             },
             {
                 id = "ony_kill_warmaster",
@@ -125,7 +125,7 @@ AT.attunements = {
                 subtext = "Kill in Lower Blackrock...",
                 type = "kill",
                 previousStep = "ony_warlords_command",
-                x = 100, y = -280 -- Spread out X, Increased Y spacing
+                x = 100, y = -280
             },
             {
                 id = "ony_kill_highlord",
@@ -133,7 +133,7 @@ AT.attunements = {
                 subtext = "Kill in Lower Blackrock...",
                 type = "kill",
                 previousStep = "ony_warlords_command",
-                x = 300, y = -280 -- Spread out X, Increased Y spacing
+                x = 300, y = -280
             },
             {
                 id = "ony_eirtriggs_wisdom",
@@ -141,7 +141,7 @@ AT.attunements = {
                 subtext = "Quest in Orgrimmar",
                 type = "quest",
                 previousStep = { "ony_kill_warchief", "ony_kill_overlord", "ony_kill_warmaster", "ony_kill_highlord" },
-                x = 0, y = -370 -- Increased Y spacing
+                x = 0, y = -370
             },
             {
                 id = "ony_for_the_horde",
@@ -149,7 +149,7 @@ AT.attunements = {
                 subtext = "Quest in Orgrimmar",
                 type = "quest",
                 previousStep = "ony_eirtriggs_wisdom",
-                x = 0, y = -460 -- Increased Y spacing
+                x = 0, y = -460
             }
         }
     },

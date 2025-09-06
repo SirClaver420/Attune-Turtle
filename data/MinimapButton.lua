@@ -1,4 +1,4 @@
--- Attune-Turtle Minimap Button
+-- Attune-Turtle v1.0.0 - MinimapButton.lua
 -- Handles minimap icon integration
 
 local AT = AttuneTurtle
