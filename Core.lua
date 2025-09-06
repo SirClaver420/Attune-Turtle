@@ -5,6 +5,10 @@
 AttuneTurtle = LibStub("AceHook-3.0"):Embed({})
 local AT = AttuneTurtle
 
+-- Version information
+AT.version = "1.0.0"
+AT.author = "SirClaver420"
+
 -- Database defaults
 local defaults = {
     profile = {
@@ -172,6 +176,16 @@ function AT:CheckQuestProgress()
     -- This will be expanded in future versions
 end
 
+-- Display help information
+function AT:ShowHelp()
+    print("|cff00ff00Attune Turtle|r - Available Commands:")
+    print("|cffffffff/attune|r or |cffffffff/at|r - Open the main window")
+    print("|cffffffff/attune help|r - Show this help message")
+    print("|cffffffff/attune version|r - Display addon version info")
+    print("|cffffffff/attune debug|r - Toggle debug mode")
+    print("|cffffffff/attune reset|r - Reset minimap button position")
+end
+
 -- Debug function
 function AT_Debug(message)
     if AT.debug then
@@ -198,8 +212,10 @@ eventFrame:SetScript("OnEvent", function()
         
         -- Show welcome message for first-time users
         if AT.db.firstTime then
-            print("|cff00ff00Attune Turtle|r loaded! Type |cffffffff/attune|r to open or click the minimap icon.")
+            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded! Type |cffffffff/attune|r to open or click the minimap icon.")
             AT.db.firstTime = false
+        else
+            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded! Type |cffffffff/attune help|r for commands.")
         end
         
         -- Unregister events we don't need anymore
@@ -213,6 +229,8 @@ end)
 SLASH_ATTUNE1 = "/attune"
 SLASH_ATTUNE2 = "/at"
 SlashCmdList["ATTUNE"] = function(msg)
+    msg = string.lower(msg or "")
+    
     if msg == "debug" then
         AT.debug = not AT.debug
         print("|cff00ff00Attune Turtle:|r Debug mode " .. (AT.debug and "enabled" or "disabled"))
@@ -221,6 +239,10 @@ SlashCmdList["ATTUNE"] = function(msg)
         AT.db.minimap.minimapPos = 225
         LibStub("LibDBIcon-1.0"):Refresh("AttuneTurtle", AT.db.minimap)
         print("|cff00ff00Attune Turtle:|r Minimap icon reset")
+    elseif msg == "version" then
+        print("|cff00ff00Attune Turtle:|r Version " .. AT.version .. " by " .. AT.author)
+    elseif msg == "help" then
+        AT:ShowHelp()
     else
         AT:ToggleMainFrame()
     end
