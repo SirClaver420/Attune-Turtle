@@ -38,6 +38,7 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 - [Roadmap](#roadmap)
 - [Version History](#version-history)
 - [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
 - [License](#license)
 
 ---
@@ -116,6 +117,18 @@ This addon is under active development. Here is the planned feature release sche
 ## Contributing
 
 Contributions are welcome! If you find a bug, have a suggestion, or want to contribute code, please open an issue or submit a pull request on the [GitHub repository](https://github.com/SirClaver420/Attune-Turtle).
+
+---
+
+## Acknowledgements
+
+This addon would not have been possible without the incredible work of the addon community and the resources they provide. A special thanks goes to:
+
+-   **CixiDelmont** for creating the original [Attune addon](https://www.curseforge.com/wow/addons/attune), which was the inspiration for this entire project.
+-   The authors of the **Ace3 library framework**, whose work provides the stable and powerful foundation for this addon. This includes LibStub, AceCore, AceHook, CallbackHandler, LibDataBroker, and LibDBIcon.
+-   The creators of other fantastic Turtle WoW addons like **AtlasLoot** and **pfUI**, which served as invaluable references for learning how to code in this environment.
+-   **Wowhead** and the **Turtle WoW Wiki** for being indispensable resources for game data.
+-   This project was developed with the assistance of **GitHub Copilot**, which helped guide the development process and write the code.
 
 ---
 
