@@ -79,30 +79,32 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 
 ## Roadmap
 
-This addon is under active development. Here is the planned feature release schedule:
+This addon is under active development. The goal is to first build a robust, feature-rich foundation before populating all the attunement data.
 
--   **v1.0.0 - Foundation & Core UI**
-    -   ✅ Basic UI frame and layout.
-    -   ✅ Sidebar with collapsible categories.
-    -   ✅ Scrollable content area.
-    -   ✅ Placeholder data for all major attunements.
-    -   ✅ Minimap icon and slash commands.
-    -   ✅ Detailed flowchart view for Onyxia's Lair (Horde).
+### Phase 1: Advanced Foundation (In Progress)
 
--   **v1.1.0 - Core Data Implementation**
-    -   🔳 Implement static step-by-step data for all keys (Mallet of Zul'Farrak, UBRS Key, etc.).
-    -   🔳 Implement static step-by-step data for all raid attunements (MC, BWL, Naxxramas).
-    -   🔳 Add data for both Horde and Alliance quest chains where applicable.
+The primary focus is on building the core systems that will power the addon.
 
--   **v1.2.0 - UI Interactivity & Quality of Life**
-    -   🔳 Add item/NPC/quest tooltips on hover over highlighted text.
-    -   🔳 Implement clickable links to external databases (Wowhead, Turtle WoW DB).
-    -   🔳 Create a settings panel for user customization (e.g., choosing a database, hiding completed steps).
-
--   **v2.0.0 - Automatic Progress Tracking**
-    -   🔳 Implement functionality to automatically detect completed quests and items.
-    -   🔳 Add character-specific progress saving, so each character has its own tracked state.
+-   **Per-Character Progress:**
+    -   🔳 Modify the database (`SavedVariables`) to store attunement progress on a per-character basis.
+-   **Automatic Faction Detection:**
+    -   🔳 Implement logic to automatically detect the player's faction (Horde/Alliance) to display the correct quest lines.
+-   **Automation Engine:**
+    -   🔳 Create a system to automatically check for quest completions.
+    -   🔳 Add checks for required items in the player's inventory.
     -   🔳 Visually mark steps as "complete" in the UI based on player progress.
+-   **Advanced UI Features:**
+    -   🔳 Implement rich tooltips that show item/quest details on hover.
+    -   🔳 Create a dedicated settings panel for user customization.
+
+### Phase 2: Content & Data Population
+
+Once the foundation is complete, the focus will shift to adding all the specific attunement data.
+
+-   **Data Implementation:**
+    -   🔳 Implement step-by-step data for all keys (Mallet of Zul'Farrak, UBRS Key, etc.).
+    -   🔳 Implement step-by-step data for all raid attunements (MC, BWL, Naxxramas).
+    -   🔳 Ensure data for both Horde and Alliance quest chains is complete.
 
 ---
 
