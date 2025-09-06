@@ -1,6 +1,6 @@
 # Attune-Turtle
 
-## Current Version: `1.0.0`
+## Current Version: `1.0.1`
 
 An addon for Turtle WoW that helps players track their attunement progress for dungeons and raids. This is a custom version inspired by the original [Attune](https://www.curseforge.com/wow/addons/attune) addon, tailored specifically for the Turtle WoW 1.12 client.
 
@@ -81,10 +81,20 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 
 This addon is under active development. The goal is to first build a robust, feature-rich foundation before populating all the attunement data.
 
-### Phase 1: Advanced Foundation (In Progress)
+### Phase 1: Static UI Foundation (v1.0.1) - ✅ Complete
+
+-   [x] Build a stable, non-resizable UI window.
+-   [x] Create the sidebar, content area, and scroll frames.
+-   [x] Implement a landing page and basic attunement views.
+-   [x] Add a minimap icon and slash commands.
+-   [x] Populate with placeholder data for major attunements.
+
+### Phase 2: Advanced Features (Next Up)
 
 The primary focus is on building the core systems that will power the addon.
 
+-   **Dynamic Window:**
+    -   🔳 Make the main window resizable and dynamic.
 -   **Per-Character Progress:**
     -   🔳 Modify the database (`SavedVariables`) to store attunement progress on a per-character basis.
 -   **Automatic Faction Detection:**
@@ -97,23 +107,28 @@ The primary focus is on building the core systems that will power the addon.
     -   🔳 Implement rich tooltips that show item/quest details on hover.
     -   🔳 Create a dedicated settings panel for user customization.
 
-### Phase 2: Content & Data Population
+### Phase 3: Content & Data Population
 
 Once the foundation is complete, the focus will shift to adding all the specific attunement data.
 
 -   **Data Implementation:**
     -   🔳 Implement step-by-step data for all keys (Mallet of Zul'Farrak, UBRS Key, etc.).
     -   🔳 Implement step-by-step data for all raid attunements (MC, BWL, Naxxramas).
+    -   🔳 Add data for custom raids like **Emerald Sanctum**.
     -   🔳 Ensure data for both Horde and Alliance quest chains is complete.
 
 ---
 
 ## Version History
 
+-   **v1.0.1 (2025-09-06)**
+    -   Finalized and polished the static UI layout.
+    -   Cleaned up code and added comments across all files.
+    -   Improved the addon loading message in chat.
+    -   Updated the project roadmap for the next phase of development.
 -   **v1.0.0 (2025-09-06)**
     -   Initial release.
     -   Established core UI, data structure, and basic functionality.
-    -   Cleaned up and standardized all project files.
 
 ---
 
