@@ -88,6 +88,13 @@ AT.attunements = {
         icon = "Interface\\Icons\\INV_Misc_Head_Dragon_01",
         steps = {
             {
+                title = "Onyxia's Lair Attunement",
+                text = "This is a placeholder for the Onyxia's Lair attunement steps. It involves a long quest chain for both Horde and Alliance."
+            }
+        }
+        --[[ --- ADVANCED FLOWCHART DATA - HIDDEN FOR NOW ---
+        steps = {
+            {
                 id = "ony_reach_level",
                 title = "Reach level 55",
                 subtext = "Required minimum",
@@ -152,6 +159,7 @@ AT.attunements = {
                 x = 0, y = -460
             }
         }
+        --]]
     },
     blackwinglair = {
         name = "Blackwing Lair",
