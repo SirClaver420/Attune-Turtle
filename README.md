@@ -83,11 +83,11 @@ This addon is under active development. The goal is to first build a robust, fea
 
 ### Phase 1: Static UI Foundation (v1.0.1) - ✅ Complete
 
--   [x] Build a stable, non-resizable UI window.
--   [x] Create the sidebar, content area, and scroll frames.
--   [x] Implement a landing page and basic attunement views.
--   [x] Add a minimap icon and slash commands.
--   [x] Populate with placeholder data for major attunements.
+-   ✅ Build a stable, non-resizable UI window.
+-   ✅ Create the sidebar, content area, and scroll frames.
+-   ✅ Implement a landing page and basic attunement views.
+-   ✅ Add a minimap icon and slash commands.
+-   ✅ Populate with placeholder data for major attunements.
 
 ### Phase 2: Advanced Features (Next Up)
 
