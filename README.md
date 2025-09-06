@@ -8,7 +8,7 @@ An addon for Turtle WoW that helps players track their attunement progress for d
 
 ### Screenshot
 
-![Attune-Turtle Screenshot](https://raw.githubusercontent.com/SirClaver420/Attune-Turtle/main/img/screenshot.png)
+![Attune-Turtle Screenshot](https://raw.githubusercontent.com/SirClaver420/Attune-Turtle/main/img/main_window_06092025.png)
 
 ---
 
