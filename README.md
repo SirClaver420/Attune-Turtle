@@ -26,7 +26,7 @@ I'm learning everything as I go with the help of AI tools like GitHub Copilot, w
 
 This also means that I'm definitely a noob developer learning as I go. If you find bugs or have suggestions, please be patient! Your feedback, bug reports, and contributions are essential to making this addon great. 😅
 
-- SirClaver420
+- SirClaver#1050 (Discord)
 
 ---
 
