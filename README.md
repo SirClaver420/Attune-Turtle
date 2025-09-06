@@ -6,6 +6,30 @@ An addon for Turtle WoW that helps players track their attunement progress for d
 
 ---
 
+### Screenshot
+
+![Attune-Turtle Screenshot](https://raw.githubusercontent.com/SirClaver420/Attune-Turtle/main/img/screenshot.png)
+
+---
+
+### A Note from the Author
+
+Hey there! 👋
+
+I'm just a regular player who decided to try making their first WoW addon. Before this, I had zero experience with programming—I literally started from "what is Lua?" and "how do WoW addons even work?"
+
+I loved the original Attune addon during Season of Discovery and was surprised I couldn't find anything similar for Turtle WoW. So, I thought... "I wonder if I could make one myself?" Spoiler alert: it's way harder than I expected, but also way more fun!
+
+I'm learning everything as I go with the help of AI tools like GitHub Copilot, working on this in my spare time after work. This is a passion project for the love of the game and the Turtle WoW community.
+
+**Please Note:** I am not affiliated with the Turtle WoW team, Blizzard, or any official entities whatsoever.
+
+This also means that I'm definitely a noob developer learning as I go. If you find bugs or have suggestions, please be patient! Your feedback, bug reports, and contributions are essential to making this addon great. 😅
+
+- SirClaver420
+
+---
+
 ## Table of Contents
 
 - [Features](#features)
