@@ -68,13 +68,14 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 
 -   **Slash Commands:**
     -   `/attune` or `/at`: Toggles the main window.
+    -   `/attune options`: Shows the options panel (coming soon).
     -   `/attune help`: Shows a list of available commands.
     -   `/attune version`: Displays the current addon version.
-    -   `/attune reset`: Resets addon settings to default, including window size and position.
+    -   `/attune reset`: Resets addon options to default, including window size and position.
 
 -   **Minimap Icon:**
     -   **Left-Click:** Toggles the main window.
-    -   **Right-Click:** Opens the settings menu (coming soon).
+    -   **Right-Click:** Opens the options menu (coming soon).
 
 ---
 
@@ -105,7 +106,7 @@ The primary focus is on building the core systems that will power the addon.
     -   🔳 Visually mark steps as "complete" in the UI based on player progress.
 -   **Advanced UI Features:**
     -   🔳 Implement rich tooltips that show item/quest details on hover.
-    -   🔳 Create a dedicated settings panel for user customization.
+    -   🔳 Create a dedicated options panel for user customization.
 
 ### Phase 3: Content & Data Population
 
