@@ -1,6 +1,6 @@
 # Attune-Turtle
 
-## Current Version: `1.0.2`
+## Current Version: `1.0.3`
 
 An addon for Turtle WoW that helps players track their attunement progress for dungeons and raids. This is a custom version inspired by the original [Attune](https://www.curseforge.com/wow/addons/attune) addon, tailored specifically for the Turtle WoW 1.12 client.
 
@@ -35,6 +35,7 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Known Issues](#known-issues)
 - [Roadmap](#roadmap)
 - [Version History](#version-history)
 - [Versioning](#versioning)
@@ -79,6 +80,13 @@ This also means that I'm definitely a noob developer learning as I go. If you fi
 
 ---
 
+## Known Issues
+
+-   **Placeholder Data:** Many attunement steps currently contain placeholder text. The focus is on building the addon's core features first before populating all the detailed quest data.
+-   **No Automatic Tracking:** The addon does not yet automatically track your quest progress. This is a primary goal for a future version.
+
+---
+
 ## Roadmap
 
 This addon is under active development. The goal is to first build a robust, feature-rich foundation before populating all the attunement data.
@@ -92,21 +100,21 @@ This addon is under active development. The goal is to first build a robust, fea
 -   ✅ Add a minimap icon and slash commands.
 -   ✅ Populate with placeholder data for major attunements.
 
-### Phase 2: Advanced Features (Next Up)
+### Phase 2: Advanced Features (Current Phase)
 
 The primary focus is on building the core systems that will power the addon.
 
+-   **Advanced UI Features:**
+    -   ☑️ **In Progress:** Implement rich tooltips that show item/quest details on hover. This will also fix all item icon display issues.
+    -   🔳 Create a dedicated options panel for user customization.
 -   **Per-Character Progress:**
     -   🔳 Modify the database (`SavedVariables`) to store attunement progress on a per-character basis.
--   **Automatic Faction Detection:**
-    -   🔳 Implement logic to automatically detect the player's faction (Horde/Alliance) to display the correct quest lines.
 -   **Automation Engine:**
     -   🔳 Create a system to automatically check for quest completions.
     -   🔳 Add checks for required items in the player's inventory.
     -   🔳 Visually mark steps as "complete" in the UI based on player progress.
--   **Advanced UI Features:**
-    -   🔳 Implement rich tooltips that show item/quest details on hover.
-    -   🔳 Create a dedicated options panel for user customization.
+-   **Code Quality & Structure:**
+    -   ✅ Restructured addon into `core` and `data` folders for professional-level maintainability.
 
 ### Phase 3: Content & Data Population
 
@@ -122,6 +130,10 @@ Once the foundation is complete, the focus will shift to adding all the specific
 
 ## Version History
 
+-   **v1.0.3 (2025-09-07)**
+    -   **Major Code Refactor:** Restructured the entire addon to follow professional standards, separating logic files (`core/`) from data files (`data/`). This improves maintainability and scalability, mirroring the structure of robust addons like `AtlasLoot`.
+    -   **Foundation for Tooltips:** Created the core `Tooltip.lua` module, laying the groundwork for a new system to display rich, interactive item tooltips on hover, which will resolve icon display bugs permanently.
+    -   **Code Cleanup:** Standardized internal functions and text to use "Options" for consistency, removing confusing "Settings" references.
 -   **v1.0.2 (2025-09-06)**
     -   Implemented a fully resizable and draggable main window.
     -   Window size and position are now saved between sessions.
