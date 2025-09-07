@@ -1,4 +1,4 @@
--- Attune-Turtle v1.0.0 - Data.lua
+-- Attune-Turtle v1.0.2 - Data.lua
 -- Contains all data for attunements
 
 -- Make sure AttuneTurtle exists
@@ -27,7 +27,8 @@ AT.attunements = {
         steps = {
             {
                 title = "Gahz'rilla",
-                text = "This is a placeholder for the Zul'Farrak Mallet attunement steps."
+                text = "This is a placeholder for the Zul'Farrak Mallet attunement steps.",
+                itemID = 9240 -- Mallet of Zul'Farrak
             }
         }
     },
@@ -37,17 +38,19 @@ AT.attunements = {
         steps = {
             {
                 title = "Scepter of Celebras",
-                text = "This is a placeholder for the Maraudon Scepter attunement steps."
+                text = "This is a placeholder for the Maraudon Scepter attunement steps.",
+                itemID = 17182 -- Scepter of Celebras
             }
         }
     },
     ubrs = {
         name = "UBRS Key",
-        icon = "Interface\\Icons\\INV_Misc_Key_11",
+        icon = "Interface\\Icons\\INV_Jewelry_Ring_31", -- Corrected icon for the ring
         steps = {
             {
                 title = "Seal of Ascension",
-                text = "This is a placeholder for the UBRS Key attunement steps."
+                text = "This is a placeholder for the UBRS Key attunement steps.",
+                itemID = 12382 -- Seal of Ascension
             }
         }
     },
@@ -57,7 +60,8 @@ AT.attunements = {
         steps = {
             {
                 title = "Crescent Key",
-                text = "This is a placeholder for the Dire Maul Key attunement steps."
+                text = "This is a placeholder for the Dire Maul Key attunement steps.",
+                itemID = 18268 -- Crescent Key
             }
         }
     },
@@ -67,7 +71,8 @@ AT.attunements = {
         steps = {
             {
                 title = "Skeleton Key",
-                text = "This is a placeholder for the Scholomance Key attunement steps."
+                text = "This is a placeholder for the Scholomance Key attunement steps.",
+                itemID = 13704 -- Skeleton Key
             }
         }
     },
@@ -92,74 +97,6 @@ AT.attunements = {
                 text = "This is a placeholder for the Onyxia's Lair attunement steps. It involves a long quest chain for both Horde and Alliance."
             }
         }
-        --[[ --- ADVANCED FLOWCHART DATA - HIDDEN FOR NOW ---
-        steps = {
-            {
-                id = "ony_reach_level",
-                title = "Reach level 55",
-                subtext = "Required minimum",
-                type = "level",
-                check = { type = "level", value = 55 },
-                x = 0, y = -100
-            },
-            {
-                id = "ony_warlords_command",
-                title = "Warlord's Command",
-                subtext = "Quest in Badlands",
-                type = "quest",
-                previousStep = "ony_reach_level",
-                x = 0, y = -190
-            },
-            {
-                id = "ony_kill_warchief",
-                title = "Important Blackrock...",
-                subtext = "Item in Lower Blackrock...",
-                type = "item",
-                previousStep = "ony_warlords_command",
-                x = -300, y = -280
-            },
-            {
-                id = "ony_kill_overlord",
-                title = "Overlord Wyrmthalak",
-                subtext = "Kill in Lower Blackrock...",
-                type = "kill",
-                previousStep = "ony_warlords_command",
-                x = -100, y = -280
-            },
-            {
-                id = "ony_kill_warmaster",
-                title = "War Master Voone",
-                subtext = "Kill in Lower Blackrock...",
-                type = "kill",
-                previousStep = "ony_warlords_command",
-                x = 100, y = -280
-            },
-            {
-                id = "ony_kill_highlord",
-                title = "Highlord Omokk",
-                subtext = "Kill in Lower Blackrock...",
-                type = "kill",
-                previousStep = "ony_warlords_command",
-                x = 300, y = -280
-            },
-            {
-                id = "ony_eirtriggs_wisdom",
-                title = "Eitrigg's Wisdom",
-                subtext = "Quest in Orgrimmar",
-                type = "quest",
-                previousStep = { "ony_kill_warchief", "ony_kill_overlord", "ony_kill_warmaster", "ony_kill_highlord" },
-                x = 0, y = -370
-            },
-            {
-                id = "ony_for_the_horde",
-                title = "For The Horde!",
-                subtext = "Quest in Orgrimmar",
-                type = "quest",
-                previousStep = "ony_eirtriggs_wisdom",
-                x = 0, y = -460
-            }
-        }
-        --]]
     },
     blackwinglair = {
         name = "Blackwing Lair",
@@ -173,11 +110,14 @@ AT.attunements = {
     },
     naxxramas = {
         name = "Naxxramas",
-        icon = "Interface\\Icons\\INV_Misc_Bone_07",
+        -- *** CHANGE: Corrected the icon path to one that exists in the client ***
+        icon = "Interface\\Icons\\inv_misc_orb_01",
         steps = {
             {
                 title = "The Dread Citadel",
-                text = "Attunement requires Honored reputation with the Argent Dawn. Speak to Archmage Angela Dosantos at Light's Hope Chapel."
+                text = "Attunement requires Honored reputation with the Argent Dawn. Speak to Archmage Angela Dosantos at Light's Hope Chapel.",
+                -- *** CHANGE: Corrected the icon path for the step view as well ***
+                icon = "Interface\\Icons\\inv_misc_orb_01"
             }
         }
     }

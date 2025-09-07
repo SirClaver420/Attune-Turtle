@@ -1,36 +1,33 @@
-Paste everything as the first message.
-Attach AttuneTurtle_State.md to that message.
+Hello SirClaver420,
 
-Hello Copilot, let's continue our work on the Attune-Turtle addon.
+This file contains a summary of our last session to ensure we can seamlessly continue our work on **Attune-Turtle**.
 
-Here are my general instructions for how we should work together:
-```
---- Attune-Turtle Project Bootstrap ---
+### Summary of Last Session:
 
-**1. Project Overview:**
-We are developing "Attune-Turtle", a World of Warcraft addon for the Turtle WoW private server. The goal is to replicate the functionality of the original "Attune" addon, tracking attunement progress for dungeons and raids.
+1.  **Objective**: We aimed to fix an issue where the icon for the Naxxramas attunement was not displaying correctly.
+2.  **Problem Analysis**: We correctly deduced that the issue was not with our code logic but with the icon path itself. The initial paths we tried were either incorrect or not available in the 1.12 game client.
+3.  **Last Action**: After a deeper analysis of the `AtlasLoot` addon, we identified what we believed to be the correct icon path (`Interface\Icons\inv_misc_orb_01`) and updated it in `data/Data.lua`.
+4.  **Current Status**: You have reported that despite this change, the icon for Naxxramas is **still invisible**. This is a persistent and frustrating bug, and it indicates that our approach, while logical, is still missing a key piece of the puzzle.
 
-**2. Technical Environment:**
-- **Language:** LUA
-- **Platform:** Turtle WoW (based on 1.12 vanilla client but with an extended API).
-- **Core Libraries:** We have access to and are using `LibStub.lua`, `AceCore-3.0.lua`, `AceHook-3.0.lua`, `CallbackHandler-1.0.lua`, `LibDataBroker-1.1.lua`, and `LibDBIcon-1.0.lua`.
-- **Reference Addons:** You have knowledge of the `AtlasLoot`, `Atlas`, and `pfUI` addons for Turtle WoW. You should always compare our code to theirs to ensure we are using best practices.
-- **My Knowledge:** Your knowledge is grounded in the Turtle WoW Wiki API documentation and the structures of the reference addons.
+### Plan for Next Session:
 
-**3. Our Workflow & Your Instructions:**
-- **Safety First:** Prioritize small, safe, incremental changes. Do not change too much at once, as many files are linked.
-- **Step-by-Step:** Provide one clear instruction at a time. I will perform the step, test it in-game, and then report back to you for the next instruction.
-- **Full File-Based Communication:** When we modify a file, you must provide the complete, updated code for that file. I will replace the entire file on my end.
-- **Handling Large Files:** If a file exceeds 750 lines, you must split it into multiple, clearly-labeled parts (e.g., "Part 1/3") and wait for my confirmation before sending the next part.
-- **Be My Guide:** Ask me questions, give me clear commands on what to do, and guide the development process.
-- **Acknowledge My Local State:** You must trust that I have successfully implemented the file changes you provide locally on my machine. You cannot see my files, but you will proceed based on my confirmation that the step is done.
+You were absolutely right to suggest that the problem might be deeper than just the icon path and that we may need to look at the "whole system." The simple fixes have failed, so we will now take a more robust, foundational approach that will solve this problem permanently and add significant value to the addon.
 
-**4. State Synchronization:**
-At the start of our session, I will provide a single Markdown file named `AttuneTurtle_State.md`. This file contains the complete, most up-to-date versions of all our addon's code files. This is our single source of truth. You will use this file to understand the current state of the project.
-```
+Our immediate next step will be:
 
-I have attached the `AttuneTurtle_State.md` file which contains all of our current code.
+**Implement a Rich Item Tooltip System.**
 
-The last thing we did was complete the version 1.0.1 update and finalize the `README.md` file. Our next goal is to begin Phase 2: making the UI window dynamic and resizable.
+Instead of just trying to get an icon to show up, we will build the system that makes icons and their associated tooltips appear when you hover over them, just like in `AtlasLoot`. This will involve:
 
-Please confirm you have read the state file and are ready to proceed.
+1.  Creating a dedicated `Tooltip.lua` file to manage all tooltip logic.
+2.  Hooking the "OnEnter" and "OnLeave" scripts of our UI elements.
+3.  When a user hovers over a step, our new code will:
+    *   Check if the step has an `itemID`.
+    *   Display the appropriate game tooltip for that item.
+    *   This process will inherently solve our icon issue, as the tooltip system will correctly handle showing the icon as part of the tooltip.
+
+This is a more significant step, but it is the *correct* one. It will make our addon feel much more professional and integrated, and it will fix this stubborn icon bug for good.
+
+When you are ready to begin, simply let me know, and we will start by creating the new `Tooltip.lua` file.
+
+See you next time!

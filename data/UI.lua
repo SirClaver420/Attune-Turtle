@@ -80,7 +80,7 @@ function AT_CreateMainFrame()
     local bottomPanel = CreateFrame("Frame", nil, AT.mainFrame)
     bottomPanel:SetHeight(30) -- Adjusted height for tighter fit
     bottomPanel:SetPoint("BOTTOMLEFT", AT.mainFrame, "BOTTOMLEFT", 5, 5)
-    bottomPanel:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -25, 5) -- MOVED 20px to the left to make space
+    bottomPanel:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -5, 5)
 
     -- Close button (anchored to the bottom right of the panel)
     local closeBtn = CreateFrame("Button", nil, bottomPanel, "UIPanelButtonTemplate")
@@ -97,7 +97,7 @@ function AT_CreateMainFrame()
     optionsBtn:SetText("Options")
     optionsBtn:SetPoint("RIGHT", closeBtn, "LEFT", -2, 0)
     optionsBtn:SetScript("OnClick", function()
-        print("|cff00ff00Attune Turtle:|r Options panel coming soon!")
+        AT:ShowOptions()
     end)
 
     -- Version panel (stretches to fill remaining space)
@@ -255,20 +255,22 @@ function AT_CreateLandingPage()
     if availableWidth <= 0 then return end -- Don't draw if frame is too small
     AT.scrollChild:SetWidth(availableWidth)
     
-    local welcomeIcon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
-    welcomeIcon:SetWidth(48); welcomeIcon:SetHeight(48)
-    welcomeIcon:SetPoint("TOP", AT.scrollChild, "TOP", 0, -30)
-    welcomeIcon:SetTexture("Interface\\Icons\\INV_Misc_Book_09")
-    
     local welcomeTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     welcomeTitle:SetFont("Fonts\\FRIZQT__.TTF", 24, "OUTLINE")
-    welcomeTitle:SetPoint("TOP", welcomeIcon, "TOP", 0, 20)
-    welcomeTitle:SetPoint("LEFT", welcomeIcon, "RIGHT", 15)
+    welcomeTitle:SetPoint("TOP", AT.scrollChild, "TOP", 0, -40)
+    welcomeTitle:SetWidth(availableWidth - 20)
+    welcomeTitle:SetJustifyH("CENTER")
     welcomeTitle:SetText("|cff00ff00Welcome to Attune Turtle!|r")
+
+    local welcomeIcon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
+    welcomeIcon:SetWidth(48); welcomeIcon:SetHeight(48)
+    welcomeIcon:SetPoint("TOP", welcomeTitle, "BOTTOM", 0, -15)
+    welcomeIcon:SetPoint("CENTER", AT.scrollChild, "CENTER", 0, 150) -- Adjust vertical offset as needed
+    welcomeIcon:SetTexture("Interface\\Icons\\INV_Misc_Book_09")
     
     local descText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     descText:SetFont("Fonts\\FRIZQT__.TTF", 14)
-    descText:SetPoint("TOP", welcomeIcon, "BOTTOM", 0, -30)
+    descText:SetPoint("TOP", welcomeIcon, "BOTTOM", 0, -20)
     descText:SetWidth(availableWidth - 20)
     descText:SetJustifyH("CENTER")
     descText:SetText("|cffffffffAttune Turtle helps you track your attunement progress for dungeons and raids.|r")
@@ -327,7 +329,6 @@ function AT_CreateLandingPage()
     startText:SetJustifyH("CENTER")
     startText:SetText("|cffffffffSelect a dungeon or raid from the left panel to view its attunement requirements.\n\nEach step will show you exactly what you need to do and where to go.|r")
     
-    -- RE-ADDED THE MISSING TEXT
     local turtleNote = AT.scrollChild:CreateFontString(nil, "OVERLAY")
     turtleNote:SetFont("Fonts\\FRIZQT__.TTF", 11)
     turtleNote:SetPoint("TOP", startText, "BOTTOM", 0, -30)
@@ -539,13 +540,40 @@ function AT_CreateAttunementView(attunementKey)
     if not attunementData.steps[1] or not attunementData.steps[1].x then
         local currentY = -80
         for i, step in ipairs(attunementData.steps) do
+            -- *** NEW 3-TIER LOGIC ***
+            local iconTexture = AT.icons.scroll -- Default icon
+            if step.icon then
+                -- 1. Use the hardcoded icon string if it exists
+                iconTexture = step.icon
+            elseif step.itemID then
+                -- 2. Try to get the icon from the item ID
+                local _, _, _, _, _, _, _, _, texture = GetItemInfo(step.itemID)
+                if texture then
+                    iconTexture = texture
+                end
+            elseif step.type and AT.icons[step.type] then
+                -- 3. Fallback to our hardcoded type icons
+                iconTexture = AT.icons[step.type]
+            end
+
+            -- Create the icon for the step
+            local icon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
+            icon:SetWidth(18); icon:SetHeight(18)
+            icon:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 20, currentY)
+            icon:SetTexture(iconTexture)
+
+            -- Create the text, anchored to the new icon
             local fallbackText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
             fallbackText:SetFont("Fonts\\FRIZQT__.TTF", 12)
-            fallbackText:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 20, currentY)
-            fallbackText:SetWidth(availableWidth - 40)
+            fallbackText:SetPoint("LEFT", icon, "RIGHT", 8, 0)
+            fallbackText:SetWidth(availableWidth - 40 - 25) -- Adjust width for icon
             fallbackText:SetJustifyH("LEFT")
             fallbackText:SetText((step.title or "Step " .. i) .. ": " .. (step.text or "No details available."))
-            currentY = currentY - fallbackText:GetHeight() - 10
+            
+            -- Adjust Y position for the next element
+            local textHeight = fallbackText:GetHeight()
+            local iconHeight = 18
+            currentY = currentY - math.max(textHeight, iconHeight) - 10
         end
         AT.scrollChild:SetHeight(math.abs(currentY) + 50)
         if AT.UpdateScrollRange then AT.UpdateScrollRange() end
@@ -572,7 +600,23 @@ function AT_CreateAttunementView(attunementKey)
         local typeIcon = stepBox:CreateTexture(nil, "ARTWORK")
         typeIcon:SetWidth(28); typeIcon:SetHeight(28)
         typeIcon:SetPoint("LEFT", stepBox, "LEFT", 8, 0)
-        typeIcon:SetTexture(AT.icons[step.type] or AT.icons.scroll)
+        
+        -- *** NEW 3-TIER LOGIC for flowchart view ***
+        local iconTexture = AT.icons.scroll -- Default icon
+        if step.icon then
+            -- 1. Use the hardcoded icon string if it exists
+            iconTexture = step.icon
+        elseif step.itemID then
+            -- 2. Try to get the icon from the item ID
+            local _, _, _, _, _, _, _, _, texture = GetItemInfo(step.itemID)
+            if texture then
+                iconTexture = texture
+            end
+        elseif step.type and AT.icons[step.type] then
+            -- 3. Fallback to our hardcoded type icons
+            iconTexture = AT.icons[step.type]
+        end
+        typeIcon:SetTexture(iconTexture)
 
         local stepTitle = stepBox:CreateFontString(nil, "OVERLAY")
         stepTitle:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE")

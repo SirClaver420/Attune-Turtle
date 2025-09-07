@@ -19,4 +19,4 @@ We are developing "Attune-Turtle", a World of Warcraft addon for the Turtle WoW 
 - **Acknowledge My Local State:** You must trust that I have successfully implemented the file changes you provide locally on my machine. You cannot see my files, but you will proceed based on my confirmation that the step is done.
 
 **4. State Synchronization:**
-At the start of our session, you will attach the latest files from the GitHub repository. These files are our single source of truth. You will use these files to understand the current state of the project.
+At the start of our session, I will provide a single Markdown file named `AttuneTurtle_State.md`. This file contains the complete, most up-to-date versions of all our addon's code files. This is our single source of truth. You will use this file to understand the current state of the project.
