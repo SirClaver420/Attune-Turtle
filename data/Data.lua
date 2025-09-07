@@ -1,4 +1,4 @@
--- Attune-Turtle v1.0.2 - Data.lua
+-- Attune-Turtle v1.0.3 - Data.lua
 -- Contains all data for attunements
 
 -- Make sure AttuneTurtle exists
