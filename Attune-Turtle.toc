@@ -17,11 +17,12 @@ libs\AceHook-3.0.lua
 libs\LibDataBroker-1.1.lua
 libs\LibDBIcon-1.0.lua
 
-# Core files
+# Core (actual current locations)
 core\Core.lua
-core\UI.lua
+core\Debug.lua
 core\Tooltip.lua
+core\UI.lua
 core\MinimapButton.lua
 
-# Data files
+# Data
 data\Data.lua

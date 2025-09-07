@@ -1,9 +1,22 @@
 -- Attune-Turtle v1.0.3 - UI.lua
 -- Contains all UI-related functions
+-- Step 0.3d Part 2: Added tooltip attachment for Home and sidebar attunement entries.
 
 -- Make sure AttuneTurtle exists
 AttuneTurtle = AttuneTurtle or {}
 local AT = AttuneTurtle  -- Local reference for faster access
+
+-- Utility: count steps (Lua 5.0 safe)
+local function AT_CountSteps(attunement)
+    if not attunement or not attunement.steps then return 0 end
+    local c = 0
+    local i = 1
+    while attunement.steps[i] do
+        c = c + 1
+        i = i + 1
+    end
+    return c
+end
 
 -- This function will be called whenever the window is resized to redraw the layout.
 function AT_RefreshLayout()
@@ -97,7 +110,7 @@ function AT_CreateMainFrame()
     optionsBtn:SetText("Options")
     optionsBtn:SetPoint("RIGHT", closeBtn, "LEFT", -2, 0)
     optionsBtn:SetScript("OnClick", function()
-        AT:ShowOptions() -- *** FIX: Changed ShowSettings to ShowOptions ***
+        AT:ShowOptions() -- unified naming
     end)
 
     -- Version panel (stretches to fill remaining space)
@@ -117,14 +130,13 @@ function AT_CreateMainFrame()
     local versionText = versionPanel:CreateFontString(nil, "OVERLAY")
     versionText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE")
     versionText:SetPoint("LEFT", versionPanel, "LEFT", 12, 0)
-    -- *** CHANGE: Updated version string ***
     versionText:SetText("|cffd4af37Attune " .. (AT.version or "1.0.3") .. " by " .. (AT.author or "SirClaver420") .. "|r")
 
-    -- Create sidebar (left panel), now anchored to the bottom panel for perfect alignment
+    -- Create sidebar (left panel)
     AT.sidebarFrame = CreateFrame("Frame", "AttuneTurtleSidebar", AT.mainFrame)
     AT.sidebarFrame:SetWidth(200)
     AT.sidebarFrame:SetPoint("TOPLEFT", AT.mainFrame, "TOPLEFT", 5, -30)
-    AT.sidebarFrame:SetPoint("BOTTOMLEFT", bottomPanel, "TOPLEFT", 0, 2) -- Anchor to the top of the bottom panel
+    AT.sidebarFrame:SetPoint("BOTTOMLEFT", bottomPanel, "TOPLEFT", 0, 2)
     AT.sidebarFrame:SetBackdrop({
         bgFile = "Interface/Tooltips/UI-Tooltip-Background",
         edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
@@ -133,10 +145,10 @@ function AT_CreateMainFrame()
     })
     AT.sidebarFrame:SetBackdropColor(0, 0, 0, 0.5)
     
-    -- Create main content area, also anchored to the bottom panel
+    -- Create main content area
     AT.contentFrame = CreateFrame("Frame", "AttuneTurtleContent", AT.mainFrame)
     AT.contentFrame:SetPoint("TOPLEFT", AT.sidebarFrame, "TOPRIGHT", 2, 0)
-    AT.contentFrame:SetPoint("BOTTOMRIGHT", bottomPanel, "TOPRIGHT", 0, 2) -- Anchor to the top of the bottom panel
+    AT.contentFrame:SetPoint("BOTTOMRIGHT", bottomPanel, "TOPRIGHT", 0, 2)
     AT.contentFrame:SetBackdrop({
         bgFile = "Interface/Tooltips/UI-Tooltip-Background",
         edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
@@ -192,7 +204,7 @@ function AT_CreateMainFrame()
     
     AT.scrollFrame:EnableMouseWheel(true)
     AT.scrollFrame:SetScript("OnMouseWheel", function()
-        local delta = arg1 -- Use arg1 for mouse wheel delta
+        local delta = arg1
         local current = AT.scrollBar:GetValue()
         local min, max = AT.scrollBar:GetMinMaxValues()
         local newValue = current - (delta * 20)
@@ -203,7 +215,7 @@ function AT_CreateMainFrame()
     
     -- Create the resize handle button
     local resizeButton = CreateFrame("Button", "AttuneTurtleResizeButton", AT.mainFrame)
-    resizeButton:SetFrameStrata("HIGH") -- Set strata to be on top
+    resizeButton:SetFrameStrata("HIGH")
     resizeButton:SetPoint("BOTTOMRIGHT", AT.mainFrame, "BOTTOMRIGHT", -3, 3)
     resizeButton:SetWidth(16)
     resizeButton:SetHeight(16)
@@ -220,10 +232,8 @@ function AT_CreateMainFrame()
     resizeButton:SetScript("OnMouseUp", function()
         AT.mainFrame:StopMovingOrSizing()
         AT.mainFrame.isSizing = false
-        -- Save the new dimensions
         AT.db.width = AT.mainFrame:GetWidth()
         AT.db.height = AT.mainFrame:GetHeight()
-        -- Refresh the internal layout
         AT_RefreshLayout()
     end)
     
@@ -234,7 +244,6 @@ function AT_CreateMainFrame()
     AT_PopulateSidebar()
     
     AT.mainFrame:SetScript("OnShow", function()
-        -- OnShow, we want to show the landing page.
         AT_CreateLandingPage()
     end)
     
@@ -253,7 +262,7 @@ function AT_CreateLandingPage()
     end
     
     local availableWidth = AT.contentFrame:GetWidth() - 60
-    if availableWidth <= 0 then return end -- Don't draw if frame is too small
+    if availableWidth <= 0 then return end
     AT.scrollChild:SetWidth(availableWidth)
     
     local welcomeTitle = AT.scrollChild:CreateFontString(nil, "OVERLAY")
@@ -266,7 +275,7 @@ function AT_CreateLandingPage()
     local welcomeIcon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
     welcomeIcon:SetWidth(48); welcomeIcon:SetHeight(48)
     welcomeIcon:SetPoint("TOP", welcomeTitle, "BOTTOM", 0, -15)
-    welcomeIcon:SetPoint("CENTER", AT.scrollChild, "CENTER", 0, 150) -- Adjust vertical offset as needed
+    welcomeIcon:SetPoint("CENTER", AT.scrollChild, "CENTER", 0, 150)
     welcomeIcon:SetTexture("Interface\\Icons\\INV_Misc_Book_09")
     
     local descText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
@@ -346,7 +355,7 @@ function AT_CreateLandingPage()
     extraContent:SetTextColor(0.5, 0.5, 0.5)
     extraContent:SetText("|cff808080Additional Features Coming Soon:\n\n• Quest completion tracking (if possible)\n• Progress saving\n• Character-specific progress\n• Export/Import functionality\n• Custom notes\n\n\n\nThis content extends beyond the visible area to test scrolling functionality.\n\n\n\nEnd of content.|r")
     
-    AT.scrollChild:SetHeight(800) -- INCREASED HEIGHT TO MAKE SCROLLING NECESSARY
+    AT.scrollChild:SetHeight(800)
     
     if AT.UpdateScrollRange then AT.UpdateScrollRange() end
     if AT.scrollBar then AT.scrollBar:SetValue(0) end
@@ -402,6 +411,20 @@ function AT_CreateHomeButton(yPos)
     itemFrame:SetScript("OnClick", AT_CreateLandingPage)
     itemFrame:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
     AT.homeButton = itemFrame
+
+    -- Tooltip attachment (Step 0.3d)
+    if AT.AttachTooltip then
+        AT:AttachTooltip(itemFrame, {
+            lines = {
+                "Home - Overview",
+                { "Return to the welcome screen", 0.8, 0.8, 0.8 }
+            }
+        })
+        if AT.Debug and AT.Debug.Is and AT.Debug:Is("ui") then
+            AT.Debug:Print("ui", "Attached tooltip: home")
+        end
+    end
+
     return itemFrame
 end
 
@@ -434,6 +457,22 @@ function AT_CreateSidebarItem(attunementKey, yPos)
     itemFrame:SetScript("OnClick", function() AT_SelectAttunement(itemFrame.attunementKey) end)
     itemFrame:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
     itemFrame:SetSelected(attunementKey == AT.selectedAttunement)
+
+    -- Tooltip attachment (Step 0.3d)
+    if AT.AttachTooltip then
+        local stepCount = AT_CountSteps(attunement)
+        local secondLine = "Steps: " .. stepCount
+        AT:AttachTooltip(itemFrame, {
+            lines = {
+                attunement.name or attunementKey,
+                { secondLine, 0.8, 0.8, 0.8 }
+            }
+        })
+        if AT.Debug and AT.Debug.Is and AT.Debug:Is("ui") then
+            AT.Debug:Print("ui", "Attached tooltip: " .. attunementKey)
+        end
+    end
+
     return itemFrame
 end
 
@@ -459,7 +498,6 @@ function AT_CreateCategoryHeader(categoryName, yPos)
     headerFrame.categoryName = categoryName
     
     headerFrame:SetScript("OnClick", function()
-        -- Note: We refer to the button as 'headerFrame' here, not 'self'
         AT.db.categoryStates[headerFrame.categoryName] = not AT.db.categoryStates[headerFrame.categoryName]
         AT_PopulateSidebar()
     end)
@@ -541,37 +579,28 @@ function AT_CreateAttunementView(attunementKey)
     if not attunementData.steps[1] or not attunementData.steps[1].x then
         local currentY = -80
         for i, step in ipairs(attunementData.steps) do
-            -- *** NEW 3-TIER LOGIC ***
-            local iconTexture = AT.icons.scroll -- Default icon
+            local iconTexture = AT.icons.scroll
             if step.icon then
-                -- 1. Use the hardcoded icon string if it exists
                 iconTexture = step.icon
             elseif step.itemID then
-                -- 2. Try to get the icon from the item ID
                 local _, _, _, _, _, _, _, _, texture = GetItemInfo(step.itemID)
-                if texture then
-                    iconTexture = texture
-                end
+                if texture then iconTexture = texture end
             elseif step.type and AT.icons[step.type] then
-                -- 3. Fallback to our hardcoded type icons
                 iconTexture = AT.icons[step.type]
             end
 
-            -- Create the icon for the step
             local icon = AT.scrollChild:CreateTexture(nil, "ARTWORK")
             icon:SetWidth(18); icon:SetHeight(18)
             icon:SetPoint("TOPLEFT", AT.scrollChild, "TOPLEFT", 20, currentY)
             icon:SetTexture(iconTexture)
 
-            -- Create the text, anchored to the new icon
             local fallbackText = AT.scrollChild:CreateFontString(nil, "OVERLAY")
             fallbackText:SetFont("Fonts\\FRIZQT__.TTF", 12)
             fallbackText:SetPoint("LEFT", icon, "RIGHT", 8, 0)
-            fallbackText:SetWidth(availableWidth - 40 - 25) -- Adjust width for icon
+            fallbackText:SetWidth(availableWidth - 65)
             fallbackText:SetJustifyH("LEFT")
             fallbackText:SetText((step.title or "Step " .. i) .. ": " .. (step.text or "No details available."))
             
-            -- Adjust Y position for the next element
             local textHeight = fallbackText:GetHeight()
             local iconHeight = 18
             currentY = currentY - math.max(textHeight, iconHeight) - 10
@@ -602,19 +631,13 @@ function AT_CreateAttunementView(attunementKey)
         typeIcon:SetWidth(28); typeIcon:SetHeight(28)
         typeIcon:SetPoint("LEFT", stepBox, "LEFT", 8, 0)
         
-        -- *** NEW 3-TIER LOGIC for flowchart view ***
-        local iconTexture = AT.icons.scroll -- Default icon
+        local iconTexture = AT.icons.scroll
         if step.icon then
-            -- 1. Use the hardcoded icon string if it exists
             iconTexture = step.icon
         elseif step.itemID then
-            -- 2. Try to get the icon from the item ID
             local _, _, _, _, _, _, _, _, texture = GetItemInfo(step.itemID)
-            if texture then
-                iconTexture = texture
-            end
+            if texture then iconTexture = texture end
         elseif step.type and AT.icons[step.type] then
-            -- 3. Fallback to our hardcoded type icons
             iconTexture = AT.icons[step.type]
         end
         typeIcon:SetTexture(iconTexture)
@@ -640,12 +663,12 @@ function AT_CreateAttunementView(attunementKey)
         if step.previousStep then
             local toFrame = stepFrames[step.id]
             
-            local function drawVerticalLine(fromFrame, toFrame)
-                if fromFrame and toFrame then
+            local function drawVerticalLine(fromFrame, toFrameLine)
+                if fromFrame and toFrameLine then
                     local line = AT.scrollChild:CreateTexture(nil, "BACKGROUND")
                     line:SetTexture("Interface\\Buttons\\WHITE8X8")
                     line:SetPoint("TOP", fromFrame, "BOTTOM")
-                    line:SetPoint("BOTTOM", toFrame, "TOP")
+                    line:SetPoint("BOTTOM", toFrameLine, "TOP")
                     line:SetWidth(3)
                     line:SetVertexColor(0.2, 0.6, 0.2, 0.7)
                 end

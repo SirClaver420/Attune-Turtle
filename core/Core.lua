@@ -1,251 +1,264 @@
--- Attune-Turtle v1.0.3 - Core.lua
--- Main addon logic and initialization
+-- Attune-Turtle v1.0.3 - core/Core.lua
+-- Step 0.3c (compat fix): Remove Lua 5.1 string:match usage; keep debug integration; wording unified to "Options".
 
--- Initialize the addon's main table
-AttuneTurtle = LibStub("AceHook-3.0"):Embed({})
+AttuneTurtle = AttuneTurtle or {}
 local AT = AttuneTurtle
 
--- Version information
-AT.version = "1.0.3" -- Version updated for new feature
-AT.author = "SirClaver420"
+AT.version = "1.0.3"
+AT.author  = "SirClaver420"
 
--- Database defaults
-local defaults = {
-    profile = {
-        minimap = {
-            hide = false,
-            minimapPos = 225,
-            radius = 80,
-        },
-        -- Window dimensions
-        width = 1024,
-        height = 600,
-        -- Attunement progress
-        attunements = {},
-        categoryStates = {
-            ["Dungeons / Keys"] = true,
-            ["Attunements"] = true,
-        },
-        firstTime = true,
-    }
-}
-
--- Initialize the saved variables database
-function AT:InitializeDatabase()
-    -- This ensures the global DB table exists.
-    AttuneTurtleDB = AttuneTurtleDB or {}
-    
-    -- Populate the database with default values if they don't exist.
-    for key, value in pairs(defaults.profile) do
-        if AttuneTurtleDB[key] == nil then
-            AttuneTurtleDB[key] = value
+--------------------------------------------------
+-- Simple debug shim
+--------------------------------------------------
+function AT_Debug(msg)
+    if AT.debug then
+        if AT.Debug and AT.Debug.Print then
+            AT.Debug:Print("general", tostring(msg))
+        else
+            print("|cff00ff00[Attune Debug]:|r " .. tostring(msg))
         end
     end
-    
-    -- Create a local reference for easier access throughout the addon.
+end
+
+--------------------------------------------------
+-- Saved Variables
+--------------------------------------------------
+local defaults = {
+    minimap = {
+        hide = false,
+        minimapPos = 225,
+        radius = 80,
+    },
+    width = 1024,
+    height = 600,
+    attunements = {},
+    categoryStates = {
+        ["Dungeons / Keys"] = true,
+        ["Attunements"] = true,
+    },
+    firstTime = true,
+}
+
+local function CopyDefaults(src, dst)
+    for k, v in pairs(src) do
+        if type(v) == "table" then
+            if type(dst[k]) ~= "table" then dst[k] = {} end
+            CopyDefaults(v, dst[k])
+        elseif dst[k] == nil then
+            dst[k] = v
+        end
+    end
+end
+
+function AT:InitializeDatabase()
+    AttuneTurtleDB = AttuneTurtleDB or {}
+    CopyDefaults(defaults, AttuneTurtleDB)
     AT.db = AttuneTurtleDB
     AT_Debug("Database initialized")
 end
 
--- Create the LibDataBroker object for the minimap icon
+--------------------------------------------------
+-- DataBroker / Minimap
+--------------------------------------------------
 function AT:CreateDataBroker()
-    local LDB = LibStub("LibDataBroker-1.1")
-    
+    local ok, LDB = pcall(LibStub, "LibDataBroker-1.1")
+    if not ok or not LDB then
+        AT_Debug("LibDataBroker missing - skipping minimap object.")
+        return
+    end
+
     AT.dataObj = LDB:NewDataObject("AttuneTurtle", {
         type = "launcher",
         text = "Attune Turtle",
         icon = "Interface\\Icons\\INV_Misc_Book_09",
-        OnClick = function(clickedframe, button)
+        OnClick = function(_, button)
             if button == "LeftButton" then
                 AT:ToggleMainFrame()
             elseif button == "RightButton" then
-                -- *** CHANGE: Use ShowOptions instead of ShowSettings ***
                 AT:ShowOptions()
             end
         end,
-        OnTooltipShow = function(tooltip)
-            tooltip:AddLine("|cff00ff00Attune Turtle|r")
-            tooltip:AddLine(" ")
-            tooltip:AddLine("|cffffff00Left-click:|r Open attunement tracker")
-            -- *** CHANGE: Use "Options" instead of "settings" ***
-            tooltip:AddLine("|cffffff00Right-click:|r Open options")
-            
-            -- Add attunement status (placeholder logic)
-            local completed = 0
-            local total = 0
-            for key, attunement in pairs(AT.attunements) do
-                total = total + 1
-                if AT:IsAttunementCompleted(key) then
-                    completed = completed + 1
+        OnTooltipShow = function(tt)
+            tt:AddLine("|cff00ff00Attune Turtle|r")
+            tt:AddLine(" ")
+            tt:AddLine("|cffffff00Left-click:|r Open attunement tracker")
+            tt:AddLine("|cffffff00Right-click:|r Open options")
+            local completed, total = 0, 0
+            if AT.attunements then
+                for key in pairs(AT.attunements) do
+                    total = total + 1
+                    if AT:IsAttunementCompleted(key) then
+                        completed = completed + 1
+                    end
                 end
             end
-            
-            tooltip:AddLine(" ")
-            tooltip:AddLine("|cffaaccffProgress: " .. completed .. "/" .. total .. " completed|r")
+            tt:AddLine(" ")
+            tt:AddLine("|cffaaccffProgress: " .. completed .. "/" .. total .. " completed|r")
         end,
     })
 end
 
--- Toggle the main frame's visibility
+--------------------------------------------------
+-- UI
+--------------------------------------------------
 function AT:ToggleMainFrame()
     if AT.mainFrame and AT.mainFrame:IsVisible() then
         AT.mainFrame:Hide()
     else
         if not AT.mainFrame then
-            AT_CreateMainFrame()
+            if type(AT_CreateMainFrame) == "function" then
+                AT_CreateMainFrame()
+            else
+                print("|cff00ff00Attune Turtle:|r UI creation function missing (AT_CreateMainFrame).")
+                return
+            end
         end
         AT.mainFrame:Show()
     end
 end
 
--- *** CHANGE: Renamed function from ShowSettings to ShowOptions ***
 function AT:ShowOptions()
     print("|cff00ff00Attune Turtle:|r Options panel coming soon!")
 end
 
--- Check if an attunement is marked as completed in the database
+--------------------------------------------------
+-- Attunement state
+--------------------------------------------------
 function AT:IsAttunementCompleted(attunementKey)
-    if not AT.db or not AT.db.attunements then
-        return false
-    end
-    return AT.db.attunements[attunementKey] and AT.db.attunements[attunementKey].completed
+    local db = AT.db
+    if not db or not db.attunements then return false end
+    local a = db.attunements[attunementKey]
+    return a and a.completed or false
 end
 
--- Mark an attunement as completed in the database
 function AT:SetAttunementCompleted(attunementKey, completed)
-    if not AT.db.attunements then AT.db.attunements = {} end
-    if not AT.db.attunements[attunementKey] then AT.db.attunements[attunementKey] = {} end
-    AT.db.attunements[attunementKey].completed = completed
-    
-    -- Refresh the UI if it's open
+    if not AT.db.attunements[attunementKey] then
+        AT.db.attunements[attunementKey] = {}
+    end
+    AT.db.attunements[attunementKey].completed = completed and true or false
+
     if AT.mainFrame and AT.mainFrame:IsVisible() and AT.selectedAttunement == attunementKey then
-        AT_CreateAttunementView(attunementKey)
-    end
-end
-
--- Hook game events to enable automatic progress tracking
-function AT:HookQuestEvents()
-    AT:SecureHook("QuestRewardCompleteButton_OnClick", function()
-        AT:CheckQuestCompletion()
-    end)
-    
-    AT:SecureHook("SelectQuestLogEntry", function()
-        AT:CheckQuestProgress()
-    end)
-end
-
--- Check for quest completion when a quest is turned in
-function AT:CheckQuestCompletion()
-    local questTitle = GetTitleText()
-    if not questTitle then return end
-    
-    for attunementKey, attunement in pairs(AT.attunements) do
-        if attunement.steps then
-            for i, step in ipairs(attunement.steps) do
-                if step.type == "quest" and step.text and string.find(step.text, questTitle) then
-                    AT:MarkStepCompleted(attunementKey, step.id)
-                end
-            end
+        if type(AT_CreateAttunementView) == "function" then
+            AT_CreateAttunementView(attunementKey)
         end
     end
 end
 
--- Mark a specific step as completed in the database
 function AT:MarkStepCompleted(attunementKey, stepId)
-    if not AT.db.attunements then AT.db.attunements = {} end
-    if not AT.db.attunements[attunementKey] then AT.db.attunements[attunementKey] = { steps = {} } end
-    if not AT.db.attunements[attunementKey].steps then AT.db.attunements[attunementKey].steps = {} end
-    
+    if not AT.db.attunements[attunementKey] then
+        AT.db.attunements[attunementKey] = { steps = {} }
+    end
+    if not AT.db.attunements[attunementKey].steps then
+        AT.db.attunements[attunementKey].steps = {}
+    end
     AT.db.attunements[attunementKey].steps[stepId] = true
-    
-    print("|cff00ff00Attune Turtle:|r Step completed for " .. (AT.attunements[attunementKey] and AT.attunements[attunementKey].name or attunementKey))
+    print("|cff00ff00Attune Turtle:|r Step completed for " ..
+        ((AT.attunements and AT.attunements[attunementKey] and AT.attunements[attunementKey].name) or attunementKey))
 end
 
--- Placeholder for checking the player's quest log
-function AT:CheckQuestProgress()
-    -- This will be expanded in future versions
+--------------------------------------------------
+-- Placeholder quest hooks
+--------------------------------------------------
+function AT:HookQuestEvents()
+    -- Empty for now
 end
 
--- Display help information in the chat window
-function AT:ShowHelp()
-    print("|cff00ff00Attune Turtle|r - Available Commands:")
-    print("  |cffffff00/attune|r or |cffffffff/at|r - Toggle the main window.")
-    print("  |cffffff00/attune help|r - Show this help message.")
-    print("  |cffffff00/attune version|r - Display addon version.")
-    print("  |cffffff00/attune debug|r - Toggle debug mode.")
-    -- *** CHANGE: Use "options" instead of "settings" ***
-    print("  |cffffff00/attune reset|r - Reset addon options (including window size).")
+--------------------------------------------------
+-- Help / Slash (Lua 5.0 safe parsing)
+--------------------------------------------------
+local function PrintHelp()
+    print("|cff00ff00Attune Turtle|r - Commands:")
+    print("  /attune or /at           - Toggle main window")
+    print("  /attune help             - Show help")
+    print("  /attune version          - Show version")
+    print("  /attune reset            - Reset options")
+    print("  /attune debug            - Toggle master debug")
+    print("  /attune debug list       - List debug channels")
+    print("  /attune debug all        - Toggle all-channel mode")
+    print("  /attune debug off        - Force debug off")
+    print("  /attune debug <channel>  - Toggle channel")
 end
 
--- Debug function for internal use
-function AT_Debug(message)
-    if AT.debug then
-        print("|cff00ff00[Attune Debug]:|r " .. tostring(message))
-    end
-end
-
--- Event frame for handling addon initialization events
-local eventFrame = CreateFrame("Frame")
-eventFrame:RegisterEvent("ADDON_LOADED")
-eventFrame:RegisterEvent("PLAYER_LOGIN")
-eventFrame:RegisterEvent("VARIABLES_LOADED")
-
-eventFrame:SetScript("OnEvent", function()
-    if event == "ADDON_LOADED" and arg1 == "Attune-Turtle" then
-        -- This event fires when our addon's files are loaded.
-        -- We initialize the database and DataBroker object here.
-        AT:InitializeDatabase()
-        AT:CreateDataBroker()
-        
-    elseif event == "VARIABLES_LOADED" then
-        -- This event fires after saved variables are loaded.
-        -- This is the correct time to create the minimap button.
-        AT_CreateMinimapButton()
-        
-    elseif event == "PLAYER_LOGIN" then
-        -- This event fires when the player enters the world.
-        AT:HookQuestEvents()
-        
-        -- Show a login message every time.
-        if AT.db.firstTime then
-            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded for the first time! Type |cffffffff/attune|r to open.")
-            AT.db.firstTime = false
-        else
-            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded. Type |cffffffff/attune help|r for commands.")
-        end
-        
-        -- Unregister events we only need once.
-        eventFrame:UnregisterEvent("ADDON_LOADED")
-        eventFrame:UnregisterEvent("PLAYER_LOGIN")
-        eventFrame:UnregisterEvent("VARIABLES_LOADED")
-    end
-end)
-
--- Slash command handler
 SLASH_ATTUNE1 = "/attune"
 SLASH_ATTUNE2 = "/at"
 SlashCmdList["ATTUNE"] = function(msg)
-    msg = string.lower(msg or "")
-    
-    if msg == "debug" then
-        AT.debug = not AT.debug
-        print("|cff00ff00Attune Turtle:|r Debug mode " .. (AT.debug and "enabled" or "disabled"))
-    elseif msg == "reset" then
-        -- Reset all options to default
+    msg = msg or ""
+    -- Trim
+    msg = string.gsub(msg, "^%s+", "")
+    msg = string.gsub(msg, "%s+$", "")
+
+    if msg == "" then
+        AT:ToggleMainFrame()
+        return
+    end
+
+    -- Manual split (first space)
+    local firstSpace = string.find(msg, " ")
+    local cmd, rest
+    if firstSpace then
+        cmd = string.sub(msg, 1, firstSpace - 1)
+        rest = string.sub(msg, firstSpace + 1)
+    else
+        cmd = msg
+        rest = ""
+    end
+    cmd = string.lower(cmd)
+    rest = rest or ""
+
+    if cmd == "help" then
+        PrintHelp()
+    elseif cmd == "version" then
+        print("|cff00ff00Attune Turtle:|r Version " .. AT.version .. " by " .. AT.author)
+    elseif cmd == "reset" then
         AttuneTurtleDB = nil
         AT:InitializeDatabase()
         if AT.mainFrame then
             AT.mainFrame:Hide()
             AT.mainFrame = nil
         end
-        AT:ResetMinimapButton()
-        -- *** CHANGE: Use "options" instead of "settings" ***
-        print("|cff00ff00Attune Turtle:|r All options have been reset to default.")
-    elseif msg == "version" then
-        print("|cff00ff00Attune Turtle:|r Version " .. AT.version .. " by " .. AT.author)
-    elseif msg == "help" then
-        AT:ShowHelp()
+        print("|cff00ff00Attune Turtle:|r Options reset.")
+    elseif cmd == "debug" then
+        if AT.Debug and AT.Debug.HandleSlash then
+            AT.Debug:HandleSlash(rest)
+        else
+            AT.debug = not AT.debug
+            print("|cff00ff00Attune Turtle:|r Debug mode " .. (AT.debug and "ENABLED" or "DISABLED") .. " (basic)")
+        end
     else
-        AT:ToggleMainFrame()
+        PrintHelp()
     end
 end
+
+--------------------------------------------------
+-- Events
+--------------------------------------------------
+local eventFrame = CreateFrame("Frame")
+eventFrame:RegisterEvent("ADDON_LOADED")
+eventFrame:RegisterEvent("PLAYER_LOGIN")
+
+eventFrame:SetScript("OnEvent", function()
+    if event == "ADDON_LOADED" and arg1 == "Attune-Turtle" then
+        AT:InitializeDatabase()
+        AT:CreateDataBroker()
+        AT:HookQuestEvents()
+        AT_Debug("ADDON_LOADED complete")
+    elseif event == "PLAYER_LOGIN" then
+        if type(AT_CreateMinimapButton) == "function" then
+            AT_Debug("Attempting minimap button creation...")
+            AT_CreateMinimapButton()
+        else
+            AT_Debug("Minimap button function not found at PLAYER_LOGIN")
+        end
+
+        if AT.db.firstTime then
+            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded for the first time! Type /attune to open.")
+            AT.db.firstTime = false
+        else
+            print("|cff00ff00Attune Turtle|r [v" .. AT.version .. "] loaded. Type /attune help for commands.")
+        end
+        eventFrame:UnregisterEvent("ADDON_LOADED")
+        eventFrame:UnregisterEvent("PLAYER_LOGIN")
+    end
+end)
+
+AT_Debug("Core.lua loaded (compat fix).")
