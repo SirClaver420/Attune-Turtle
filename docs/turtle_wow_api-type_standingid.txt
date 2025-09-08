@@ -1,0 +1,23 @@
+API TYPE STANDINGID
+
+ 
+
+These numeric values are used to indicate how a player is perceived by
+a specific faction.
+
+VALUES[]
+
+	* 0 - Unknown 	* 1 - Hated 	* 2 - Hostile 	* 3 - Unfriendly 	* 4 -
+Neutral 	* 5 - Friendly 	* 6 - Honored 	* 7 - Revered 	* 8 - Exalted
+
+These values are defined globaly by the FACTION_STANDING_LABEL(x)
+variables, locale specific.
+
+It's better to use them instead of relying on the hardcoded values
+above.
+
+EXAMPLE[]
+
+/script x=4; temp=getglobal("FACTION_STANDING_LABEL"..x); message(temp);
+
+Gives the message "Neutral".

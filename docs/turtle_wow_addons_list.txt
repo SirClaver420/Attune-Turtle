@@ -1,0 +1,8005 @@
+Looking to install Addons for Turtle WoW? Learn below about how Addons work in this version of WoW, then try CTRL+F and search the Full Addons List on this page to find what you need.
+
+Contents
+
+1 About Addons
+
+1.1 How to Install Addons 1.2 How to Update Addons 1.3 How to Troubleshoot Addons
+
+2 List of Addons
+
+2.1 Featured Addons 2.2 Full Addons List 2.3 A 2.4 B 2.5 C 2.6 D 2.7 E 2.8 F 2.9 G 2.10 H 2.11 I 2.12 J 2.13 K 2.14 L 2.15 M 2.16 N 2.17 O 2.18 P 2.19 Q 2.20 R 2.21 S 2.22 T 2.23 U 2.24 V 2.25 W 2.26 X 2.27 Y 2.28 Z
+
+3 SuperWoW Addons 4 Further Addons Collections 5 Non-Addon Game Modifications
+
+6 For Addon Developers
+
+6.1 First Steps To Creating Addons 6.2 Basic loop to write an Addon 6.3 1.12 Addon Development Resources 6.4 Library Addons for Addon Developers 6.5 Addons In Need of Fixes
+
+About Addons[]
+
+Coming from Blizzard Retail/Classic? Read Me!
+
+Turtle WoW 1.17.2 is a mod of the 2006 version of the game that uses the original 1.12 WoW Vanilla client. As such, Classic addons (usually marked for version 1.13/1.15) DO NOT WORK! If you are coming from Classic, forget all of what you know about addons and be prepared to find a completely new set of addons to accomplish what you want.
+
+Addons used by TWoW players are a mix of:a
+
+Old addons developed back in the day, back in 2006 New addons developed more recently in the private server era And modified versions of old and new addons, updated specifically with fixes that accomidate Turtle's changes to the 1.12 game.
+
+The #Full Addons List section intends to always list the correct version that you should use.
+
+WeakAuras
+
+Back in the day, there existed an addon called PowerAuras that simply allowed for easy visual tracking of buffs and debuffs. However, those of you who play on newer versions of WoW may know of PA's succssor: WeakAuras. WA has gone from just buff tracking to serving as a convenient platform for "mini-addons" that many players end up using extensively. WeakAuras DOES NOT EXIST for Turtle WoW! Instead, players on old WoW will make completely separate addons to accomplish the same things that WA does. So if you are looking for a replacement for a specific WA then look for these separate addons instead.
+
+How to Install Addons[]
+
+Easy GUI Addons Manager
+
+Think you will be on Turtle for a while and want a sustainable easy solution to addon management, like Curseforge for Retail/Classic? Annoyed by extracting and renaming addons? Want to update all your addons in one button press? This method is a bit more effort to set up at first but it's worth it in the long run.
+
+Download the GitAddonsManager program, and use your file manager to unzip the manager program. This program does not need to be anywhere specific, just place it somewhere you'll remember. Go to where you unzipped it, find GitAddonsManager.exe and right click to create a shortcut to make it convenient to use this launcher. Launch the manager with the shortcut. Complete the first time setup, it will ask where your addons folder is, so give it the location of your TurtleWoW/Interface/AddOns/ folder.
+
+With setup complete, you are now ready to install addons with this manager. If you had any manually installed copies of git addons then go delete those. Those old manual installations you have made cannot be updated with this GUI Manager.
+
+Any time that you find a new GitHub or Gitlab addon you want to install:
+
+Copy down the clone link for the git addon, for example https://github.com/shagu/ShaguTweaks.git
+
+On the Addons Manager, press the + button on the top left, and paste in the URL. Press OK. The addon will download and install.
+
+All done. Every so often open this app to press the Upgrade button on the top left. This will update all of your addons at once using the power of Git.
+
+Restart your game. If the installation worked correctly then you should see an Addons button on the bottom left of the character select screen. In that list you should see your installed addon listed.
+
+Installing Addons by Hand
+
+This method is simple and works with any addon you find, even ones that don't use git, but the downside is that there's no easy way to update all your addons at once. If that is okay with you then learn this manual installation process:
+
+Visit the github link you find, then click the green <> Code button, and select Download ZIP. Use 7zip to extract the zip into your TurtleWoW/Interface/AddOns/ folder. Rename the addon's folder. This is the tricky part, Read Carefully:In order for WoW to actually load your addon, the folder name that contains the addon and name of the the .toc file within MUST match. For example, if the addon has the file Some-Addon.toc, you must name the folder Some-Addon. When done correctly, your folder and file structure should look like TurtleWoW/Interface/AddOns/ADDONNAME/ADDONNAME.toc.
+
+In most cases of downloading an addon from github, this just means deleting "-master" or "-main" from the folder name.
+
+Beware! Some addons like Aux come with a mismatched folder name. If an addon isn't loading, you really do need to check that .toc file.
+
+Beware! Some addons like DPSMate will bury themselves a folder too deep. If your file/folder structure looks like TurtleWoW/Interface/AddOns/REPONAME-MASTER/ADDONNAME/ADDONNAME.toc, this addon will not work! In this case, you need to pull out the addons from that bad containing folder. If this step still gives you trouble then consider giving the automated AddonsFixer a try.
+
+Restart your game and if the installation worked correctly then you should see an Addons button on the bottom left of the character select screen. In that list you should see your installed addon listed.
+
+Command-line Addons Manager
+
+If you prefer a command-line interface, you may use snapjaw, a git-based addons manager. For detailed information, please refer to the readme file on GitHub.
+
+How to Update Addons[]
+
+[Updated 2025 Jan]: Best Recommended Method is to use the TurtleWoW Launcher to verify and update accordingly.
+
+NOTE: Don't worry about your addon settings! Your game and addon settings are saved separately, in the TurtleWoW/WTF folder, and as long as you don't mess with that folder, your settings will persist across addon updates, uninstalls, and reinstalls.
+
+How to Troubleshoot Addons[]
+
+If Installed Addon Isn't Showing up restart your game, log back in, and on the character select screen, you should see an addons button, click that.
+
+Do you see your addon on this list?
+
+If not, the installation failed and you should review #How to Install Addons. If the addon does show on this list and is activated, the addon is indeed installed correctly and should be working once you load a character. If you aren't sure how the addon is supposed to be used and tinkered with, refer to the addon's readme on github, and if you are still stumped, ask on our discord addons channel for help.
+
+List of Addons[]
+
+Featured Addons[]
+
+(Multiple addons beside each other with a + means they should both be installed and used together.)
+
+We recommend that all players choose one of these:
+
+Essential Improvements for the Default UI: ShaguTweaks + ShaguTweaks-extras
+
+Complete Minimalist UI Replacement: pfUI + pfUI-turtle. If you want to browse and try premade layouts and configs: /r/pfUI
+
+Warcraft 3 Inspired UI: WIIIUI + ExtraResourceBars
+
+Recommended Leveling Addons:
+
+Quest Helper: pfQuest + pfQuest-Turtle (+ Optional: Magnify)
+
+Roleplaying AddOn: TurtleRP
+
+AI-Voiced Quests and Dialogue: WoW-Voiceover
+
+Zone Level & Flight Map Tooltip (nicely integrated with pfUI , see below FlightMap addon
+
+Quest Immersive: Immersive Dialog UI. A enhanced conversation addon with a focus on immersion and customization.
+
+Keep a note for Friends in Game: AuldLangSyne. (useful to save short description as Friends note)
+
+Map Markers: Modern Map Markers (Shows the locations of dungeons, raids, world bosses, boats, zeppelins, and trams on the world map.)
+
+Recommended Endgame Addons:
+
+Damage Meter: ShaguDPS, or if you need advanced tools: DPSMate
+
+Threat Meter: TWThreat or KLHThreatMeter
+
+Encounter Helper: BigWigs
+
+Loot tables for Dungeons and Raids: AtlasLoot-Turtle or Atlas-TW
+
+Advanced Auction UI: Aux
+
+Group maker: AutoLFM - Ideal for setting up a group for a quest, dungeon or raid. Can be used in SoftCore or Hardcore.
+
+Full Addons List[]
+
+These addons are all hosted on Github and other git services, and so they will work with the installation methods provided above. If you do not find the addon you want in the list, and you think what you want might be an ancient addon that was around in 2006, see the bottom of the page for further addon collections.
+
+A . B . C . D . E . F . G . H . I . J . K . L . M . N . O . P . Q . R . S . T . U . V . W . X . Y . Z
+
+A[]
+
+_AntInvite - block invitation of people under level 15 [Img1]
+
+_AutoBG - auto-queue, join, leave battlegrounds & instant spirit release
+
+aBindings - Direct macrotext-to-key bindings
+
+Abraxas - Warlock Helper [Img1]
+
+ABreathBeneath - a "reskin" of the Blizzard's nameplates [Img1]
+
+Accountant - tracks your incoming / outgoing cash [Img1]
+
+ActionButtonUtils - Retail-like glowing for WoW 1.12 ActionButtons
+
+ActionBarProfiles - Create and load action bar layouts for different builds.
+
+ActionMirroringFrame - Display a frame showing used actions [Img1]
+
+AddOnOrganizer - This mod allows you to turn on and off all of your current addons
+
+aDF - adds a small HUD that standardizes critical info about your target's defences, including Armor, Resists, and specific debuffs [Img1]
+
+AdvancedTradeSkillWindow - replacement for Blizzards trade skill window [Img1] use it w/ LSW
+
+AdvancedTradeSkillWindow2 - Improved window for your professions for World of Warcraft vanilla (Evolution of the previous addon) [Image].
+
+Aero - Adds animations to frames [Img1]
+
+agUnitFramesImproved - Customizable unit frame addon
+
+Altoholic - Provides information about your alts. Turtle WoW version, supports cross-faction alts. [Img1] A version that fixes several bugs and adds modules for raid lockouts and attunements is available here.
+
+AnnounceKick - Very simple rogue addon that announces "Kick" in say chat
+
+Antispam - Shagu addon to filter out goldsellers and Moo spammers on Turtle WoW
+
+AntiSpamStopCast - addon to prevent cancellation of fresh spell casts when mashing the button
+
+APD - Attack Power Display is an UI realtime monitor for your attack power.
+
+Arcanum - Manages Mage spells and items, including Turtle WoW Mage spells and items
+
+ArchiTotem - Totem bar and Timers [Img1]
+
+ArcHud2 - Combat HUD that displays smooth arcs around your character in the middle of the screen to inform you about the health and power (mana, rage, ...) of you, your pet, and your target. [Img1]
+
+Artisan - Compact professions window
+
+Atlas-TW - Atlas, AtlasLoot, AtlasQuest updated into one new addon with more features and options.
+
+Atlas Turtle - View maps of dungeons and raids
+
+AtlasLoot Turtle - Browse loot tables for Dungeons and Raids
+
+AtlasQuest Turtle - see a list of vanilla and TurtleWOW quests related to each dungeon.
+
+Attack - Enable attack with /attack
+
+Akkio_Consume_Helper - Manage your buffs & Consumables in real time during your adventures
+
+AttackBar - Player and Enemy Swing Timer addon [Img1]
+
+AttackBar Turtle - Player and Enemy Swing Timer addon [Img1] + Turtle WoW's Holy Strike support.
+
+AuctionAltBuy - Alt-Click auctions to buy and cancel instantly
+
+Auctionator - A lightweight addon designed to help manage auctions [Img1]
+
+AuctionHelper - helps you transfer items through the neutral auction house [Img1]
+
+AuctionLink - allows you to search for items in the AH by shift-clicking them
+
+AuctionSearchTimer - Timer that shows when you can refresh the AH [Img1]
+
+AuldLangSyne - combines the functions of CT_PlayerNotes and FriendsFacts
+
+AutoBar - automatically adds potions, water, food, quest and other items you specify into buttons for easy use [Img1]
+
+AutoConfirm - QOL addon to automatically confirm common popups (quests, BOP loot, replacing enchantments, etc.)
+
+AutoDB - Automatically does /db chests and /db rares for pfQuest users.
+
+AutoDB2 - Automatically does /db chests and /db rares for pfQuest users. Allows to setup any pfQuest commands to execute after logging in.
+
+AutoDecline - Automatically decline (block) all guild, party, duel invites, as well as guild charters.
+
+AutoDot - addon for warlocks who wants one button for all dots
+
+AutoExpEnable - Warning when player's XP is OFF.
+
+Autohump - Hump your friends all day long!
+
+AutoLFM - Automated LFM Message [img1] [img2] [img3] [img4]
+
+AutoMana - Automatic Mana Consume Usage
+
+AutoMasterLooter - Automatically loot items as masterlooter
+
+Automaton - Reduces interface tedium by doing the little things for you [Img1]Note: Do not use the "Attack" module if you want to be able to target friendly units while in combat (if you're unable to click party/raid frames in combat, this could be the cause).
+
+AutoMessage - Allows automatic sending of a message to a channel at an interval specified by a user
+
+AutoProfit - Easy sell trash to vendor WoW addon
+
+AutoPvPFlag - Automatically PVP flags you on login.
+
+AutoReputationBar automatically switches your reputation bar to whichever faction you last gained reputation with.
+
+AutoShot - Automatically take screenshots
+
+AutoSpellRanker - Notifies you if there's a higher rank of spell available in your spellbook than on your bars
+
+Aux - Overhaul auction house interface [Vid1].
+
+Aux-Revamped - A refreshed and transparent UI update for the classic Aux auction addon [Img1]
+
+AuxMerchantPrices - Adds merchant prices to tooltips
+
+Avbars - Graphical Timers for Events in AV and AB
+
+↑ Go to top of page ↑
+
+B[]
+
+Bagnon - A group of addons that improve the way the player manages his or her inventory.
+
+Bagshui - All-in-one auto-categorizing and sorting inventory replacement for Bags and Bank with customizable layout and rules. [Screenshots] Good alternative to AdiBags / ArkInventory / Baganator / BetterBags / TBag.
+
+BananaBar - buttons to set raid symbols/hunter's mark, target by symbol and many other features [Img1]
+
+Bartender2 - An AddOn to move Blizzards default actionbars and buttons.
+
+BattleMusic - Plays battle music on combat start and ends when combat ends. [vid1] [Alt1]
+
+BattleMusic Lore Friendly Music Pack - Adds over 30 different Warcraft combat tunes.
+
+BearCastBar - A cool cast bar and swing timer that takes into account latency [Img1] [Img2]
+
+Beardley's Diablo Orbs - is a backported Diablo like UI [Img1]
+
+Benecast - A healing and buff helper
+
+BetterAlign - creates a grid on your screen to aid you in aligning and centering your UI
+
+BetterBabelFish - Better bable talk between factions or not... whatever you like
+
+BetterCharacterStats (BCS) - Backports the TBC character stats panel, collecting and centralizing info on primary but also secondary stats like spellpower, hit, crit [Img1]
+
+BetterScoreFrame - Better Battlefield Score Frame
+
+BGAssistRU - Battleground helper
+
+BGFlag - Small text display of the status of the Alliance and Horde flags
+
+BGReport - shows HUGE pie-like menu with predefined macros when you're in battleground zone [Vid1]
+
+BigBrother - addon to spy on your guild mates with! [Img1]
+
+BigWigs - raid encounter helper
+
+BlackList - is like Ignore, except unlimited
+
+BlizzardPlates - adds cast bars, class and rank icons, debuffs and health numbers on the default blizzard nameplates [Img1]
+
+BlizzMo - will move any Blizzard Frame and all your Bags
+
+Blockvalue - A lightweight TurtleWoW addon that shows you your total block value
+
+Bloodrage - Provide a single button to put you in the "default" stance and activate Bloodrage
+
+BMLoot - auto roll 'need' on Corrupted Sand and Arcane Essence in Black Morass
+
+Bongos - Creates customized action bars [2]
+
+BonusScanner - Scans your equipment for cumulative bonuses like additional spell damage and sums them up
+
+BossAlert - alert the guild and play a sound once something spawns under your mouse
+
+BossMechanicsHelper - An addon to share boss mechanics in a raid or group
+
+BossTactics - Posts pre-defined boss tactics to raid warning via slash command.
+
+BossDeathTimer - A simple countdown timer that displays how long the boss will die.
+
+BrainSaver - Save and name brainwasher specs
+
+Brainwasher Pro - Modern Brainwasher interface with custom icons and naming for Turtle WoW [Img1]
+
+BSAlert TW - Notifies you when BattleShout is not up
+
+Bubbles - Addon that displays available rested XP bubbles, how many tents are actively providing them and the remaining time until 150% rested XP
+
+BuffAlert - The addon is able to play a sound when you gain a specific buff
+
+BuffBlock - Automatically removes selected buffs
+
+BuffBlock-TW - Smart Tanking Buff removal tool for each tanking class (Warrior / Druid / Paladin / Shaman). A fork from Buffblock.
+
+BuffCounter - a frame that shows you either how many buffs you can still get or how many you have currently [Img1]
+
+Buffed - helps you track your workout progress and calories burned while resting in the game [Img1] [Img2]
+
+BuffHook - Shows enemy buffs by hooking WoW API's UnitBuff(unitID, index) and adding buffs to it.
+
+BuffReminder - Reminds the player when buffs have or will soon expire [Img1] [Img2]
+
+BuffWatch - Keeps track of buffs on party members in a small window and highlights them if they have run out
+
+BugSack - Eases the process of viewing bugs
+
+TWBuyPoisons - Buy Stacks of Poison Components
+
+↑ Go to top of page ↑
+
+C[]
+
+CallOfElements - Shaman addon to simplify totem usage, increase your efficiency in party and PVP [Img1], updated to work with Turtle Warcraft
+
+CallToArms - Group Hosting, Finding Addon [Fu]
+
+Capslock - Warlock summon addon
+
+CaramelNotes - Write notes about other players. [Img1]
+
+carinachut - gold seller bots blocker
+
+Carbonite - Google Maps style world map with built in quest helper, resource nodes and a warehouse
+
+Cartographer for TurtleWoW - A modular, lightweight, and efficient framework for manipulation of the world map
+
+CasterStats - CasterStats, adds the attribute Spell Dmg in the Character Panel (with hit & crit) [Img1] (must also install BonusScanner)
+
+CastHistoryTracker - Animated and highly customisable on-screen spell cast history for up to 11 units simultaneously. [img]
+
+CastTimer - Tool for measuring cast times in twow
+
+CatDruidDPS - One button feral druid dps
+
+Caterer - Auto-trades preset stack counts of water & food to players opening trade [Img1]
+
+CCWatch - Enemy CC & DR progress bars with icons [Img1]
+
+CDFrames - Cooldown timers for player, target and targettarget [Img1]
+
+CensusPlusTurtle - Collects and displays census information for Turtle WoW. [Img1]
+
+CerniesWonderfulFunctions - Script methods for using specific items and helping players create simple(er) macros
+
+Channel monitor - addOn for monitoring the chat for specific keywords [Img1]
+
+ChaosReserves - Self-service reserve managing chatbot
+
+CharacterMap - Provides a virtual keyboard of higher-ASCII and Unicode characters which can be inserted into chat boxes
+
+ChatBar - Button Bar for opening chat messages of each type
+
+ChatEmote - Chat emoticon to Emote Addon
+
+ChatFix - Fix for channels World, Trade, etc.
+
+ChatLog - Gives you the ability to view or copy/paste any chat logs
+
+ChatLootBidder - A Master-Loot addon to assist in loot distribution. Works with MS/OS, SR, and Bid systems. Does not require raiders to install the addon.
+
+Chatsuey - A collection of chat enhancement addons
+
+ChatTimestamps - Adds customizable timestamps to chat windows
+
+ChroniclesBuffAssignments - Automatically generates raid buff assignments that can be copy pasted in the chat
+
+ChroniclesPI - Cast Power Infusion on people who request it via whisper
+
+ChroniclesPTR - Gamemaster raid organization on PTRs
+
+Chronometer - tracks spell effects (HoTs, DoTs, buffs, debuffs, etc.) that you cast
+
+Classicdb - helps you to find ingame stuff and getting your quests done
+
+ClassicMouseover - Mouseover casting support for Vanilla
+
+ClassIcons - Displays class icons near your target’s and party members’ portraits
+
+ClassicSnowFall - Cast Abilities on KeyDown [2]
+
+ClassPortraits - replaces 2D portraits with a class icon [Img1]
+
+CleanChat - Colorize names, shows level, shortens channel names and more. Turtle WoW version, can show players factions in chat.
+
+CleanPlayerFrame - Small enhancement for the standard player, target and party frames
+
+Cleanup - This addOn automatically stacks and sorts your items [Vid1]
+
+"Deprecated" version of Cleanup that seems to require SUCC-bag. May work as an alternative for some users if the original doesn't function for them.[1]
+
+CleverMacro - Adds extra slash commands for use in macros
+
+CleveRoidMacros - More advanced and modern style macros. Lovechild of CleverMacro + Roid-Macros.
+
+Clique - Simply powerful click-casting interface (Shagu - May 2023). Alternate Version that has some minor changes (Lexiebean - Nov 2022)
+
+CLog - API events logging [Img1]
+
+CloseUp - Allows you to zoom, reposition, and rotate the UI's built-in models so that you may get a better view
+
+CMap - Backport of SexyMap [Img1]
+
+Codex - Displays mobs' spells on mouseover.
+
+ColorPickerPlus - Hooks into the standard Color Picker to provide text entry for colors
+
+ColorSocialFrame - Class Color Friends, Guild and Who List addon [Img1]
+
+Combat - Shows a combat indicator next to the Target Frame whenever the target is in combat
+
+CombatLoggingReminder - Do you forget to enable combat logs in raids? This helps you not forget!
+
+CombatPlates - Nameplate visibility auto-switching and control. Lets you pick which nameplates (friendly/enemy) should be visible in and out of combat.
+
+Comix (Susangrundle/Cysthen) or Comix (Goose404) - Adds sounds and special effects to your interface
+
+CompanionManager - Radial menu to easily summon companions. [Video]
+
+Consumes Manager - Easily track and manage your consumables, food buffs, and more across your inventory, bank, and mail, while supporting multiple characters and accounts. Created with ♥ by Horyoshi for World of Warcraft 1.12 Turtle WoW [Video Overview]
+
+CooldownTimers - scans your spellbook/inventory for skills/items that are in cooldown and add them to bars [Img1]
+
+CooldownTracker - Auras for tracking your spell and item cooldowns. [Img1]
+
+CoolHealthBar - Extra health and power bar. [Img1]
+
+Cooline - cooldown mod that displays icons on a single bar/line to give you an idea of when it will be ready [Img1]
+
+CorpseInfo - Adds class, level, online status to the tooltip for a corpse
+
+Crafty - Lightweight craft/tradeskill window [Img1]
+
+Crapfilter - Blocks messages
+
+Critei - An simple way to share your highest damage with your friends [Img1]
+
+Crusader - Sphere addon for Paladins, mainly for solo play
+
+Cryolysis - Management of Mage spells, abilities, and reagents. Not updated for Turtle WoW like the Arcanum addon is.
+
+CT BuffMod Sorted - A quick edit of CT BuffMod to sort buffs properly
+
+CT MailMod - Allows you to send multiple mails to the same person
+
+CT PlayerNotes - Allows you to save notes for your friends, guildies & ignored persons.
+
+CT UnitFrames - Changes display of hp/mana values and adds a percentage
+
+CThunWarner - Provides information for C'Thun raids
+
+CThunPositions - Allows you to drag the raid members on a map of C'Thun to help with positioning in phase 1 [Img1]
+
+CustomIcons - Create and manage custom floating icons.
+
+CustomNameplates - Nameplate addon [Img1] [Img2]
+
+cyCircled - changes the look of various buttons (mostly action bar buttons) [Img1]
+
+↑ Go to top of page ↑
+
+D[]
+
+DankScore - a tool to choose the best items for your spec/gear
+
+DBM - Deadly Boss Mods was known as La Vendetta Boss Mods (LVBM) back in Vanilla WoW, it's a stand-alone boss mod for raid groups playing in the end-game content.
+
+DebuffFilter - Filter out specific target debuffs and player buffs into a separate frame [Img1] [Img2]
+
+DebuffListCheck - reporting to everyone using the addon which important debuffs are or are not applied
+
+DebuffTimers - Timer Overlays for enemy buffs and debuffs [Img1] [Img2]
+
+Decursive - Its job is to help a class that can remove debuffs [Vid1]
+
+DevilsHunters - creates a BigWigs timer when a Devilsaur dies and tries to pick the correct location
+
+DialogUI - immersive re-skin of the default Quest and Gossip Frame
+
+DifficultBulletinBoard - Inspired by the LFG Bulletin Board, this addon organizes world chat into a structured list, making it easier to find groups.
+
+DiivSkins - will "paint" auxiliary images onto the two dimensional pane of your user interface [Img1]
+
+DisableEscape - Prevents the escape button from cancelling invites and summons
+
+DiscordActionBars - Spreads your base 120 action buttons across 10 configurable bars
+
+DispelBorder - Shows highlight border around enemy magic buffs [Img1]
+
+Distance - shows how far your target is away, based on the spell ranges your class has [Img1]
+
+DistanceDisplay - Precise Distance and Line of Sight Indicator. Need UNITXP_SP3 to work.
+
+DKPAuctionBidder - Small UI to bid in DKP Auctions created by SotA [Img1]
+
+DKPList - display dkp values stored in the public guild note by SotA
+
+Doomed - (DOOM UI) is for fans of the classic shooter Doom [Img1]
+
+DoTimer - is a vastly sophisticated DoT tracking addon [Img1]
+
+DouseReminder - Prints a reminder to douse runes in Molten Core to officer chat
+
+DPEPGP - De Profundis EP/GP Loot System
+
+DragonflightReloaded - A modern UI replacement inspired by the Dragonflight UI.
+
+DrunkTracker - Track your drunk state.
+
+DpsGirl - Show current dps with a friend.
+
+DPSMate - combat analyzation tool [Fu]
+
+DruidConsumable - Script method for Druid consumable usage with powershifting
+
+DruidManaBar - Displays a mana bar when shapeshifted [Img1]
+
+Dwarvenizer - Roleplaying addon that automatically converts your chat text to the Dwarf or Troll manner of speaking
+
+↑ Go to top of page ↑
+
+E[]
+
+EasyCloak - Automagically equip Onyxia Scale Cloak when entering Nefarian's Lair [Vid1]
+
+EasyLoot - addon to simplify raid loot distribution
+
+EasyRess - Simplifies chain ressing and drinking
+
+EavesDrop - A simple combat log that displays events [Img1]
+
+eePanels - Create and modify background panels in your WoW UI
+
+EFCReport - Enemy Flag Carrier report tool [Img1]
+
+Egnar - Show a range indicator for hunters [Img1]
+
+EliteWarriorTTD - Estimates how much longer it will take to kill a boss
+
+ElkBuffBar - Tries to sort buffs into categories with pretty colors (Fails sometimes) [Img1]
+
+EmeraldFramework - Framework for addons
+
+EM MonkeyBuddy - Helps you configure your MonkeyMods
+
+EM MonkeyQuest - Displays your quests for quick viewing
+
+EM WoWQuote - Receives and transmits sound-quotes
+
+EM Yatlas - Yet another atlas; does NOT show or support Custom Turtle WoW Maps/Content!
+
+EM_CritBam - EasyMachines CritBam Mod
+
+EnemyFrames - display enemy players on BGs [Img1] [Img2] [Read]
+
+EngBags - single bag / bank, the bank's remote viewing (auto-sorting, etc.) [Img1] [Img2]
+
+EngInventory - AutoSorting Inventory Replacement [Img1]
+
+Enhancer - Enhancement Shaman Essentials
+
+EPGPexport - Effort Points/Gear Points Loot System export tool
+
+EQCompare - Compare equipped inventory items against items in chatframe hyperlink and bags/bank [Img1]
+
+EQL3 - A reskinned Extended Quest Log addon inspired by TukUI [Img1]
+
+EquipColor - colors unequippable items red in the inventory [Img1]
+
+EquipCompare - Compare items easily with ones you have equipped
+
+ES - Plays the loud glang sound when using execute familiar from WotLK expansion
+
+ETL - Exp Per hour/time til level addon [Img1]
+
+eUI - is a small collection of interface addons [Img1]
+
+EVTCalendar - Event Calendar AddOn [Img1]
+
+ExoRaidSetup - allows a raid to share graphical representations of boss pulls
+
+ExpandAssist - enabling the raid assist to do the same as an raid leader
+
+Explorer's Map - Embrace exploration while still keeping track of Quest NPCs
+
+EZ-EPGP - Displays EP/GP ratio in neat frame that can be sorted by clicking on headers [Img1]
+
+EzDismount - Dismounts you whenever "Cannot use while mounted" appear
+
+EzPoison-turtle - Rogue Poison Helper, updated for Turtle [Img1] [Img2]
+
+↑ Go to top of page ↑
+
+F[]
+
+FadeFrameUI - Lightweight addon that changes the transparency of the Player Frame, Pet Frame, Minimap, Action Bars and Buff Frame [Img1]
+
+FastBinding - Bind spells quickly directly from your action bars
+
+FelwoodGather - helps you and your team mate with felwood fruit gathering, location and timer management
+
+FeralFire - Customizable WoW attack add-on for Cat Form Feral Druids
+
+FFXIVCrossHotbar - A complete action bar designed to replicate the controller-friendly Cross Hotbar (XHB) system from Final Fantasy XIV
+
+FishInfo2 - keeps track of which fish you catch in each zone
+
+FishingBuddy - Help with fishing related tasks.
+
+Fizzle - Show item durability and quality in the character frame.
+
+Fizzwidget Hunters Helper - Tooltips and info for learning pet spells from taming.
+
+Flamestriker - Rotate Flamestrike ranks for overlapping ground effect damage.
+
+FlightMap - Shows flight master locations, flight durations and flight lines.
+
+FlyerTimer - Shows a BigWgs flight timer when you get on a Turtle custom flying mount such as a guild base mount (requires: BigWigs)
+
+Flyout - Mimicks the flyout feature implemented in later expansions. Using a macro you can create a flyout action button that groups together various spells. [Img1]
+
+FocusFrame - Provides focus targeting & frame support [Img1]
+
+FocusFrame TargetCastbar - Adds an extra castbar for your current target
+
+FollowMeEnhanced - Allows other players to put you on auto-follow.
+
+FonzAppraiser - farm/loot tracker with sessions
+
+FrameFade - Hides the player and pet frames based on conditions. Supports the default and pfUI unitframes.
+
+FreeBagSlots - Free bag slots counter [Img1]
+
+Friend-O-Tron - Synchronizes your friends list across all your characters and accounts (with SuperWoW) on the same realm.
+
+FriendFinder - An addon that helps you find your old friends from other servers!
+
+FriendsFrame - Online/Offline Friend Notification
+
+FuBar - A panel that modules can plug into
+
+FuBar BuffLeecherFu - FuBar-2.0 Plugin that logs you out once you get Onyxia or ZG buff
+
+FuBar Population - Displays server population
+
+Fubar PortalsFu - All portals and teleports in one place [img1] [img2]
+
+Fubar PossessionsFu - FuBar plugin for Possessions addon
+
+FuBar PursueFu - Easily change tracking abilities in Fubar or standalone.
+
+FuBar ToFu - Flight time recorder
+
+FuBar ZepMaster - ZepShipMaster FuBar Plugin
+
+FullSack - Item and money count on tooltips
+
+FullUIToggle - Helps with taking better screenshots! It works similar to the default UI Toggle (that is bound to Alt+Z by default), but also hides overhead player or NPC names.
+
+Fury - end game raiding addon to make Warrior combat easier
+
+↑ Go to top of page ↑
+
+G[]
+
+Gamepad - Simplifies using abilities when using gamepad
+
+GamonKillTimer - never miss a gamon kill again!
+
+Gatherer - Track the closest plants, deposits and treasure locations on you minimap [Img1] [Img2].
+
+GearMenu - Allows for easier switching between items and keybinding them [Img1]. Note: Only download the release build from the releases page on GitHub. Do not download the raw files on the main GitHub page or through GitAddonsManager, as that will result in getting the debug text spam version of the addon.
+
+GemtRotations - 1-button rotations for various classes + some helper functions
+
+GentleGC - Run garbage collection without pause-the-world allocation
+
+GetHead - Log your character out after receiving Rallying Cry of the Dragonslayer or Spirit of Zandalar (good for AFK world buffing)
+
+GFW DisenchantPredictor - A quick reference to sources of Enchanting materials
+
+GFW FeedOMatic - Helps a Hunter keep his pets well fed (and the food in his inventory under control)
+
+GFW HuntersHelper - Helps you find tameable beasts to learn pet skills from
+
+Ghost - Creates 25 buttons bar under mouse pointer (hidden) [Img1]
+
+GlobalFriendsList - An addon that can carry your friends list between toons.
+
+GMBlacklist - helps GMs to cut and blacklist raw chat messages
+
+GMR - provides a GUI for GM tasks
+
+GoblinBrainwashingHelper - Customize your Goblin Brainwashing Device with specialization names and colors [Img1]
+
+Goblin Brain Saver - Goblin Brain Saver is a Turtle addon that allows you to save, restore, and organize your talent specializations. It integrates seamlessly with the game UI using a custom Spellbook-inspired window. [img]
+
+Gourmet - selects suitable food / drinks for picky eaters
+
+GrayAutoSell - Automatically sells all your gray bag items when you interact with a merchant
+
+GrimoireKeeper - Tracks which grimoires your warlock pets have learned [2] [3] [Img1]
+
+GrimReaper - Shows the last three hits whenever a player dies
+
+GrindSpots - helps players quickly find suitable grind spots for their current level
+
+GroupCalendar - provides an in-game calendar for planning, signing up, and managing events
+
+Groupfinder - Calltoarms fork, interface simplified, but with expanded chat parsing features.
+
+GroupManager - Manages group formations and party utilities
+
+GryllsBongos - Bongos Extension for World of Warcraft: Vanilla
+
+GryllsComboSounds - GryllsComboSounds will play a sound when you gain a combo point
+
+GryllsExpBar - Custom Experience and Reputation Bar for World of Warcraft: Vanilla with detailed XP rep and rested info [Img1]
+
+GryllsSwingTimer - Use the zUI swing timer as a standalone addon with additional color themes. [Img1]
+
+GryllsUnitFrames - Enhances the default unitframes [Img1]
+
+GuideCreator - Auto generates in-game leveling guides
+
+GuildAlts - lets you manage and share alt names for guild members.
+
+Guildbank - AddOn for posting bags and bank items to forum (BBCODE)
+
+GuildMainTagger - Displays the names of the main characters in guild messages if they are in the officer notes
+
+GuildMap - Displays guild members on the world and mini map
+
+GuildRecipes - View and share tradeskill recipes with your guild
+
+GuildSearch - Search guild roster by provided name or part of it [Img1]
+
+GW2UI - The Guild Wars 2 UI for Turtle WoW. Alpha stage, please don't report issues
+
+↑ Go to top of page ↑
+
+H[]
+
+HardcoreDeath - An addon for Turtle WoW that announces in guild how you died if you're doing the hardcore challenge.
+
+Hardiness - Everytime you will resist a stun effect, your character will /roar
+
+HatTrick - Simple cloak/helm checkboxes in the character frame
+
+HawkenPlates - Nameplate based on Hawken (Mech FPS Game) [Img1]
+
+HBActionBars - Action Bars Replacement
+
+HBPowerInfusion - Helper for Power Infusion Priests
+
+HCDeaths - Displays and logs hardcore deaths on Turtle WoW [Img1] [Img2]
+
+HCFilter - Filter the HC chan messages and redirect them to a chatframe of choice
+
+HCQuest - Adds a quest warning and information for PvP and dangerous quests.
+
+HCRank - Adds Turtle WoW hardcore death information to the tooltip for dangerous mobs and players.
+
+HCSpy - Find out who is using Luna unit Frames or HealComm!
+
+HCWarn - Helps prevent accidental PvP flagging and warns when flagged.
+
+Healbot Classic - Adds panel with skinable bars for healing and decursive
+
+HealComm - Visual representation of incoming heals [Img1]
+
+HealersMate - Unit frames addon for healers, outdated and succeeded by Puppeteer
+
+HealingAssignments - Make easy and fast Healing Assignments, post them in class-colors! [Fu] [Img1]
+
+HendriShift - powershift consumables helper
+
+HideErrorFrame - Removes the error messages that spam your screen
+
+HideNamePlates - Hides name plates based on unitnames [Img1] [Img2]
+
+Hide Script Error Frame At Login - Suppress the script error frame at login
+
+HideUI - Hides the icons at the end of the action bars [Img1]
+
+HolyShift - Cat druid one-button dps and other useful feral druid functions.
+
+honorcounter - Estimates the honor gained
+
+HonorSpyTurtle - collects all the honor/rank info on all players you met and shows it [Img1]
+
+HordeIronfoe - Ironfoe speech impediment repairer for Horde
+
+HotBotPanel - Helpful panel for keeping hots up on Sapphiron [Img1]
+
+HunterSwissKnife - provides hunters with a set of useful things
+
+↑ Go to top of page ↑
+
+I[]
+
+IBDF - addon to control what mages cast
+
+Iconic - Improves the default macro icon selection system by adding a search bar [Gif]
+
+IFAlert - Notifies you when Inner Fire is not up
+
+Ignite Status - Indicators for ignite and scorch for fire mages
+
+IMBA - several unique functions for coordination raid, develop tactics and its display in visual form for all raid
+
+IMDead - Plays an audio file when you die and lvlup
+
+ImprovedErrorFrame - Display errors in scroll-able/selecting frame
+
+ImprovedIgnore - Improved functionality for ignore
+
+Impulse-booster - mainly improves UI loading speed for pre-WotLK clients and sometimes improves performance
+
+InsigniaTaken - Hides the "Insignia taken" error message when somebody loots your corpse inside a battleground
+
+Inspect - debug pretty print
+
+Inspector - Adds a few features to the standard character inspect: keybinds, caching, stat calculation
+
+InstanceTimers - Tracks your 5 instance lockouts.
+
+IntelliSense - provides auto-completion for chat messages. It learns from your typing patterns and suggests word completions as you type
+
+Interruptor - Interrupt announcer
+
+InventorySale - Converts inventory in to BBcode for easy forum posts
+
+ItemHints - Tooltip notes for interesting items
+
+ItemIDTooltip - Adds item ID to item tooltips
+
+ItemRack - Context menus for inventory items [Fu] [Vid1]
+
+ItemsOfPower - Item Stat Valuation Addon [Img1]
+
+ItemSplit - merge and split large amounts of items in your inventory with slash commands [Vid1]
+
+ItemTooltipIcons - enhances item tooltips by displaying profession icons for crafting ingredients [Img1] [Img2] [Img3]
+
+IWIN - A one button macro addon for Warriors
+
+Immersive Dialog UI - A enhanced conversation addon with a focus on immersion and customization.
+
+↑ Go to top of page ↑
+
+J[]
+
+JIM CooldownPulse - As spells, actions, and items become available, their icons will flash in a conspicuous place
+
+JIM toolbox - provides configuration UI for other AddOns!
+
+Journal - simple notebook addon for RP players.
+
+↑ Go to top of page ↑
+
+K[]
+
+KallyoAutoShot - Auto-shot timer for hunters based on Rais' Auto-shot
+
+KANGZ - addon for managing Dire Maul Tribute buff run invites [Img1]
+
+KethoDoc - dumps the WoW Lua API for Vanilla WoW Lua Definitions.
+
+KeijinAchievementMonitor - a standalone achievement system for Turtle WoW
+
+KeijinAutoVendor - Automatically sells gray (poor quality) items and repairs your gear when visiting a vendor.
+
+KeyringOpener - Opens the keyring whenever all bags are opened (Shift-B)
+
+KillCounter - Shows how many things you killed (mobs, players, critters)
+
+KillLog - a GUI for browsing your Kill Log history [Img1] [Img2]
+
+Killpro - used for tracking all kills [Img1]
+
+KillTrack - Tracks any and all mob kills for you. [Img1] [Img2]
+
+KLHThreatMeter (KTM) - Threat meter. This version of KTM uses the TWThreat API when available, and the 1.12 threat guessing code otherwise.
+
+KTMemeAddon - Replaces mob names of the KT encounter with meme-ier names
+
+KTP3ShackleCounter - Keeps track of the number of shackles on the Kel'Thuzad encounter phase 3
+
+Kui Nameplates - Prettier nameplates. Backport from later WoW versions.
+
+↑ Go to top of page ↑
+
+L[]
+
+LagCast - compensate for latency and the casting design flaw in the Vanilla client
+
+Lager - Reduces lag by pausing superfluous combat logs.
+
+LanguageFilter - Filter chat messages by character range
+
+LazyPig - An addon for lazy people. Helps automate dismounting, repetitive quests, NPC interactions, and interface actions. [Vid1]
+
+LazyRes - makes resurrecting the raid after a wipe easy
+
+LazyScript - very powerful scripting tool [wiki]
+
+LazySpell - auto healing spell rank scale for Clique and Classic Mouseover
+
+Lern2Spell - Automatically upgrades spells on your actionbars
+
+LevelRange-Turtle - Shows the zone level range on the World Map. Now with 100% more turtles!
+
+LFGHelper - Detects LFG/LFM messages in chat and displays them
+
+LHCP - LeeroyHillCatsPower extended audio emotes
+
+LilSparkysWorkshop - adds auction-derived pricing information for trade skills right into the trade skill recipe frame [Img1]
+
+Linkmend - Converts CLINK links into regular ones and localizes and fixes regular ones if possible
+
+LoadIT - In-game addon management
+
+LoathebOrder - Provides a macro to announce your loatheb heal
+
+LockAssignment - addon that allow users to assign curses, banish responsibilities, and soul stone recipients for 40 man raids.
+
+LockPort - For warlock players. Coordinates the summoning of those who type 123
+
+LockPort_Plus - forked from LockPort, add support for multiple localizations (English and Chinese now)
+
+Lookup - Adds searchboxes to the backpack and tradeskill window that the player can use to look up what they need [Img]
+
+LootAtMouse - Opens loot window at current mouse cursor position.
+
+LootBlare - A frame that pops up and shows item and rolls when a single uncommon+ item is linked in Raid Warning [Img]
+
+LootBlare 2.0 - LootBlare customizable RollCap with /lbr [Img1] [img2]
+
+LootMonitor - Customizable floating loot notification that displays fading notifications with real item icons when you loot items or coins [img]
+
+LootTracker - The primary purpose of this addon is track the loot that you and your party receive [Img1]
+
+LootRes - Raiding loot helper for use with Soft Reserve loot systems. [Vid1]
+
+LoseControl - makes it easy to see the duration of crowd control spells by displaying them in a dedicated icon on screen [Img1]
+
+LunaUnitFrames - Lightweight Unit Frames in a modern look
+
+LVBM - (La Vendetta Boss Mods) is a stand-alone boss mod for raid groups playing in the end-game content, you might be familiar with later versions of this known as DBM (Deadly Boss Mods)
+
+Loot Hog - Detects and tracks rolls which are made with '/random' or '/roll' and sorts them, allowing raid leaders to announce roll winners quickly and easily.
+
+↑ Go to top of page ↑
+
+M[]
+
+MacroTextStop - Hides macro texts in action buttons
+
+MacroTT-V - Create tooltips for your macros [Img1] [Img2]
+
+MageHud - Display remaining mage shields for ice barrier/mana shield/protection pots and more.
+
+Magnify - Enables world map zoom
+
+Mail - Easier mailbox management in WoW. Mail is a newer rewrite of Postal, both are by the same dev Shirsig. Consider using TurtleMail instead, a continuation of the 'Mail' addon with multiple improvements, such as showing the amount of gold collected from mail and allowing you to send multiple COD mail.
+
+ManaMinder - addon for managing mana consumables [Img1]
+
+MainTagger - Addon that will print your Main character name in Guild chat or Whisper message if you are on an Alt.
+
+ManyQTItemTooltips - Up to 20 tooltips
+
+MapOfScars - adds the Skyrim's compass [Vid]
+
+MapTarget - makes all "red dots" on the minimap clickable [Vid1]
+
+MasterLootByClass - Sorts raid members by class rather than group
+
+MasterLootRemind - Prompt Raid Leader to Set Master Loot when a Boss is detected
+
+MasterTradeSkills - Adds trade skill information to tooltips of ingredients [Img1] [Img2] [Img3] [2]
+
+MasterLute - Sends raid chat message with some predefined variables by user
+
+MatrixMaps - A SexyMaps-rework updated for turtle wow
+
+MB-CA-icons - Addon to track when Mongoose Bite & Counterattack is usable
+
+McgUI - Melee user interface (1920x1080) [Img1]
+
+MCP-TW - Allows you to enable/disable addons while logged in the game.
+
+Meeting - Turtle WoW LFG Addon (English version)
+
+MeleeStats - addon to see your melee stats (must also install BonusScanner)
+
+Mendeleev - adds information to item tooltips, by which profession it is used etc
+
+MessageBox - Stores and displays whisper conversation history
+
+Metamap - adds features to the world map [Img1]
+
+MijksRaidAssist - Checks for Flask, GGSP/GGNP/GGFP/GGAP/GGFRP, Mageblood and Mongoose potions [Img1] [Img2]
+
+MikScrollingBattleText (MSBT) - an alternative for Blizzard's Floating Combat Text and Damage output
+
+MinimapButtonBag - cleans up your Minimap and relocates the buttons in a menu bar
+
+MinimapButtonFrame - gathers up all of your minimap addon buttons and puts them into a movable frame [Img1]
+
+MissingCrafts - Shows the missing crafts for your crafting professions and how to obtain them. Contains all Turtle WoW recipes including Jewelcrafting. [Img1] [Img2] [Img3]
+
+MissingTradeSkillsList - Shows the missing recipes/skills for a tradeskill and where to get them. Classic 1.13 version, backported for 1.12.1 and updated for Turtle WoW, contains many Turtle WoW recipes. Does not contain Jewelcrafting. Requires TradeSkillsData and TradeSkillsData-turtle [Images].
+
+MobHealth - displays the current and maximum health of your target on top of the target frame [2]
+
+MobHealth3 - Shows the exact NPC Health [Img1]
+
+MobInfo2Turtle - provides you with useful additional information about opponents/monsters. Tracks drop rates off mobs.
+
+MobResist - Show the current armor and resistance of the mob that you are targeting
+
+MobResistAndDmg - Mobs resist, damage and speed for Turtle-WoW, update from MobResist.
+
+MobStats - Displays mob stats (damage, attack speed, dps, armor, DR, resists etc) in a human-friendly form in the game tooltip. [Img1] [Img2]
+
+MobsToLevel - adds a small window that tells you how many more mobs you need to level up! [Img1]
+
+Modguide - puts VanillaGuide into a chat window
+
+ModernFocusFrame - Focus frame addon with working castbar and ToT.
+
+ModernSpellAlert - A powerful, lightweight, and highly customizable addon for tracking spell casts and procs in real time. [Img1]
+
+ModifiedPowerAuras (MPowA) - Lets you customize graphics to remind you do do certain things, based on buff and debuff tracking. The grandfather of the vastly more complex WeakAuras from later WoW versions. [Img1]
+
+Modui - Complete vanilla UI (Clean but modern!)
+
+Modui-FocusFrame - Adds modui style changes to FocusFrame [Img1]
+
+Modui-TallHealthBar - Adds taller player and target health bars to modui [Img1]
+
+MonkeySpeed - Adds a simple movable speedometer displaying speed as a percentage of run speed.
+
+MoPGearTooltips - Backports the clean gear tooltip text of MoP, for a consistent and far more readable experience.
+
+MorunoRankEnhanced - addon for estimating PVP-Standings [Img1]
+
+MouseHighlightCircle - Adds a white circle around the mouse cursor for better visibility.
+
+MouseLookLock - MouseLookLock sets up a simple perma-mouselook.
+
+Mouseover - Enables mouseover actions on unit frames
+
+MouseOverSounds - Plays a warning sound when you mouseover a rare, elite or dangerous mob.
+
+MoveAnything - Lets you move, scale, and hide...well...anything at all!
+
+MRE - is a simple mod that shows the number of rage / energy / mana [Img1]
+
+MrPlow - Bag sorting addon with various options
+
+Mule - help moving consumables back and forth between characters [Img1]
+
+MuteCities - Mutes the music while in Orgrimmar and Stormwind City
+
+↑ Go to top of page ↑
+
+N[]
+
+_Nameplates - sorts nameplates into friendly and hostile columns [Img1]
+
+NameChangeScript - Change your name in whatever you want, will only be visible to you not to other players.
+
+Nauticus - transportation tracker [Fu]
+
+NewLevelFrame - shows a congratulations frame when a new level is reached [gif]
+
+NBR - (NirkBuffRemover) automatically remove the least useful buff when you get close to the buff cap [Img1]
+
+Necrosis - is a tool designed to help warlock players manage various aspects of their gameplay. [2]
+
+NerfedButtons4Wow - Priority based conditional sequencer for Vanilla WoW
+
+Niagara - makes a list of all your Ace2 Addons that use AceConsole using Waterfall Lib so you have a GUI for config [Img1]
+
+NiceDamage - Change your damage font
+
+Nitro - Displays movement speed meter
+
+NoMoreMoo - Get rid of annoying moo and goldspam
+
+NosCursor - Advanced but also lightweight cursor tracker
+
+NotesUNeed - Notes Manager that allows you to track Friends, Ignores, Guild members, Quests, Items and generic notes [2] [Img1]
+
+NotChatLootBidder - A raider companion addon to ChatLootBidder which allows raiders to use a GUI and not use `/w` commands to bid on items.
+
+NotGrid - It's pretty much grid and it works
+
+NoToggle - Disables toggling behavior of Attack, Auto Shot and Shoot
+
+NugComboBar - Combo Points tracker
+
+NugEnergy - Energy/Rage tracker
+
+↑ Go to top of page ↑
+
+O[]
+
+oCB - (Otravi Casting Bar) Quartz Like castbar [2] [3]
+
+oCB [SuperWoW] - (Otravi Casting Bar) Quartz Like castbar with SuperWoW support [Image].
+
+OmniCC - A universal cooldown count, based on Gello's spec [Img1]
+
+OneButtonHunter - A very simple addon, executing the rotation of the hunter
+
+OnlyASCII - removes all chat messages containing non-standard ascii characters
+
+OoI - addon to help with Oil of Immolation
+
+OpenClam - Search clam shells in inventory and open them after looting
+
+oRA2 - a lightweight alternative for CTRaidAssist [Img1]
+
+Outfitter - is an equipment management addon which gives you fast access to multiple outfits. [Alt1] [Fu] [Img1]
+
+↑ Go to top of page ↑
+
+P[]
+
+PallyPower-Turtle - easy to use interface that allows you set your own blessings and automatically check for missing buffs
+
+Paladin Salva Remover - removes salva if you have RF threat buff, useful for tanks
+
+Paladin Libram Swap - helps to swap librams without breaking gcd
+
+Parchment - A way to write down simple notes of things you want to remember
+
+PartyPlus - Easy tool for party invites
+
+PerfectShot - Hides UI / name plates and then takes a series of screenshots
+
+PetXPBar - Pet experience bar for the default Blizzard UI [Img1]
+
+pfDebug - A little tool to monitor the memory usage, peaks and garbage collection [Img1]
+
+pfDesktop - An In Game-Desktop Environment [Img1]
+
+pfQuest - A lightweight quest helper and ingame database [Img1]
+
+pfQuest-icons - An extension for pfQuest to use Gatherer icons on resource nodes [Img1]
+
+pfQuest-turtle - A TurtleWoW DB extension for pfQuest. You need base pfQuest for this to work!
+
+pfStudio - an in game-IDE [Vid1]
+
+pfUI - full replacement for the original Wow interface in a single Addon [Vid1]
+
+pfUI-turtle - A small extension that fixes some issues that arise from Turtle's custom UI, class and item changes [img1]
+
+pfUI-addonskinner - External module for pfUI that provides you with pfUI-themed skins for other addons [Img1]
+
+pfUI-autoinvite - External module for pfUI that allows you to set auto invites through whispers [Img1]
+
+pfUI-bettertotems - External module for pfUI providing some extra features to totems [Img1]
+
+pfUI-combatdock - Automatically swap the loot chat window to the docked meters when in combat and out of combat.
+
+pfUI-CustomMedia - External module for pfUI providing additional textures for the unit frames and casting bars, and background texture for button slots. [Img1]
+
+pfUI-eliteoverlay - An extension for pfUI which adds dragon textures to elite, rare and worldbosses. [Img1]
+
+pfUI-ElitePlayerFrame - An extension for pfUI which adds dragon textures to the player frame. [Img1]
+
+pfUI-font-dyslexic - A font package for pfUI, providing additional font options from OpenDyslexic [Img1]
+
+pfUI-fonts - A font package for pfUI, providing additional fonts from the google font project. [Img1]
+
+pfUI-lazyres - A lazyres fork, based on pfUIs healcom implementation, without any external libraries.
+
+pfUI-MoreFonts - A font package for pfUI, providing more fonts. [Img1]
+
+pfUI-Gryphons - Add back the gryphons to your actionbars [Img1]
+
+pfUI-pvpoverlay - An extension for pfUI which adds faction coloured dragon textures to unitframes frames.
+
+pfUI-quickfocus - Provides hotkeys to set and target a focused unit.
+
+pfUI-RainbowHealthBar - External module for pfUI that adds a dynamic rainbow health bar and enhances 3D portraits [Img1]
+
+pfUI-WeakIcons - Allows the creation of aura tracking icons, much like MPOWA. [Img1]
+
+PicoPoisons - displays remaining poison charges on the respective buff symbols [Img1]
+
+PingoMatic - Minimap Ping Improvements [Img1]
+
+Pitty - will attempt to identify people healing using automated healing addons, such as QuickHeal
+
+PizzaSlices - Radial action menus for TurtleWoW. A simplified OPie clone. [Gif1]
+
+PizzaWorldBuffs - Shows tent locations on the map, world buff (head despawn) timers and Darkmoon Faire location [Img1] [Img2]
+
+PlayerStates - Macro Helper addon
+
+PoisonCharges - show you remaining charges and remaining time of your poisons [Img1]
+
+Possessions - Inventory List Addon with Alt support
+
+Postal Returned - Improved version of Postal that Includes better mail return functionality, logging of attachments and money
+
+PowerAuras - This Mod was created to have a better visibility when you gain buffs, debuffs and many more
+
+PowerBar - For all classes to track their class's primary resource.
+
+Prat - Chat customization addon [Fu] [Img1] [Img2] [2] [3]
+
+PriestBinds - Provides keybinds for priest abilities
+
+ProcDoc - Displays flashy, pulsing alerts whenever you gain specific "instant cast" or "free cast" procs (e.g. Shadow Trance, Clearcasting).
+
+Profession query - useful addon for crafters selling their services!
+
+Pummeler - One button for equipping and using Manual Crowd Pummeler(s)
+
+Punschrulle - Highly customizable castbar [Img1]
+
+Puppeteer - Unit frames addon for healers or any class/spec, an alternative to modern WoW's VuhDo, Cell, or Healbot
+
+Pvpwarn - Addon that warns players visually and acoustically about pvp events [Img1]
+
+PvPWarning - Warns you when you get PvP flagged.
+
+pwscounter - allows to track how many Power Word: Shields are being cast in a raid fight.
+
+↑ Go to top of page ↑
+
+Q[]
+
+QuestAnnouncer - Sends a party message as you advance in a quest.
+
+QuestFrameFixer - Some NPCs that offer multiple quests will show dots instead of ! and ? symbols in their dialogue. This addon fixes this.
+
+QuestHaste - Faster accepting and turning in of quests.
+
+QuestHistory - An in-game history of quests accepted, completed, and abandoned.
+
+QuestItem - stores an in-game database over quest items and tell you which quest they belong to
+
+QuestProgressShare - Shares live quest updates with your party, shows group progress in tooltips, and supports pfQuest links. Bug fixes and improved formatting.
+
+QuestProgressShare(Legacy) - Sends messages with quest progress to configurable audiences.
+
+QuestShell - Leveling/quest helper with auto-accept/turn-in and progress tracker
+
+QuestSoundBits - is a quest progress sound alert addon
+
+QuestTranslator - Italian Quests Translator [Img1]
+
+QuickBind - Mouseover keybinds for action bars.
+
+Quickcall - Battleground PvP Addon for Arathi Basin.
+
+QuickChat - allows you to assign Hotkeys to all your channels
+
+QuickHeal Turtle - One-button heal automation and assistance [Orig]
+
+Quiver - Hunter auto shot timer, castbar, and more. Read the installation instructions.
+
+Quartz3 - Quartz is a modular approach to a casting bar addon. Ported to vanilla.
+
+↑ Go to top of page ↑
+
+R[]
+
+RABuffs - Monitors a raid / party group, displaying various statistics [Img1]
+
+RaidCalendar - RaidCalendar lets you view and sign up to raids in game on https://raid-helper.dev/ and register soft reserves on https://raidres.fly.dev.
+
+RaidMemberExport - Stores a variable of your raid members for copy pasting in your SavedVariables folder
+
+RaidRollBuddy - Shows a window with the announced loot with buttons to roll for and a list of all rolls
+
+RageTracker - Shows an resizable and movable rage bar.
+
+RaidOrganizer - User-friendly interface for raid role assignment
+
+RaidRollHelper - Fair item distribution with /roll in raids
+
+RaidSummon - small RaidSummon frame [Img1]
+
+RaidSummonPlus - improved RaidSummon with Soulstone tracking [Img1]
+
+rais_AutoShot - Lightweight Auto-Shot Timer for Hunters
+
+RangeColor - Change the icon color when out of range, no mana or not usable
+
+Rank14losSA - verbally tells you when somebody is using a Cooldown, or an important ability [Img1]
+
+RAT - (Raid Ability Tracker) tracks certain class ability cooldowns (in raid) and puts them in an easy to view list
+
+RDX (Raid Data Exchange) a tool for acquiring, filtering, and visualizing information about your raid team [Img1]
+
+ReagentCounter - Displays reagent count on the spell's action button
+
+ReagentData - A comprehensive set of all reagents and components used by tradeskills. No Preview as this is a library addon. Superseded by LibCrafts, which is included in future addons that require it as a library.
+
+Recap - Track and summarize the damage dealt and received by every participant in a fight around the user.
+
+Recents - highlights recently looted items in the inventory
+
+RecipeRadar - assists players in finding recipes
+
+ReckCounter - a small frame showing stored strikes from the Paladin Reckoning talent
+
+RenewSpam - autocasts renew(rank 1) on any raid member that doesn't have renew
+
+ResourceCountActionButtons - Displays how often you can cast a spell before you run out of resources on the action buttons
+
+RestBar - Displays a rest bar [Img1] [Img2]
+
+Rested - Rested XP Tracker for Turtle Wow
+
+ResurrectionAnnounce - Plugin That Adds Resurrection Announce to Chat
+
+Retarget - Retargets Hunters after Feign Death and Rogues after Stealth
+
+RetherzTargetTracker - Raid symbol targeting with debuff tracking.
+
+RezzTimer - Shows resurrection timers of other party members who have this addon [Img1]
+
+RightClickModifier - Allows you to modify the behavior of right clicking in game
+
+RingMenu - a circular ActionBar that can be summoned with a click
+
+Rinse - This addon is very similar to Decursive, it helps with removing debuffs from friendly units
+
+RogueFocus - Compact Combo/Energy/Tick display [Img1]
+
+RoguePack - First necessary add-ons to the Rogue
+
+RogueRota - A very simple addon, executing the rotation of the rogue
+
+RogueTick - Rogue energy tick for the player frame. [Vid1]
+
+Roid-Macros - Allows you to use a small subset of the macro conditions from TBC (and later Retail and Classic).
+
+RoleplayingHelper - Roleplaying addon that allows your character to speak and react via emotes to various events
+
+TurtleRoleplayingHelper - Enhanced version of the original RPHelper addon with new flavor text and TWoW's custom races (High Elf and Goblin).
+
+RollFor - An automated item roller with soft ressing support via raidres.fly.dev.
+
+RosterFilter - a guild frame based on aux [Img1]
+
+RoundRobinhood - An addon for managing loot distribution.
+
+RWSync - Multi Raid Warning
+
+↑ Go to top of page ↑
+
+S[]
+
+SafeShift - Safety measure against accidentally unshifting immediately after shapeshifting
+
+SafeShift-TWoW - fixes the original 'SafeShift' addon by allowing direct form switching (e.g., cat form to bear form) without needing to shift out first.
+
+Salad Cthun - Shows optimal positioning based on group on C'thun [Img1]
+
+Samuel - Static swing timer with 1 - 1.5 second Slam marker for warriors [Img1]
+
+SaySapped - Says "Sapped!" to alert those around you whenever a rogue saps you
+
+SaySapped Extended - Also works for many other CCs
+
+Screen Resolution Dropdown Fix - Prevent errors from the Video Options dialog when there are too many resolutions, which is common when running in a VM like Parallels (fixes the UIDROPDOWNMENU_OPEN_MENU Lua error)
+
+SeeThunGroups - C`thun group setup helper for raid leaders [Img1]
+
+Select AddOns - addons authored by Road-block (some not) [Img1]
+
+SelfFound - Prevents you from trading, using the Auction House and mailing. Basically a Solo Self-Found mode without the Solo part. Can be paired with Turtle's Hardcore mode.
+
+SellValue - Adds vendor prices to tooltips [Img1]
+
+Sentry - Open pvp enemy frames/alerts [Img1]
+
+SimpleLvl - A simple yet complex experience tracker - XToLevel.
+
+SimpleBars - A Simple way to display player HUD statusbars.
+
+SimplePowershifts - A Simple way to display druid powershifts.
+
+ShaguActions - Automatically saves and restores one actionbar profile for each of the 3 skill trees [Img1]
+
+ShaguBam - a BamMod alike Addon [Img1]
+
+ShaguBoat - A despawn timer for Turtle-WoW Fishing Boats.
+
+ShaguBoP - auto accepts BoP loot when alone [Img1]
+
+ShaguChat - highlight and hide custom chat messages [Img1]
+
+ShaguClock - draws a simple movable clock on the screen [2] [Img1]
+
+ShaguColor - allows to write colorful chat messages [Img1]
+
+ShaguCombat - displays your combat state via glowing screen edges [Img1]
+
+ShaguCopy - allows to copy chat messages [Img1]
+
+ShaguDelgado - modifies some elements to be purple [Img1]
+
+ShaguDPS - A very small and lightweight damage meter [Img1]
+
+ShaguError - hides error and notification message popups [Img1]
+
+ShaguInventory - shows account wide item count inside the tooltips [Img1].
+
+ShaguJunk - Automatically delete and vendor specified items
+
+ShaguKill - displays the remaining kills till level up [Img1]
+
+ShaguMount - automatically unmounts the player when using an action [Img1]
+
+ShaguNotify - shows achievement alike notifications for several events [Vid1]
+
+ShaguPlates - modifies and extends the default nameplates [Img1] TidyPlates-Edit
+
+ShaguPlates-extra - ShaguPlates, but restyled and with extra stuff [Img1]
+
+ShaguScore - displays a gearscore alike item rating [Img1]
+
+ShaguStance - automatically switches to the required stance [Img1]
+
+ShaguTooltips - modifies the game tooltips [Img1]
+
+ShaguTweaks - A small AddOn for those who don't want to use any AddOns at all. [Img1]
+
+ShaguTweaks-extras - extends the capabilities of ShaguTweaks by offering optional modules that can be easily toggled on or off.
+
+ShaguTweaks DruidManaBar - Adds ShaguTweaks style changes to DruidManaBar [Img1]
+
+ShaguTweaks Mods - Mods for the ShaguTweaks addon [Img1]
+
+ShaguTweaks more mods - Adds additional mods to ShaguTweaks [Img1]
+
+ShaguValue - display item sell and buy values on tooltips [Img1]
+
+ShaguWidget - Movable Information Widget
+
+ShamanFix - changes the shaman class colour to blue
+
+ShardCap - Automatically deletes soul shards above a certain amount (default 5)
+
+ShardCapPlus - Automatically deletes soul shards above a certain amount. Support Turtles stack of shards.
+
+ShieldBuddy - Tracks absorption shields and their remaining values
+
+ShieldLeft - Estimates and shows the charges left on shield
+
+Shootyepgp - Guild Helper addon for EPGP loot system
+
+ShowChests - Show chests locations on login with pfQuest
+
+SilverDragon - tracks rares [Img1]
+
+SimpleActionSets (SAS) - Save action bars as sets that can be swapped out; forked by Pepopo with updates for Turtle WoW Goblin Brainwashing Device compatibility
+
+SimpleAuras - Simple Aura Display. /sa help
+
+SimpleCombatLog - Pretty Print Combat Log AddOn
+
+simpleMiniMap - Minimap replacement
+
+SimpleRaidTargetIcons - Target Marking and Mark Targeting Improvements [Img1] [Img2]
+
+SkelaCustomNameplates - Skela's Custom Nameplates [Img1]
+
+SKMap - tracks player deaths, player pvp kills, their location by zone, and displays them on the world map
+
+SleepyPeon - Moveable Rest XP bar, keeps track of rest XP overflow into next level(s)
+
+SmallerRollFrames - replaces the default Roll-Frames with smaller ones [Img1]
+
+SmartBuff - Automatically buff self/party/raid. Highly customisable.
+
+SmartDebuffCheck - Simple addon to check if your target has the proper debuffs applied
+
+SmartHealer - Autoscales heals in macros, and click heals for pfUI, Clique and ClassicMouseover (Melbaa). Alternate Version with bugfix/update changes (Dsidrop)
+
+SmartLoot - is a unobtrusive group loot frames AddOn [Img1]
+
+SmartRestore - help people to easily restore their mana and health in and out of combat.
+
+SmartRoll - addon to help with rolling on items for multi-raid groups [Img1]
+
+SnagaLoatheb-TurtleEdition - Makes rotating Heals on Loatheb a lot easier. Now with Paladins *and* Shaman!
+
+Snipe - automatically buys any auction that matches a target in a specified target list
+
+Sniper - Mob Sniping Helper
+
+Snowkoban - A puzzle minigame adapted from "Sokoban" by Perun Labs
+
+Sorgis Raid Marks - Raid mark targeting and assigning.
+
+SortBags - Bag sorting. Fixed version for Turtle WoW to not cause grayed out items.
+
+SortByBuyout - Adds "sort by buyout" button to the auction house frame [Img1]
+
+Sota - State of the Art DKP and Loot addon
+
+SoulShardManager - Keeps your inventory from filling up with soul shards.
+
+SoundBoard - Shares and plays sounds in the group/raid
+
+Speedometer - Adds a small frame that shows your current running speed.
+
+SP_Overpower - Shows an alert tooltip and timer bar on your screen when Overpower procs
+
+SP_SwingTimer - Warrior Swing Timer [Img1]
+
+SpamSentry - Documents Gold Spammers by making an automatic screenshot of the message
+
+SpamThrottle - Aims to remove unwanted chat messages. [Img1] [Upstream]
+
+SpartanUI - designed to free your screen by moving a majority of the interface elements to the bottom
+
+SpartanUI_SpinCam - Causes the camera to spin around your character when you go AFK
+
+SpecialTalent + SpecialTalentUI - Talent planning/saving/changing, plus the option to view all three talent trees simultaneously (must install both!)
+
+SpellAlert - Warns the player of the spell being casting from the hostile units [Vid1]
+
+SpellPowerMulti - displays the current relevant damage multipliers on a target as well as the current total multiplier [Img1]
+
+Spy - Detects and alerts you to the presence of nearby enemy players.
+
+sQMinimapFix - Force a constant minimap zoom level across all zones, cities and instances.
+
+sRaidFramesImproved - was originally designed to replace the raid frames provided by CT_RaidAssist [Img1] [Img2]
+
+StatCompare 2.0 - adds a Character and Inspection Pane for raid gear checks or to compare gear to your target's. Updates including TurtleWoW specific spells and enchants). [character panel][inspection panel]
+
+StealthOverlay - slowly dims your screen when you enter Stealth [Img1]
+
+StopDuelBuffer - Auto-Decline World Buff / Flask Chugger Duels
+
+StopWatch - a simple stopwatch that uses blizzards style [Img1]
+
+Strategos Battleground - custom minimap for battlegrounds
+
+Strategos Minimap - custom minimap for battlegrounds
+
+StrategosCore - Enhances your BG experience [Img1] [Discord]
+
+SUCC-bag - addon to unify user inventory and bags. Can sort items automatically if SortBags or Clean_Up installed [2] [Img1]
+
+SUCC-ecb - enemy castbar
+
+SUCC-ui - UI replacement
+
+SummonsMonitor - makes it easy for one or more Warlocks to summon multiple people
+
+Sunderarmor - prints how many sunders people did
+
+SunOfTheNight - addOn that tries to "backport" the Character Menu of Skyrim [Img1]
+
+SuperIgnore - Unlimited ignore list with many extra features [Img1].
+
+SuperInspect - Continue inspecting even if you've lost your target and many more new features
+
+SuperMacro - provides a very much improved interface for macros [Vid1]
+
+SurvivalUI - Creates a GUI for the Survival Profession in TurtleWoW [Img1]
+
+SVT - Keeps track of Shadow Vulnerability
+
+SW Stats - (named after guild Shadow Warrior) is a damage/heal (and more) meter addon
+
+swapondeath - re-equip mark of the champion or seal of the dawn after death
+
+Swapper - is a container swapping utility addon
+
+SwapRaidSubgroupByName - Adds a function to swap raid members by name rather than by raid-index
+
+SyncedUI - A complete UI solution featuring a customized profile & release of pfUI for for 1920x1080 [Img1]
+
+↑ Go to top of page ↑
+
+T[]
+
+T-OoM - is a simple Out of Mana announcer addon for Turtle WoW
+
+T-RestedXP - is a simple addon for tracking 0% and 100% rested XP in Turtle WoW
+
+!Toggle - Disables toggling behavior of Attack, Auto Shot and Shoot
+
+Tactica - Tactical addon for raid leading with ease — post clear boss strategies (default or yours), auto-build and post raids (auto-invite/gearcheck), assign & sync roles in raid roster, and smooth out loot mode changes, all in one place. [Img1] [Img2] [Img3] [Img4]
+
+Talentsaver - save & load your common Talent Specs with just one click! [Vid1]
+
+TankAssignments - helps you assign tanks to raid targets
+
+TankBuddy - Tanking assistance for wars/druids. Notices Party/Raid members when you use last stand, shield wall, lifegiving gem or when your taunt/growl/mocking blow fails.
+
+TankBuddyEnh - Alert raid on successful/missed taunt/kick/cc
+
+TankHeal - Tank Heal Assistant
+
+TankHelper - Shows information about target [Img1]
+
+TargetAssist - Simple raid target icons
+
+TargetFrameBuff - View all 16 buffs/debuffs on default UI
+
+TargetSoundRestore - Restores the default target change sound effects often lost when replacing the Blizzard unit frames (e.g., with custom UI addons)
+
+Tframes - A sleek loot frames addon
+
+Thaliz - Smart addon to handle ressing party / raid members [Img1]
+
+Theorycraft Turtle - display average numbers on buttons w/ macros. Incomplete turtle class changes support.
+
+Threat - Providing warrior tank a single button to generate the maximum available threat on a given single target
+
+ThreatLogger - Addon for logging ability threat.
+
+Threat Upgraded - Adding modern functions to the original Threat addon above. It would announce messages for important tank events to "say" channel, and provide a new slash command to help skill rotation. Easy to use.
+
+TimeManager - Time Management features [Img1]
+
+Timers - Flexibly customizable timers for tracking by triggers
+
+TimeTracker - addon to create custom bars
+
+TinyTip - changes the look of your GameTooltip
+
+TitanCritLine - Saves your high normal and critical damage records and flashes a message if your break the record
+
+TitanGuild - TitanGuild with EPGP display
+
+TitanWowRadio - Titan Plug-in for WowRadio
+
+TitleRotator - Automatically change your title every few seconds [Img1]
+
+Tmog - Adds info about your transmog collection to game tooltips
+
+TNE FiveSec - 5 Second Rule and mana regen tick monitor [Img1]
+
+TNE Nightfall - Enables a flashing purple effect when you gain Shadow Trance
+
+ToggleGather - Allows you to toggle between Find Herbs and Find Minerals with a single key press, updated for Turtle WoW (Svarrog). Original upstream version (FrostShock)
+
+TomTomVanilla - a mix of the Legion TomTom and QuestieArrow
+
+TopMeOff - will automatically top you off on reagents when you talk to a reagent vendor
+
+TotemTimersEnhanced - keep track of shaman totems, how long they'll last and when their next Tick comes [2]
+
+Totemus - Management of shaman spells, abilities, and reagents
+
+TourGuide Professions - Professions guides for 1-300
+
+TourGuide Turtle - Power Leveling guide framework
+
+Tracking Menu - Replaces the tracking icon on the minimap with an icon that has a pop-up menu for tracking abilities.
+
+TradeChat tells you in chat when people give you money. Use when you can't remember if people gave you money with crafting materials.
+
+TradeDispenser - allows to automatically trade any water or food you have in your bags [Img1]
+
+TradeSkillsData - provides database of trade skill recipes, vendors and sources. Required for MissingTradeSkillsList. Library addon. Superseded by LibCrafts.
+
+TradeSkillsData-turtle - Turtle-specific database extension for TradeSkillsData. Library addon. Superseded by LibCrafts, which is included in future addons that require it as a library.
+
+Trailblazer - Lightweight Turtle-addon that helps you manage and summon your favorite mounts more easily.
+
+TrainerSkills - Shows class/profession/pet/demon trainer frame from anywhere.
+
+TrinketMenu - a mod to make swapping trinkets easier [Img1]
+
+TriviaBot Turtle - A fun in-game trivia bot with TurtleWoW questions.
+
+TurtleChatColors - For Turtle Hardcore players, cleans up the <Still Alive> guild chat feed and adds features.
+
+TurtleChronoboonTimers - Saves on the tooltip which worldbuffs + durations are stored in your Chronoboon. Code ripped from TWLC2c.
+
+TurtleCount - Adds a display of the number of turtles online [Img1] [Img2]
+
+Turtle Dragonflight - A UI that brings the Dragonflight UI to Turtle WoW. [Img1]
+
+TurtleHardcoreChatTamer - Forces global Hardcore chat to respect the checkbox in chat channels settings
+
+TurtleHCFilter - Place HC Chat in a preferred window; modify the chat prefix; filter out WTS/T/LFM/G messages that are too far from your level.
+
+TurtleMail - Automatically opens mail, mail multiple items, autocomplete recipient names, and more. A continuation of the 'Mail' addon with multiple improvements, such as showing the amount of gold collected from mail and allowing you to send multiple COD mail.
+
+TurtleMenagerie - A simple addon for Turtle WoW to summon a random mount or pet.
+
+TurtlePvp - Broadcasts your world location to other TurtlePvP users to facilitate hunting eachother down and clashing for WPVP.
+
+TurtleSnacks - Collects Turtle Wow's wayward minimap buttons. [Img1]
+
+TurtleTweaks - Tweaks and Enhancements [Img1]
+
+TurtleZoneCount - Shows the number of players in your current zone. [Img1] [Img2] [Img3]
+
+TWAssignments - Tank/Healer assignments and more
+
+TWBlueDragon - Darkmoon Card: Blue Dragon proc tracker
+
+TWLC2c - Complete toolkit for guilds wishing to run Loot Council raids.
+
+TWOwenWilson - Owen Wilson WOW sounds when you crit with melee hits and spells
+
+TWPulse - Notifies with a short pulse when cooldowns come off cooldown.
+
+TWSunders - Counts the time to 5sunders and outputs it in the chat.
+
+TWThreat - Threat Meter for Turtle WoW
+
+TWTrans - Translates chat messages from Russian to English and vice versa.
+
+↑ Go to top of page ↑
+
+U[]
+
+UberBanish - For Warlocks: automatically counts down your banish timer into raid or party chat, notifies other warlocks of early breaks or banisher deaths.
+
+UITweaks - Tweaks the User Interface to be as minimalistic as possible
+
+UnicodeFont - Enables you to see Chinese, Japanese and other languages in game
+
+UnifiedTalentGuides - Show players what talent to choose depending on what class they're playing (based on popular HC guides websites)
+
+UnitFramesImproved - improve upon the standard blizzard unit frames without going beyond the boundaries set by them [Img1]
+
+Unitscan - automatically scans for characters by name and alerts you upon finding one [Img1]
+
+Unitscan(Turtle) SoftCcore /HardCore - New version of Unitscan for Turtle with many new features for Superwow users, compatible with or without Superwow [Img1] [img2]
+
+Unitcan Turtle - This fork extends unitscan-vanilla by automatically managing active scan targets (zone targets) when you enter a zone.
+
+UnitScan-Turtle (Hardcore Version) - This fork of unitscan was created for hardcore mode. It has elites and rares and other dangerous mobs already in the database. Img and Video preview on GitHub.
+
+UtiliyPetHotkeys - Adds key binds for utility pets and toys. [Img1]
+
+↑ Go to top of page ↑
+
+V[]
+
+VanillaGraphicBoost - Push the game's visuals to the max [Img1]
+
+VanillaGuide - An in-game leveling guide [2]
+
+VanillaGuide_TUGs - An in-game leveling guide written by TUGs on the basis of VanillaGuide and GuideLime_TUGs.
+
+VanillaGuideReloaded - Remake of VanillaGuide (ongoing project)
+
+VanillaMaps - collection of detailed and clear maps, gathered from various sources
+
+VanillaRatingBuster - Displays ratings for items in tooltips based on stat weights [Img1] [Img2]
+
+VanillaStoryline - enhance the readability and immersion when questing [2] [Img1] [Img2]
+
+VanillaStoryline Transparent Patch - Removes paper backgrounds [Img1]
+
+VanillaStoryline Visual Novel Addon - New UI Design for even more immersion [Img1][2]
+
+VCB - a highly customizable buff frame
+
+VendorAutoBuy - Auto buy limited items from merchants [Img1]
+
+VendorList - automatic vending of listed items
+
+VF WarriorAddon - Announces Last Stand / Shield Wall / Missed Taunts
+
+VGAntiCooldown - Tracks and purge enemy buffs
+
+VGAttackBar - Displays a progress bar for your attack speed [Img1]
+
+VGInterrupt - interrupt your target
+
+VGShamanTools - tracks weapon enchantment and totem timers [Img1]
+
+VGSmartUnbuff - removes the lowest-priority buff
+
+VoidBattle - AddOn that removes battleground spam messages from chat
+
+vPeddler - A relatively sophisticated junk seller addon that focuses on Qaulity-of-Life features and ease of use.
+
+VQueue - Group finder utility [2]
+
+VitalWatch - Alerts you to your own low or critical health or mana, or to a party member or pet's health, using any combination of a centered large font frame, emotes, sounds, and party message.
+
+↑ Go to top of page ↑
+
+W[]
+
+WarriorHUD - a HUD(Head-up-Display) created exclusively for Warriors [Img1]
+
+WarriorTank - One button warrior tanking
+
+WarriorTweaks - Checks for BS, Sunder, AttackPower and estimated kill time
+
+WebDKP Elysium - addon to help guild leaders manage their dkp
+
+WFW - addon for switching weapons when you have Windfury totem
+
+WhatsTraining_Turtle - Shows you what spells are available at your class trainer [Img1]
+
+WhisperBind - Interface for quick message sending
+
+Whisper Filter - If you are annoyed by whispers of gold sellers and beggars this is right choice for you [Img1]
+
+WhisperProfile - A simple wow vanilla addon to display the profile of the whisper (/wp).
+
+WhoFavorites - Store and Replay /who queries
+
+WhoHas - Tooltip Addon showing item counts and other info
+
+WhoKicksNow - Displays cooldowns for Kick, Gouge, Cheap Shot and Kidney Shot to everyone in group who use the AddOn
+
+WhoList_Fix - Fix the Who-List Display [Img1]
+
+WIIIUI - A Warcraft III UI addon for vanilla WoW [Img1]
+
+WIM - (WoW Instant Messenger) brings an instant messenger feel to communication in game
+
+WorkAroundSelfCast - AddOn to enable the use of autoSelfCast with other AddOns like PallyPower
+
+WorldBossAlert - simplifies scouting for world bosses by checking the scout's combat log for crucial events
+
+WorldBuffSoundAlert - Plays a fanfare sound when a world buff is about to go out
+
+WorldFilter - filters the world and trade channel by keywords
+
+WoWAuctions Search the Turtle WoW Auction House from web (not actually an addon, just a useful resource)
+
+WowLuaVanilla - A WowLua backport for Vanilla WoW [Img1]
+
+WowRadio - Listen to Internet Radio inside WoW [Img1]
+
+WoW-Voiceover - Adds AI generated voice acting to NPC dialogue and quests
+
+WRUGS - Effective addon to block gold seller whispers.
+
+↑ Go to top of page ↑
+
+X[]
+
+XckMasterLootAdvanced - Easy way to assign loot as ML [Img1]
+
+XFactionChat - Cross Faction Chat
+
+XLoot - Xloot for 1.12 Shagu Style
+
+XLoot AddOns - A remake of the built-in loot frame [Img1]
+
+XPerl - Replaces the normal unit, party, target, pet frames and adds target-of-target
+
+XToLevel-Classic - Kills/Quests to level, XP/hour, ETA.
+
+XTranqManager - Easy Auto Announce TranqShot
+
+XiaoMount - Riding Equipment Autoequipper for TWoW
+
+XtraUnitFrame - Advanced Compact Unit Raid Frame [Img1] [Img2]
+
+↑ Go to top of page ↑
+
+Y[]
+
+YAHT Turtle. - Yet another Hunter Timer. TWoW Trueshot support [Img1] [Img2]
+
+YouveGotRedOnYou - An addon for Turtle Wow. Warns if your target is PVP flagged. [Img1]
+
+YouveGotRedOnYou (FIXED by Wht Mst) - An addon for Turtle Wow. Warns if your target is PVP flagged. FIX NOTE: Fixed false positive notifications: the addon now reacts only to your selected target, not to nearby players/mobs. This was done to prevent conflicts arising from rapid scans by addons like Sentry and Unitscan-Turtle, thus improving overall compatibility.
+
+↑ Go to top of page ↑
+
+Z[]
+
+ZeroDB - database addon [Img1]
+
+ZGLoot - automate looting in ZG, AQ 20 and AQ 40 [Img1]
+
+ZGTracker - Tracks Zul'Gurub coins and bijous lootage
+
+Zorlen - a function library addon for all classes and other general functions. it provides a host of functions that have to be activated in macros. [Original]
+
+zUI - A pfUI fork, Complete UI Replacement, that instead aims to preserve the blizzard look/design but with a modern touch and with some nice features added [Img1] [Img2]
+
+↑ Go to top of page ↑ A big thank you to Mr Rosh for maintaining this list in the past, and all wiki contributors for keeping it fresh in the present!
+
+SuperWoW Addons[]
+
+These addons either require the SuperWoW client mod to work, or provide more features with SuperWoW.
+
+What is SuperWoW?
+
+You can find SuperWoW here. It's feature list and compatibility notes can be found on it's github wiki. How do I install SuperWoW?
+
+Pepopo wrote an install guide. Addons that require SuperWoW
+
+Addon
+
+Description
+
+AutoMarker
+
+Automatically mark raid mobs.
+
+Cursive
+
+Curse tracker and multi curse assistant
+
+Druid Eclipse Monitor
+
+Heads up display for Balance Druid eclipse procs
+
+MageHud
+
+Mage Shield Display for Turtle WoW
+
+MagePlates
+
+Displays an Arcane Explosion icon on nameplates if within 10 yards
+
+MonkeySpeed
+
+Displays your speed as a percentage of run speed
+
+pfUI-bettertotems
+
+Totem module with some extra features
+
+oCB [SuperWoW]
+
+(Otravi Casting Bar) Quartz Like castbar with SuperWoW support
+
+Quartz
+
+Modular casting bar
+
+ShaguScan
+
+Tracks and filters nearby players and npcs
+
+SoloRaidTargetIcons
+
+Enables raid target icons through the default Blizzard UI while not in a group
+
+SunderNP
+
+Adds a sunder count to the right of your Nameplates
+
+SuperAPI
+
+The companion compatibility addon to the 1.12.1 client mod SuperWoW
+
+SuperAPI Castlib
+
+Adds accurate castbars to any nameplate
+
+SuperWowCombatLogger
+
+Improved combatlogger for TurtleWoW (for LegacyPlayers/Monkeylogs)
+
+Tankalyze
+
+Captures missed Taunts and some other nice to have tank additions
+
+SpiritLinker
+
+Information bar for using Spirit Link
+
+TankPlates
+
+Colors enemy Nameplates depending on if they're targeting the player
+
+Tattler
+
+Announce when certain items or spells are used
+
+TrackTarget
+
+Track any friendly you target which is assistable on the Minimap
+
+Twister
+
+Addon to totem twist automatically.
+
+Addons that gain additional features with SuperWoW
+
+Addon
+
+Added Feature(s)
+
+Description
+
+aDF
+
+?
+
+Adds a small HUD that standardizes critical info about your target's defences, including Armor, Resists, and specific debuffs
+
+Decursive
+
+Improved Efficiency
+
+This is a cleaning mod. Its job it to help a class that can remove debuffs, do it with ease.
+
+DruidManaBar
+
+Accurate Mana Values
+
+Displays a mana bar when shapeshifted
+
+Friend-O-Tron
+
+Cross-account friend sync
+
+Synchronizes your friends list across all your characters and accounts on the same realm
+
+pfUI
+
+Accurate Nameplate and TargetFrame Castbars
+
+Full UI replacement
+
+Puppeteer
+
+Precise distance tracking, aura timers, and adds Focus frames
+
+Unit frames addon for healers or any class/spec, an alternative to modern WoW's VuhDo, Cell, or Healbot
+
+Rinse
+
+Improved Efficiency
+
+This addon is very similar to Decursive, it helps with removing debuffs from friendly units
+
+ShaguDPS
+
+Track damage from minions such as totems
+
+A lightweight damage meter
+
+ShaguPlates
+
+Accurate Nameplate Castbars
+
+Standalone pfUI Nampeplates
+
+ShaguTweaks
+
+Accurate Nameplate and TargetFrame Castbars
+
+A collection of tweaks and enhancements to the default interface
+
+SimpleActionSets
+
+Fixed to work with SuperWoW
+
+Save action bars as sets that can be swapped out.
+
+Sorgis Raid Marks
+
+More efficient marking
+
+Raid mark targeting and assigning, improved fork making use of superwow
+
+SP SwingTimer
+
+Flurry support
+
+Auto-Attack Swing Timer
+
+Further Addons Collections[]
+
+It is always better to obtain addons from the links above, as developers post their updates and fixes, and will support you in making sure everything works. However, you may find some old and obscure goodies in the following collections that are not found elsewhere.
+
+To install these addons, you must use the manual method, and you will never receive updates for these.
+
+If one of these old addons bugs out and breaks due to Turtle WoW's changes, someone can fix it for Turtle and add the fixed Turtle version to the above addons list. Be sure to check to see if someone's done this already.
+
+Vigilance, Ace (Alt), Curse, Worldofwar (Alt) and Guru (wayback machine download pages) Road Block's Select AddOns Shagu Addons
+
+SuperWoW Addons (These require the SuperWoW Mod) RootedCF's Massive Collection for 1.12
+
+CrazyPoultry's Addons Collection (Mirror) (Alt) KasVital's Addons for Vanilla Laytya's Vanilla Addons Fastbond's WoW 1.12.1 Addons Oppahansi's WoW UIs Suetema's Tweaks to Boldi's Addons Legacy-wow.com's Vanilla Addons Felbite.com's Vanilla Addons ruRU ClassicAddons fondlez's Vanilla Addons
+
+Ryac's Steam Deck UI - Consoleport like UI for 1.12 with 40+ actionbuttons [Img1]
+
+Addon Name
+
+Description
+
+!! FonTabulous
+
+Replaces fonts in-game (e.g., Diablo fonts).
+
+!! Warmup
+
+Shows load times and memory usage for each addon.
+
+! AutoSave
+
+Periodically and automatically saves settings after certain events.
+
+! BugGrabber
+
+Tracks interface errors; compatible with Ace2. Replacement for ImprovedErrorFrame, traps addon errors and lets you report the full callstack (BugGrabber and BugSack both needed).
+
+! ChatBox
+
+Customizes chat colors, buttons, and layout.
+
+! ClearFont
+
+Magical UI font-changer. Replaces game fonts with custom ones. Info
+
+! ImprovedErrorFrame
+
+Hides error messages generated by addons.
+
+! OmniCC
+
+Displays cooldown timers visually on action buttons.
+
+! StopTheSpam
+
+Suppresses addon loading messages in chat.
+
+ABHEFS
+
+ABHelper Estimated Final Score Redux.
+
+Accountant
+
+Tracks money spent and earned.
+
+Ace
+
+Essential library required for many addons. Info
+
+Ace2
+
+Essential library required for many addons.
+
+AceAccept
+
+Auto-accepts resurrection and summon requests in raids.
+
+AceBidHelper
+
+Follows auction bids easily.
+
+Aced Remixx
+
+Loctorns' UI compilation
+
+AceGUI
+
+AceGUI is a development tool to make it easy to develop GUI's info
+
+AceNameToggle
+
+Toggles display options above players’ heads.
+
+AceTimer
+
+Timer for dots, HOTs, totems, etc.
+
+ActionBarOrganizer
+
+Configures and manages action panels.
+
+ACUI
+
+Advanced caster UI (Mage). Info
+
+Adapt
+
+Adds 3D portraits in standard unit frames. Info
+
+Addme
+
+Addon Pack.
+
+AdvancedOnlineMsg
+
+Customizes messages for players entering/leaving the game.
+
+AdvancedTradeSkillWindow
+
+Improved profession window with sorting.
+
+Advanced Timers
+
+A trigger based timers and warning system (MC Respawns).
+
+AdWS
+
+Calculates weapon damage based on character stats.
+
+AF_Tooltip
+
+Enhanced tooltips with more info.
+
+AfkAlert
+
+Notifies when switching to AFK (with sound and large text).
+
+ag_UnitFrames
+
+Replaces standard unit frames.
+
+AggroAlert
+
+Alerts when an enemy targets you.
+
+AH_MailCollect
+
+Automatically collects auction money from mail.
+
+AH_QuickSearch
+
+Adds search filters in auction with Shift + click.
+
+AH_ShowBid
+
+Highlights items you or others bid on.
+
+AH_Wipe
+
+Adds a reset button in auction frames.
+
+aHelmnCloakToggle
+
+Show/hide helmet and cloak icons.
+
+AHFQ
+
+Favorites in auction search.
+
+AlarmClockWrangler
+
+Sets alarms/reminders.
+
+AlesUI
+
+Alestrianas UI pack.
+
+AlfCast
+
+Casts on yourself with Alt key (Ace2).
+
+Align
+
+Screen grid for interface alignment.
+
+Alkitron_HonorTab
+
+Replaces standard Honor Tab with an Enhanced version. Info
+
+AllInOneInventory & Bank
+
+Unified large inventory and bank UI. Info
+
+AllShotAlert
+
+Sounds/messages during critical hits.
+
+AlphaMap
+
+Persistent map view, including dungeons.
+
+AlreadyKilled
+
+Tracks how many times you've killed a player.
+
+Alternative Global Strings
+
+Replaces some of the Global Strings used by the game. Info
+
+Alternative Quest Log
+
+Displays quest levels, with elite prefix. Also removes the double space and expands the length of the quest titles. Info
+
+AltInvite
+
+Allows alt-clicking on a user name in chat to invite him/her in the group.
+
+AmmoExchange
+
+Simplifies swapping thorium cartridges for arrows.
+
+Anathema Hunter
+
+Anathema Hunter Mod Pack
+
+Anathema Warrior
+
+Anathema Warrior Mod Pack.
+
+Angler
+
+Fishing made easy
+
+AnkhCooldownTimer
+
+Tracks Reincarnation and related timers (Shamans).
+
+AnsweringMachine
+
+Reminds you of missed messages after AFK.
+
+Antagonist
+
+Tracks enemy casting times, buffs and cooldowns. Info
+
+AntiDaze
+
+Cancels Daze effects on hunters.
+
+AQInfo
+
+Explains loot in AQ40 (scarabs, idols, etc.).
+
+ArcaneBar
+
+Adds a casting bar to the PlayerFrame.
+
+ArcanePartyBars
+
+Displays cast bars of group members.
+
+Arcanum
+
+Helps unload the interface for mages.
+
+Archaeologist
+
+Configures standard frames, icons, buffs, etc.
+
+ArchiTotem
+
+Shaman: totem bar with all totems on 4 buttons.
+
+ArcHUD2
+
+Adds a combat HUD to your UI, showing player/target/pet hp and mana/rage/whatever as rings centered on your screen. Info
+
+ArgentDawnGrinder
+
+Keeps track of Argent Dawn faction.
+
+Aristocraft
+
+Creates a tracker for crafting materials similar to Blizzard's quest tracker.
+
+ArmorCraft
+
+Assists in choosing best armor for professions.
+
+ArmorMeter
+
+Shows effects of armor-reducing spells.
+
+AsmoHonorRole
+
+Monitors Honor and Keel (Titan).
+
+AsmoMOD
+
+Automates many functions, including PvP. Info
+
+Aspected
+
+Uses standard form-changing panels for Shamans, Priests, Hunters.
+
+AssistMe
+
+Assist Tracking and Auto-Assist.
+
+Atlas
+
+Shows dungeon maps, boss loot, quest chains. Info
+
+AtlasLootEnhanced
+
+Shows the possible loot from the bosses. Info
+
+Atlas_HQ_Pack
+
+High-quality maps for Atlas. Info
+
+AtlasOfAzeroth
+
+Alternative map + flight map.
+
+Attack_bar
+
+Displays attack duration.
+
+AuctioneerPack
+
+Simplifies auction trading, shows item info. Info
+
+AuctionFilterPlus
+
+Adds flyout filters and other features to the auction house. Info
+
+AuctionLink
+
+Adds item links in auction search.
+
+AuctionSort
+
+Additional sorting options in auction frame.
+
+AuldLangSyne
+
+Improved friends/ignore window with notes.
+
+AutoAttack
+
+Automates class-specific attack behaviors.
+
+AutoBar_r14441
+
+Adds quick access to food, potions, scrolls. Info
+
+AutoBar.2006.03.31
+
+Configurable set of buttons that seeks out configured items in your pack for use. Intended primarily for consumables. Info
+
+AutoBindOnPickup
+
+Allows you to bypass the Bind on Pickup box when not in a group.
+
+AutoBuff
+
+Monitors and updates buffs automatically.
+
+AutoBuffDruid
+
+Automatically casts various buffs on Druids, if enabled and needed. Info
+
+AutoCL
+
+Addon for Wow Web Stats. Info
+
+AutoDecline
+
+Auto-rejects group invites, guild invites, duels.
+
+AutoDing
+
+Notifies in chat when you level up.
+
+AutoDM
+
+Automatically detects magic on your target when you select it. Info
+
+AutoEmote
+
+Sends automatic emotes in response to events.
+
+AutoFollow
+
+Uses a tell to have another player /follow you.
+
+AutoGrats
+
+Auto-greetings for leveling up (/grats).
+
+AutoGroup
+
+Auto-accepts group invites from friends/guild.
+
+AutoHideBar
+
+Auto-retractable bar for consumables.
+
+AutoInnerFire
+
+Automatically casts inner fire if you need on movement
+
+AutoInvite
+
+Auto-invites players who request it (with filters).
+
+Automaton
+
+Automates multiple functions (Ace2).
+
+AutoPlates
+
+Toggles raid target icons above enemies.
+
+AutoProfit
+
+Adds button to sell all gray items.
+
+AutoReady
+
+Auto-ready check in raids.
+
+AutoRespond
+
+Automatically sends a whispered response to someone who whispers you using the prescribed string.
+
+AutoShoutOut
+
+Notifies in chat about low HP/MP.
+
+AutoTarget
+
+Auto-selects targets based on criteria.
+
+AutoTurnin
+
+AutoCompletes ZG Coin, PVP, Felwood, and other quests.
+
+AutoTrinketBar
+
+Adds buttons for trinkets.
+
+AutoTrinketLoader
+
+Trinket CD managements & auto swap
+
+AvgXP Deluxe
+
+Calculates Average Exp Gain.
+
+AV
+
+AV addon pack.
+
+AVMod
+
+AVMod addon pack.
+
+AwayNotificationSystem
+
+Will write a message to your party/raid/guild, that you've gone AFK due to having been idle for too long. Info
+
+Bag_Status_Meters
+
+Tracks inventory space.
+
+Bagnon
+
+Large combined bags and bank with remote view.
+
+BagSlots
+
+Shows used/total bag slots.
+
+BagsOpen
+
+Keeps bags open after opening.
+
+BagSpace
+
+Shows free slots in main bag.
+
+Ball
+
+Shakes the magic 8ball (/8ball). Yes/No question recognition.
+
+Banana
+
+Manages raid icons, hunter tags, etc.
+
+BankItems
+
+Remote bank viewing (/bi).
+
+BanzaiAlert
+
+Audible/visual aggro warning.
+
+BarOptions
+
+Lets you configure extra options for the Main Bar and Action bars.
+
+Bartender2
+
+Fully customizable action bars. Info
+
+BarTracker
+
+Monitors CP, mana, energy changes graphically.
+
+BattleCry
+
+Enables random emotes/macros on spell-cast
+
+BattlefieldCommander2
+
+A combination of the stock BF minimap, some handy extensions, and Battlefield 2. (Usage: /bfc). Info
+
+Battle Planner
+
+Mod for sharing battle plans.
+
+BEB
+
+Moveable experience bar replacement. Fully customizable.
+
+bc_AmmoWarning
+
+Warns when ammo runs out.
+
+bc_AspectMenu
+
+Switches hunter aspects from minimap.
+
+bc_TrackingMenu
+
+Switch search options on minimap.
+
+Beastmaster
+
+Hunter pet skills management.
+
+BeneCast
+
+Adds buttons for friendly spells near player frames. Info
+
+BerserkMeter
+
+Tracks Berserk ability effectiveness.
+
+BerserkerRage
+
+An AddOn to simplify a Warrior's Life. Info
+
+BestBuff
+
+Selects best buff rank based on target level.
+
+BetterItemCount
+
+Displays #.#k instead of * for counts > 999.
+
+BetterKeyBinding
+
+A better key binding interface.
+
+BetterWaypoints
+
+Shows distance and direction to quests.
+
+bFriendsFrame
+
+Logs friends' login/logout events.
+
+BGAlerts
+
+BG notifications (sound, text).
+
+BGAssist
+
+Automates BG functions. Info
+
+BGBuddy
+
+BG-specific features.
+
+BGFlag
+
+Shows who carries the flag.
+
+BGinvite
+
+Auto-invites for BGs.
+
+BgMap
+
+Opens BG map upon port.
+
+BGMinimapPlayerTracker
+
+Shows BG mini-map player info (hunter).
+
+BGSoundAlerts
+
+Add vocal (spoken) sounds to important events in the Arathi Basin, Warsong Gulch and Alterac Valley battlegrounds. Info
+
+BG's UI
+
+BG's UI pack.
+
+BhaldieInfoBar
+
+Displays information about different aspects of the game. Info
+
+BIB_Aggro
+
+Aggro detection, reporting and more.
+
+BIB_AggroAlert
+
+A module to show your target's target.
+
+BIB_AlarmClockWrangler
+
+Alarm clock plug-in.
+
+BIB_AllPlayed
+
+Shows time played for all characters.
+
+BIB AsmoHonorRole
+
+Tracks daily honor and kills by your character.
+
+BIB_Aspect
+
+Toggle Hunter Aspects.
+
+BIB_Atlas
+
+Provides an Atlas entry.
+
+BIB_Auctions
+
+Shows bids and your auctions while you're away from the AH.
+
+BIB_BG
+
+Battleground helper.
+
+BIB_BuffReagent
+
+Manage yor Reagents you need for buffs.
+
+BIB_CombatInfo
+
+Combat stats in a central location.
+
+BIB DamageMeters
+
+Displays accumulated damage totals for you and nearby players.
+
+BIB DepositBox
+
+elps you save money for that all important purchase.
+
+BIB_DPS
+
+Adds a DPS meter.
+
+BIB_Friends
+
+A simple friends list.
+
+BIB_ItemRack
+
+Plugin for ItemRack.
+
+BIB_Log
+
+Toggle the built in logging functions on or off.
+
+BIB_LootType
+
+Adds group loot information.
+
+BIB_MacroMenu
+
+Provides the player with a menu for macros.
+
+BIB_Mail
+
+Let you know you have mail. Also remembers any Auction alerts.
+
+BIB_PortMenu
+
+A hearth/inn tracker and Mage porting drop down list.
+
+BIB_PvPStatus
+
+A module to show PvP Status and Cooldown.
+
+BIB_Quests
+
+A quest list.
+
+BIB_Recap
+
+Plugin for Recap.
+
+BIB_Skills
+
+A simple skills list.
+
+BIB_Tracker
+
+Toggle Tracking.
+
+BIB_TradeCoolDown
+
+Lists tradeskill cooldowns across all characters.
+
+BIB_WindFury
+
+Displays WindFury stats.
+
+BIB_XPStatus
+
+A module to display a summary of currentXP, totalXP, percentageXP and restedXP.
+
+BhaldieRecLevel
+
+Displays the zone level range of the zone you are in and also gives you a suggested zone to be in. Info
+
+BibMod
+
+Configures position and size of UI elements.
+
+BigMacro
+
+Stores up to 30 macros with hotkeys.
+
+BigMinimap
+
+Enlarges mini-map with shortcut.
+
+BigTrouble
+
+Hunter: cast bar for AimedShot and AutoShot.
+
+BigWigs
+
+Boss timers and alerts.
+
+BlindFlashCount
+
+Shows powder count on ability icons (thief).
+
+BlockSalvation
+
+Auto-cancels Salvation buff (Warrior).
+
+Bongos
+
+Customizable action panels.
+
+BonusScanner
+
+Scans your Equipment for cumulative item bonuses and sums them up. Info
+
+BookEnchants
+
+Tooltip info about enchants and ZG enchants.
+
+BookOfCrafts
+
+Tracks learned recipes.
+
+BookStore
+
+Stores scanned book info.
+
+Bookworm
+
+Capture location and contents of in-game books
+
+BossBlock
+
+Suppresses boss mod spam.
+
+brDamageText
+
+Displays damage numbers over target portrait.
+
+BreakSV
+
+Test scripts to demonstrate SavedVariables.lua bugs
+
+BrunildeUnits
+
+A frame with all the party/raid targets. Info
+
+Bubbles
+
+Enemy targets as speech bubbles.
+
+BuddySync
+
+Syncs friends/ignore list across characters.
+
+BuffAhoy
+
+Raid buffing helper.
+
+BuffOptions
+
+Provides additional options for buffs display.
+
+BuffOrg
+
+Simplifies raid buffing.
+
+BuffTimers
+
+Shows buff durations in seconds.
+
+BuffWatch
+
+Displays raid buffs/debuffs.
+
+BugSack
+
+Toss those bugs inna sack.
+
+ButtonholeAd
+
+Combines minimap buttons into one.
+
+BuyEmAll
+
+Buys multiple items at vendor with Shift.
+
+BuyPoisons
+
+Automates poison reagents purchase.
+
+Calculator
+
+In-game calculator.
+
+CallOfElements
+
+Shaman: customizable totem set.
+
+CallToArms
+
+Tracks/filters LFG channel info. Info
+
+CandyDice
+
+Displays cooldowns for Thieves.
+
+Carnival_EnemyCastBar
+
+Enemy cast bars.
+
+Cartographer
+
+Map with coordinates, unexplored areas, dungeons.
+
+CashNotify
+
+Logs money received/spent.
+
+CasterStats
+
+Shows spell damage bonuses.
+
+CastingBarTime
+
+Cast time display.
+
+CastOnClick
+
+Casts spells with mouse clicks.
+
+CastOptions
+
+Provides enchanced casting options such as auto self casting.
+
+CastProgress
+
+Enhancement/replacement for the casting bar. Replaces cast bar with timer text. Info
+
+CastTime
+
+Adds a timer (in seconds) to the casting bar.
+
+Catalyst
+
+Instantly loads different locations. Info
+
+Caterer
+
+Distributes water/food in raids (mages).
+
+CCWatch
+
+Timed enemy CC effects.
+
+cEasyHealer
+
+Raid healer: shows damaged players.
+
+CEnemyCastBar_Natur
+
+Enemy cast bar (target, boss).
+
+CensusPlus
+
+Server population stats.
+
+cgCrafty
+
+Profession recipes search.
+
+ChannelClean
+
+Auto-ignore spam chat.
+
+CharacterPaperdoll
+
+Enlarged character portrait.
+
+CharacterProfiler
+
+Export Character Profiles for use out-of-game. Info
+
+CharactersViewer
+
+View the equipment and inventory of all your characters. ("/cv help").
+
+ChatAssist
+
+Chat customization.
+
+Chatbar
+
+Quick channel switching.
+
+ChatCast
+
+Shorthand spell casting in chat.
+
+ChatCopy
+
+Stores chat history.
+
+ChatHighlight
+
+Highlights specific words in chat. Info
+
+ChatIgnore
+
+Adds ignore options to chat menu.
+
+ChatJustify
+
+Right-aligns chat window.
+
+ChatKeys
+
+Bind chat commands to keys.
+
+ChatLink
+
+Link items in chat.
+
+ChatLog
+
+Save chat history.
+
+ChatMats
+
+Craft material links in chat.
+
+ChatMOD
+
+Advanced chat options (scroll, colors).
+
+Chatr
+
+Private messaging window.
+
+Chat Type Bindings
+
+Will allow you to make direct key bindings for opening the different chat types. Info
+
+ChamorroUI
+
+Chamorro UI addon compilation.
+
+Chronometer
+
+Timer for buffs, debuffs, saps, etc.
+
+ClassIcons
+
+Shows class icons on frames.
+
+ClassicTooltip
+
+Old-style tooltips.
+
+ClassViewer
+
+Shows class icons, attack speed (/clv).
+
+Clean
+
+Quickly hide UI elements.
+
+CleanChat
+
+Removes [Party], [Raid], [Officer] and [Guild] prefix from chat messages. Info
+
+CleanMinimap
+
+Minimap options (move, resize).
+
+CleanPlayerFrame
+
+Enlarged player portrait, HP/Mana.
+
+ClickHeal
+
+Click-to-heal interface. Info
+
+ClickTarget
+
+Target selection via Ctrl+click in chat.
+
+Clique
+
+Bind macros/spells to mouse clicks.
+
+Clock
+
+Simple in-game clock.
+
+ClosetGnome
+
+Gear/clothing change UI.
+
+cMinimapButtonBag
+
+Minimap button for bags.
+
+cMinimapCoordinates
+
+Coordinates display on mini-map.
+
+Colorblind
+
+Various UI Enhancements to make it easier to play for colorblind players.
+
+ColoredWhispers
+
+Colored whispers by class.
+
+ColoredWhoClasses
+
+Colors for "Who" window.
+
+Combatants
+
+Shows who is in combat.
+
+CombatMonitor
+
+Combat statistics.
+
+CombatSentryGizmo
+
+Enemy attack log.
+
+Combat Sound Unattached
+
+Enhances your gaming experience by providing audio cues for various combat events. (/coms) Info
+
+CombatStats
+
+Detailed combat stats.
+
+CombatZoom
+
+Changes camera distance during fight.
+
+Combine
+
+guild and raid management system.
+
+Combustion
+
+Mage: tracks Combustion spell timer.
+
+ComicsUI
+
+Comics user interface pack
+
+CompactComboBar
+
+Small bars showing HP, Mana, Energy.
+
+CompareStats
+
+Detailed stat comparison tooltip.
+
+Confab
+
+Word input window settings.
+
+ConsisTint
+
+Remembers chat channel colors.
+
+ConsumeBar
+
+Adds an additional bar for consumables.
+
+coolDown
+
+Generic cooldown timer.
+
+CooldownCount
+
+Alternative cooldown display.
+
+CooldownHud
+
+During combat will show icons in an arc above your character for spells currently awaiting cooldown. Info
+
+CooldownTimers
+
+Warnings for cooldowns.
+
+CorpseInfo
+
+Adds info to corpse tooltips.
+
+CosmosUI
+
+Cosmos AddOns Collection. Info
+
+CouncilOfAzeroth
+
+CouncilOfAzeroth Mod Pack.
+
+CountDoom
+
+Warlock: spell timers.
+
+CountMoon
+
+On-screen timers for Druids. Info
+
+Critastic
+
+Emote when you get really high crits.
+
+CritLine
+
+Tracks best crits. List all you attacks and/or Heals with normal and crit damage. Info
+
+CritRecord
+
+Stores crit info for tooltips.
+
+Cryolysis
+
+Mage: spell management GUI. Info
+
+CS_AddOnOrganizer
+
+Manages addons.
+
+CT_AllBags
+
+Opens multiple bags at once.
+
+CT_BagMod
+
+Renames bags.
+
+CT_BarMod
+
+Adds extra action bars.
+
+CT_BottomBar
+
+Moves/hides main UI elements.
+
+CT_BuffMod
+
+Custom buff display.
+
+ct_em
+
+Emergency monitor for CT_RaidAssist.
+
+CT_ExpenseHistory
+
+Tracks experience gains.
+
+CT_HailMod
+
+Greets nearby players.
+
+CT_ItemBuffs
+
+Weapon buff display.
+
+CT_MailMod
+
+Mail management tools.
+
+CT_MapMod
+
+Map notes & coords.
+
+CT_MasterMod
+
+Core library for CT addons.
+
+CT_MovableParty
+
+Move group frames.
+
+CT_PartyBuffs
+
+Group buffs/debuffs.
+
+CT_PlayerNotes
+
+Notes on friends.
+
+CT_QuestLevels
+
+Show quest levels in log.
+
+CT_RABossMods
+
+Boss ability warnings.
+
+CT_Raid_RaidIcons
+
+Raid icon management.
+
+CT_RaidAssist
+
+Raid evaluation functions. Info
+
+CT_RaidTracker
+
+Logs raid loot info.
+
+CT_ShieldMod
+
+Shield HP display (Priests, Warlocks, Mages).
+
+CT_TickMod
+
+Mana/HP regen per tick.
+
+CT_Timer
+
+Flexible timers.
+
+CT_UnitFrames
+
+Custom unit frames.
+
+CT_UnitFrames_epf_rare
+
+Rarity-based frames.
+
+CT_Viewport
+
+Change visible game area.
+
+CThunWarner
+
+Warns about C’Thun in AQ40.
+
+CTMod
+
+CTMod is an improved User Interface mod. Info
+
+CTRA_Spy
+
+Raid warning enhancements.
+
+CustomNameplates
+
+Replaces default nameplates.
+
+cyCircled
+
+Makes buttons round (e.g., Bongos, Bartender2).
+
+DanceMusic
+
+DanceMusic will simply add race and gender specific music to your (and others') dance emote. Info
+
+DamageMeters
+
+Raid damage, DPS, healing metrics. Info
+
+Damn Vengeance!
+
+Displays your total damage, crits and DPS in a Vengeance buff in a big text frame or through SCT.
+
+Dhask's FlightMap
+
+Adds a tooltip to the world map showing flightpaths into and out of regions, and region level ranges. Info
+
+DeathAlert
+
+Warns of player death in raid.
+
+DeathEstimator
+
+Estimates time to death.
+
+DebuffFilter
+
+Filters/debuff display.
+
+Decursive
+
+This is a raid cleaning mod. The idea behind this is to iterate though the raid party, and cure who ever needs it. It also work on teams, but was written with raids in mind. Info
+
+DefendYourself
+
+Auto-attack & anti-sheep functions.
+
+DefenseTracker
+
+Monitors defenses.
+
+DemonTrainerFrame
+
+Warlock demon trainer UI.
+
+DepositBox
+
+Limits spending money.
+
+DetachedMiniButtons
+
+Move minimap buttons freely.
+
+Detox
+
+Similar to Decursive.
+
+DeuceCommander
+
+Configures many addons via Ace2.
+
+Development Tools
+
+Debgugging, Exploration, and Diagnostic Tools. DevTools Wiki
+
+devnull
+
+Disables various audio/messages.
+
+dG Killshot Notifier
+
+This mod will tell you and the people around you that YOU got the killshot.
+
+DHUD
+
+Heads-up display overlay.
+
+DiabloMod
+
+Classic Diablo-like UI elements.
+
+diMapCoords
+
+Map coordinates.
+
+DingRecorder
+
+Screenshots on level-up (/dr).
+
+DiscoDice
+
+Timer mod for Thieves.
+
+Discord collection
+
+Customizes frames, textures, panels. Info
+
+DiscordActionBars v3.17
+
+Spreads your base 120 action buttons across 10 configurable bars.
+
+DiscordArt v1.52
+
+Lets you configure 20 or more textures for your UI.
+
+DiscordFrameModifier v1.2
+
+Lets you configure any frame in your UI in any way it's possible to configure that frame.
+
+DiscordLibrary v1.48
+
+Common library for all mods by Lozareth.
+
+DiscordMacroFunctions
+
+Misc functions for use in macros.
+
+DiscordMiniPanels v1.1c
+
+Discord Mini Spellbook and Inventory.
+
+DiscordUnitFrames v2.46b
+
+Replaces the self, party, and target frames with much more configurable frames.
+
+Distance
+
+Shows distance to target.
+
+DivineBlessing
+
+Simplifies buffing of parties and raids.
+
+DLx BuffBindings
+
+Multiclass buffing.
+
+DLx FreezeTrap
+
+Feigns before trapping if needed.
+
+DLx HUD
+
+Heads-up display.
+
+DLx SmartStuff
+
+Mana conservation for hunters.
+
+DLx TrinketKeys
+
+Gives you two extra hotkeys for trinkets.
+
+DmgCalc
+
+Damage/statistics calculator.
+
+DoctorDruid
+
+Druid-specific functions. Info
+
+Doma
+
+Doma Mod Pack.
+
+DoTimer
+
+Dot/HOT timers.
+
+DoubleClickSelfCast
+
+Cast on self with double click.
+
+DragQueen
+
+Makes most in-game windows and bags draggable. Once the window/bag is closed, it will snap back to it's original location. Info page
+
+DruidBar
+
+Mana bar for druid forms.
+
+DruidFunc
+
+Bind druid form functions.
+
+DruidHelper
+
+Druid class tools.
+
+DuelInspect
+
+Info about duel requests.
+
+DuugusAHIgnore
+
+Ignore auction sellers.
+
+DurabilityStatus
+
+Lets you know your current durability percentage and how much it will cost to repair.
+
+DynRepBar
+
+Reputations tracking.
+
+EasyAuction
+
+Remember auction prices.
+
+EasyMail
+
+EasyMail automatically fills in the name of last person you mailed.
+
+EasyRaid
+
+Alternative to CT_RaidAssist.
+
+EasyTab
+
+Target selection options.
+
+EasyUI
+
+Tainger Danger's Easy UI.
+
+EasyUnlock
+
+Adds unlock button to inventory.
+
+EasyWho
+
+Search by class in "Who".
+
+EavesDrop
+
+Colored, icon-based combat log.
+
+eCastingBar
+
+Custom cast bar.
+
+Earth
+
+An XML Template Library.
+
+EarthFeatureFrame
+
+Feature AddOn Spellbook Menu.
+
+EgoCast
+
+Casts on self, friends, etc.
+
+ElitePlayerFrame
+
+Makes player frame look elite.
+
+ElkBuffBar
+
+Large buff/debuff bars.
+
+Emerald-UI
+
+UI pack compiled by Dsanai of The Crimson Knights, Whisperwind Alliance.
+
+Emergency
+
+Flashes your screen in special ways when stuff happens. Info
+
+EmoteButtons
+
+Circular emotions button.
+
+EN_NinjaRate
+
+Shows item roll value.
+
+EnchantBot
+
+Auto-view enchants via PM.
+
+EnchantingDB
+
+Enchant database (/edb).
+
+EnchantingSell
+
+Provides enchanters with a decent tool for managing their profession. Info
+
+EnergyTick
+
+Sound alert for energy ticks.
+
+EnergyWatch2
+
+Energy ticks display.
+
+EngBags
+
+Single bag/bank with auto-sorting.
+
+EnhancedAssist
+
+Advanced assisting functionality. Info
+
+EnhancedFlightMap
+
+Flight points & times.
+
+EnhancedLootFrames
+
+Loot window options.
+
+EnhancedStackSplit
+
+Extra stack split buttons.
+
+EnhancedTradeSkills
+
+Shows craft options considering inventory.
+
+Enlightened UI
+
+Enlightened UI addon compilation.
+
+EQCompare
+
+EquipCompare on Ace2.
+
+EQL3
+
+Extended QuestLog is an extension of the questlog. Choose from different layouts as well as many nice features. Info
+
+EquipCompare
+
+Tooltip gear comparison.
+
+EquipManager
+
+Equipment set manager that can manage equipment changes. Both automatic events and custom events. Info
+
+Eradicator UI
+
+Addons Compilation. Info
+
+ErosManaConserve
+
+Mana conservation options.
+
+ErrorRedirect
+
+Redirects errors to the combat log. Info
+
+EventProfiler
+
+Developer tool to watch events fired. Info
+
+Experience Percentage
+
+Shows the current percentage of your experience progress. Info
+
+XPExtended
+
+Rework of XPToGo and RestXPToGo. Info
+
+EX_MashManaConserve
+
+Mana saving in raids.
+
+Extended Ignore
+
+This mod allows you to ignore a (technically) infinite amount of people. Info
+
+EzDismount
+
+Auto-dismounts when needed.
+
+EZDI
+
+Addon for requesting spells through whispers
+
+FactionGrinder
+
+Simplifies faction farming.
+
+FaraFrames
+
+XML Frame Examples. Info
+
+Fastcast
+
+Reduces cast delay for high ping.
+
+FastQuest
+
+Quest info & notifications.
+
+FearDance
+
+Warrior macro for fear/disarm.
+
+FelwoodGather
+
+Herb/fruit gathering timer & map.
+
+Fenris UI
+
+UI package. Info page
+
+FeralFighter
+
+Druid: auto-buffs & attack.
+
+FeralSkills
+
+Bind multiple abilities to one button.
+
+FFat20
+
+Tracks and displays the player's Faerie Fire duration on each target.
+
+FilterFix
+
+Filters abilities in trainer window.
+
+FilterKnown
+
+Highlights known recipes in auction.
+
+FishEase
+
+Quick fishing with right click. Info page
+
+Fishing Buddy
+
+Fishing info & stats. Help with fishing related tasks -- clothing, fish information, etc. Info
+
+FixCTGroups
+
+Aligns CT_Raid frames.
+
+Fixed Floating Chat Frame
+
+"Hides" the borders of the chat frames, so they don't obstruct with the game world. Info
+
+Fizzle
+
+Shows item durability & repair cost.
+
+FlagRSP
+
+A role playing AddOn that shows extra information about a players' character as entered by them. Info
+
+FlexBar
+
+Adds customizable action buttons. Info
+
+FlexTotem
+
+Shaman: totem set bar.
+
+FlightMap
+
+Flight route & time map.
+
+FlightPath
+
+Flight points & times.
+
+FollowMeEnhanced
+
+Auto-follow commands.
+
+FollowTheLeader
+
+Auto-follow a specific player.
+
+ForceEnchant
+
+A utility to auto-accept re-enchant confirmation dialog boxes. Info
+
+Forecast
+
+Tracks enemy spell casts.
+
+Fortify
+
+One-click buffing for raid.
+
+Fragile
+
+Aggro Notifications for Blizzard Party Frames.
+
+FreeRefills
+
+Auto-purchase reagents/items.
+
+Friendsfacts
+
+Friend info (level, class, location).
+
+FriendShare
+
+Sync friends/ignore lists across characters. Info
+
+FrostShoock
+
+Shaman: announces Frost Shock.
+
+FrowningCircle
+
+Bind 4 totems to one button.
+
+FruityLoots
+
+Loot window under cursor (Ace2).
+
+FuBar
+
+Plugin panel, highly customizable.
+
+FuBar Plugins
+
+Big plugin pack for FuBar
+
+FuBar_AmmoFu
+
+Ammo count.
+
+FuBar_AnkhTimerFu
+
+Ankh cooldown for Shamans.
+
+FuBar_Aspect
+
+Hunter aspect display.
+
+FuBar_AssistFu
+
+Raid target assist.
+
+FuBar_AuctionsFu
+
+Auction info panel.
+
+FuBar_AuditorFu
+
+Income/expenses tracker.
+
+FuBar_BagFu
+
+Inventory info.
+
+FuBar_BattlegroundFu
+
+BG info panel.
+
+FuBar_BGQueueNumber
+
+BG queue position.
+
+FuBar_BlockTradeFu
+
+Lock trade button.
+
+FuBar_CheckStoneFu
+
+A raid scanning tool for Soulstones.
+
+FuBar_CloakHelmToggle
+
+Show/hide cloak & helm.
+
+FuBar_ClockFu
+
+Clock display.
+
+FuBar_ConjureFu
+
+Mage: create portals/water.
+
+FuBar_CorkFu
+
+Buffs/debuffs info.
+
+FuBar_CRDelayFu
+
+Resurrection delay timer.
+
+FuBar_CustomMenuFu
+
+Custom right-click menu.
+
+FuBar_DakSmak
+
+Miss, Dodge, Parry stats.
+
+FuBar_DPS
+
+Damage per second monitor.
+
+FuBar_DurabilityFu
+
+Equipment durability & repair.
+
+FuBar_DuraTek
+
+Equipment durability percentage.
+
+FuBar_EmoteFu
+
+Emotions menu.
+
+FuBar_Experienced
+
+Experience info.
+
+FuBar_ExperienceFu
+
+XP & reputation bar.
+
+FuBar_FactionItemsFu
+
+Items needed for reputation.
+
+FuBar_Factions
+
+Faction reputation display.
+
+FuBar_FactionsFu
+
+Quick faction reputation info.
+
+FuBar_FarmerFu
+
+Track item counts.
+
+FuBar_FriendsFu
+
+Friends list.
+
+FuBar_FromAViewToAKillF
+
+Dynamic target icons.
+
+FuBar_FuXPFu
+
+XP and reputation bar.
+
+FuBar_GarbageFu
+
+Auto-sell gray items.
+
+FuBar_GCInFu
+
+Memory usage info.
+
+FuBar_GroupFu
+
+Roll/party info.
+
+FuBar_GuildFu
+
+Guild info.
+
+FuBar_HeyFu
+
+Lich King notifications.
+
+FuBar_HeyFuArchive
+
+Archive for HeyFu.
+
+FuBar_HonorFu
+
+Honor points display.
+
+FuBar_ItemBonusFu
+
+Item bonus info.
+
+FuBar_LocationFu
+
+Coordinates & dungeon info.
+
+FuBar_LockFu
+
+Lock action bars & chat.
+
+FuBar_LogFu
+
+Save combat & chat logs.
+
+FuBar_MageFu
+
+Mage-specific tools.
+
+FuBar_MailFu
+
+Mail notifier with sounds.
+
+FuBar_MCPFu
+
+Addons manager.
+
+FuBar_MicroMenuFu
+
+Compact main menu.
+
+FuBar_MiniClockFu
+
+Small clock display.
+
+FuBar_MiniPerfsFu
+
+Performance stats.
+
+FuBar_ModMenuTuFu
+
+Custom menu for addons.
+
+FuBar_MoneyFu
+
+Gold/coin display.
+
+FuBar_NameToggleFu
+
+Show/hide character/guild names.
+
+FuBar_NavigatorFu
+
+Coordinates & navigation.
+
+FuBar_NetStatsFu
+
+Network ping & stats.
+
+FuBar_NinjutFu
+
+Rogue: poisons & powders.
+
+FuBar_PerformanceFu
+
+FPS, ping, memory.
+
+FuBar_PetInFu
+
+Pet info.
+
+FuBar_PetInfo
+
+Display Pet Info.
+
+FuBar_PoisonFu
+
+A simple addon for easily applying and monitoring poisons, sharpening stones, oils, etc. on your main and off-hand weapon.
+
+FuBar_PotHerbFu
+
+Herbs & potions info.
+
+FuBar_ProfessionsFu
+
+Professions menu.
+
+FuBar_PursueFu
+
+Minimap pursuit.
+
+FuBar_QuestsFu
+
+Quest log.
+
+FuBar_ReagentFu
+
+Reagents count.
+
+FuBar_ReagentTrackerFu
+
+Reagents & reputation.
+
+FuBar_RegenFu
+
+Life & mana regen.
+
+FuBar_ReloadUI
+
+Reload UI command.
+
+FuBar_RestFu
+
+Rest XP info.
+
+FuBar_ScaleFu
+
+Change UI scale.
+
+FuBar_SkillsPlusFu
+
+Skills & professions menu.
+
+FuBar_SpeedFu
+
+Movement speed.
+
+FuBar_SpellStatusFu
+
+Spell usage info.
+
+FuBar_SummonFu
+
+Warlock summon buttons.
+
+FuBar_TankPointsFu
+
+Tank stats.
+
+FuBar_TCDFu
+
+Profession ability cooldowns.
+
+FuBar_tcgTradeskills
+
+Profession buttons.
+
+FuBar_ToFu
+
+Flight time info.
+
+FuBar_TopScoreFu
+
+Similar to CritLine.
+
+FuBar_TrackerFu
+
+Minimap search.
+
+FuBar_TradeTrackerFu
+
+Profession item count tracker.
+
+FuBar_TrainerFu
+
+Keep track of skills you can learn from trainers.
+
+FuBar_TransporterFu
+
+Vehicle control.
+
+FuBar_uFriends
+
+Simple friends list.
+
+FuBar_uGuild
+
+Simple guild list.
+
+FuBar_VolumeFu
+
+Volume control.
+
+FuBar_WindFuryFu
+
+Shaman Windfury info.
+
+FuBar-compat-1.2
+
+Compatibility pack for FuBar 1.2 & 2.0.
+
+FuBarPlugin-2.0
+
+Library for FuBar plugins.
+
+Fury
+
+Warrior: ability macros.
+
+FuTextures
+
+Textures for FuBar.
+
+G15Bar
+
+Logitech G15 keyboard addon.
+
+Gar_QuickLook
+
+Quick back view (assign keys).
+
+Gatherer
+
+Gatherer, displays stuff you gather in your minimap and world map. Info
+
+GatherSage
+
+Adds skill-level and other information to gathering item tooltips.
+
+GBars
+
+Configurable action panels.
+
+GBLoothelp
+
+The ultimate Loothelper in almost all situations. Info
+
+GFW_AdSpace
+
+Map info for recipes. Info
+
+GFW_AutoCraft
+
+Queued crafting. Info
+
+GFW_DisenchantPredictor
+
+Shows disenchant info. Info
+
+GFW_EnchantSeller
+
+Remembers what people trade to you when you enchant their items, and helps you price and advertise your services. Info
+
+GFW_FactionFriend
+
+Auto faction switching. Info
+
+GFW_FeedOMatic
+
+Feed pet (hunters). Info
+
+GFW_Gemologist
+
+Gem info from deposits. Info
+
+GFW_GuildEntipper
+
+Guild member info tooltip. Info
+
+GFW_HuntersHelper
+
+Find mobs for pets. Info
+
+GFW_Levelator
+
+Show quest levels. Info
+
+GFW_Linkerator
+
+Auto-link items. Info
+
+GFW_ReagentCost
+
+Calculates and displays total materials cost for items in the tradeskill window. Info
+
+GFW_ShoppingList
+
+Auction shopping list. Info
+
+GlobalComm
+
+Library for global addon communication within your faction. Info
+
+GLOCK
+
+Magic resist calculator.
+
+GLOCK_Nightfall
+
+Nightfall Axe Combat Statistics.
+
+GMail
+
+Similar to CT_MailMod.
+
+GOFAnnounce
+
+Raid tank objective messages.
+
+GogglesCastHelper
+
+One-click spell cast.
+
+GoGoMount
+
+Bind one button to mount.
+
+GoldSpammer
+
+Blocks gold spam messages.
+
+GotWood
+
+Totem timers.
+
+GraphicViolence
+
+Graphical stats.
+
+Grid
+
+Raid frames (for healers with Clique).
+
+GrimoireKeeper
+
+Warlock spellbook tracker.
+
+GrimPack
+
+Addon pack and configuration tool. Info
+
+GroupButtons v4.98
+
+Creates a bar of 20 buttons for yourself, your party members, and your target.  Clicking a button on a bar uses its action on the person to whom the bar is attached.
+
+GroupButtons v4.99a
+
+This mod creates its own "virtual" action buttons. Easy to use GUI for setting up your bars. Type /gb to open it.
+
+GroupCalendar
+
+Allows guilds or groups of friends to share an in-game event calendar. Info
+
+GroupHeal
+
+Heal spell buttons.
+
+GroupTags
+
+Displays group number in chat (/g6).
+
+GroovyUI
+
+GroovyUI Pack.
+
+GuildAds
+
+Guild member info (profs, etc.).
+
+GuildBook
+
+Guild notebook.
+
+GuildEventManager
+
+Guild Event Manager (GEM) Schedule guild raids/events. (see "/gem help"). Info
+
+GuildHi
+
+Guild welcome window.
+
+GuildInfo
+
+Guildinfo exports guild data. Info
+
+GuildMap
+
+Shows guild members on map.
+
+GuildMateMap
+
+Map with guild members.
+
+GuildML
+
+Send guild-wide mail.
+
+GuildProfiler
+
+Loads guild info.
+
+GuildSeen
+
+Adds a /seen command, that tells you how long a player has been offline. Info
+
+GuildToolS
+
+Officer tools via web.
+
+Gymnast
+
+Make your tooltips as flexible as you are.
+
+Gypsy
+
+Customizes frames, buffs, etc. Info
+
+Handy UI
+
+Collection of various helpful mods. Info
+
+HateMe
+
+Tank & DPS: taunt & aggro.
+
+h4XPacK
+
+Addon pack
+
+HealBot
+
+Raid healing with one click.
+
+Healcap
+
+Detailed healing overview.
+
+HealerButtons
+
+Heal buttons per party member.
+
+HealersAssist
+
+Raid healing aid.
+
+HealingEstimator
+
+Shows overheal.
+
+HealOrganizer
+
+Distributes healing in raid.
+
+HealPoints
+
+Healing gear assessment.
+
+HealSync
+
+Shows who heals current target.
+
+HealthFade
+
+Color HP bars based on health.
+
+Heather
+
+Heather's Addon Compilation.
+
+HKCounter
+
+Kills & death counter.
+
+Hodgepodge
+
+Hodgepodge Addon Compilation.
+
+HolyHope
+
+Paladin: multi-function UI.
+
+HolyPower
+
+Paladin: Holy Power tracker.
+
+HonorKillCount
+
+Gives you a small window for keeping track of your rank and kills. Info
+
+HostelBar
+
+Buff duration & castbar.
+
+HotCandy
+
+Druid: HOT monitoring.
+
+HunterPetSkills
+
+Find pets by skills (/sk).
+
+HZ_AutoRepBar
+
+Auto-reputation bar.
+
+IceHUD
+
+HUD overlay.
+
+ICU
+
+Highlight/identify targets on mini-map.
+
+IDCard
+
+Item icons in tooltips.
+
+idMinimap
+
+Mini-map coordinates.
+
+IgniteMonitor
+
+Tracks current Ignite damage, stacks, duration, and total damage for all targets in range
+
+IGT_FuckOff
+
+Custom reply message (/igtfo).
+
+iManaConserve
+
+Raid mana saving.
+
+IMBA
+
+Boss mechanics & timers.
+
+IMBA UI
+
+VoidRaider's UI addons. Info page
+
+ImmersionRP
+
+Roleplay enhancements.
+
+ImprovedCamera
+
+Increased camera zoom.
+
+ImprovedIgnore
+
+Highlights ignored players.
+
+ImprovedMacro
+
+Adds macro features.
+
+ImproveDressingRoom
+
+Rotate character in dressing room.
+
+inCombat
+
+In-combat notifications.
+
+Innerfire
+
+Provides a counter showing how many charges remain on a priest's Inner Fire buff.
+
+Insomniax
+
+Insomniax Recompilation is a very user friendly and easy to setup compilation of the best User Interface modifications. Info
+
+Inspectmemory
+
+Keeps a "memory" of all players you mouseover, remembering their current inventory and allowing you to view that inventory. Info
+
+Inspector
+
+Inspect distant players.
+
+IntensityAH
+
+Multi-bid auctioning.
+
+IntuitiveAttackTarget
+
+Modifies the default AttackTarget() function to act a little more intuitive. Info
+
+InventoryHawk
+
+Easily track and assess your important inventory items. Info
+
+InventoryOnPar
+
+Item level indicator.
+
+InviteOMatic
+
+Auto-join groups/raids.
+
+IsCasting
+
+Library that tracks your casting details.
+
+IsMounted
+
+Mini-Library that maintains a list of who's mounted.
+
+Isognomy
+
+Isognomy's Addon Compilation.
+
+ItemLinkRecolor
+
+Color item links by level.
+
+ItemRack
+
+Gear set management. Info
+
+ItemScripts
+
+Macro functions for using items.
+
+ItemSync
+
+Search/view all seen items.
+
+JudgeHype
+
+Find NPCs on map.
+
+JustClick
+
+Click-to-cast macros (/jc).
+
+Kalented
+
+Built-in talent calculator.
+
+KC_AutoRepair
+
+Auto repair vendor.
+
+KC_EnhancedTrades
+
+Professions window enhancements.
+
+KC_Items
+
+Price/highlight/quick search items.
+
+KeepItCool
+
+Notifies about profession cooldowns.
+
+Kennel
+
+Swap a random minipet every time you visit the bank.
+
+Khaos
+
+Configuration Manager.
+
+KickAll
+
+Kicks everyone from raid.
+
+KillMore
+
+Tracks progress to next level.
+
+KillsToLevel
+
+Mobs needed for level-up (/kills).
+
+KLHManaStorm
+
+Adds mana storm info.
+
+KLHPerformanceMonitor
+
+Tracks the memory creation and CPU usage of all the mods running. Info
+
+KLHThreatMeter
+
+Monitors and records your threat, and will list your threat in a table with other members of your party or raid group who are using the mod. Info
+
+KombatStats
+
+Combat/DPS stats.
+
+KTMAutoHider
+
+Hides threat meter outside raids.
+
+KTMD
+
+Threat per second.
+
+LAX
+
+XP bar with customization.
+
+LazyFrostMage
+
+Mage macro for offensive spells.
+
+LazyScript
+
+Programmable Class Attacks. Info
+
+LazyRogue
+
+Programmable Rogue attacks. Info
+
+LazyTank
+
+Automates tank macros.
+
+LazyWarrior
+
+Programmable Warrior attacks. Info
+
+LelekScout
+
+BG: enemy & hila counter.
+
+lern2count
+
+Spell usage counter.
+
+Lern2Spell
+
+Auto-level spell ranks.
+
+Lesly's
+
+Lesly's raid addon pack. Info page
+
+LevelRange
+
+Shows location & dungeon levels on map.
+
+LevelWiz
+
+Detailed XP info.
+
+LeviUI
+
+Yet another compilation, Mostly Nurfed/ACE stuff for low mem usage.
+
+Lexan
+
+Opens auction window during gameplay.
+
+LilAddonMessage
+
+Monitors addon messages (/am).
+
+LinkWrangler
+
+Enhances item links in chat.
+
+Lions
+
+Replaces griffins with lions.
+
+LoadIT
+
+Reloads UI without logout.
+
+LoadIT-2
+
+In-game addon management.
+
+Local_Defender
+
+Attack warnings in local defense.
+
+Localization
+
+Embeddable addon for sellecting a global localization for addons.
+
+LockBox
+
+Automation Tool for Warlocks. Makes every Warlocks Life easier. Info
+
+LookLock
+
+Allows user to switch to a state where moving the mouse rotates the character.
+
+Lookout
+
+Alerts for dangerous dungeon events.
+
+LootCounter
+
+Adds loot info to chat.
+
+LootFilter
+
+Filters unwanted loot.
+
+LootHog
+
+Tracks rolls & announces.
+
+LootLink_Enhanced
+
+All loot info & search. Info
+
+LootSpy
+
+Monitors raid loot.
+
+LootTracker
+
+Tracks party loot and kills to enable nice session summaries. Info
+
+LowestHealth
+
+Will select the party member with the lowest amount of health for fast healing response. Info
+
+LuaProfiler
+
+Tool for tracing function calls, measuring execution time, memory usage, and garbage collection activity within your Lua environment.
+
+LuaSlinger
+
+Lua workbench. Use it to write Lua scripts to automate complex tasks, react automatically to certain events, or whatever else you can imagine doing with Lua and the WoW API. Info
+
+Ludwig
+
+Item cost & sale info database.
+
+LVBM
+
+Boss timers & alerts.
+
+M_Buffbar
+
+Morganti's Buffbars. Improved Buff, Debuff, and Weapon Buff display. Info
+
+MageEye
+
+Mage: announce polymorph durations.
+
+MageHelper
+
+Mage class leader tools.
+
+MageX
+
+Mage: auto-buff & more.
+
+mailMinimap
+
+Replaces mail icon.
+
+MailSound
+
+Sound alert on mail.
+
+MailTo
+
+Mail management and tracking. Info
+
+MainAssist
+
+Raid tank target display.
+
+ManaAverage
+
+Shows group’s average mana %.
+
+ManaPerc
+
+Tooltip: mana needed for spells.
+
+ManaSaver
+
+Adaptive healing spell ranks.
+
+ManaStones
+
+Make ONE button to create all mana stones for mages.
+
+ManaTick
+
+Tracks mana regeneration ticks and displays the estimated time to next tick as a sliding bar.
+
+ManaTideTracker
+
+Raid: Mana Tide totem.
+
+MangAdmin
+
+GM/admin tool for MaNGOS servers.
+
+MapCoords
+
+Coordinates on world map & frames.
+
+MapLocation
+
+Adds a coordinate display to the Minimap. Info
+
+MapNotes
+
+Mark notes on the map.
+
+MapPinger
+
+Mini-map ping indicator.
+
+MapZoom
+
+Shortcut to zoom mini-map.
+
+MarsMod
+
+MarsMod's addon collection. Info
+
+MarstiCOETKeys
+
+Alternate keybinds for CallOfElements.
+
+MarstiLeaveLFG
+
+Join/leave LFG channel button.
+
+MasterTradeSkills
+
+Reagents info in trade window. Adjusts the display of the tooltips to show which recipe is being used by the item your hovering above. Info
+
+Matlink
+
+Links materials in chat (Alt+click).
+
+MBB
+
+Combines mini-map buttons.
+
+MCP
+
+Addons manager (/reload). Info
+
+MCPoly
+
+Mage: polymorph in raid.
+
+MeanMage
+
+Mage: auto-respond water/portal.
+
+MegaMacro
+
+84 preset macros.
+
+MehTrinketeer
+
+Manages trinkets.
+
+Mendeleev
+
+Reagent & item info database.
+
+MerchantSafeList
+
+Protects items from accidental sale.
+
+MetaGuild
+
+Guild info window.
+
+MetaHud
+
+Alternative high-quality HUD.
+
+MetaMap
+
+Enhanced world map. Info
+
+MetaMap HQ Pack
+
+High Quality map pack add-on for Metamap. Info
+
+Mikile_UI
+
+Mikile UI addon compilation.
+
+MiniCoords
+
+Mini-map coordinates.
+
+MiniFriends
+
+Small friends list window.
+
+Minigames_Pack
+
+Collection of mini-games (Tetris, Sapper, etc.).
+
+MiniGroup2
+
+Compact, resource-efficient raid frames. Info
+
+MiniMage
+
+Mage: portal/teleport buttons on mini-map.
+
+Minimalist
+
+Auto-cancel duels, auto-revive, etc.
+
+MinimapMenu
+
+Right-click menu on mini-map.
+
+MinimapZoom
+
+Hide the + and - zoom buttons and zoom using the Mouse Wheel.
+
+MobHealth
+
+Shows enemy HP & mana as numbers & %.
+
+MobileFrames
+
+A template for making frames movable.
+
+MobileMinimapButtons
+
+Move minimap buttons freely.
+
+MobInfo2
+
+Adds information about the hovered mob to the tooltip and shows health/mana information in the target frame. Info
+
+MobInfo2_Browser
+
+Lets you browse and search a ton of data in your MobInfo database.
+
+Modifier2Sell
+
+Force holding of modifier button while clicking when selling items to a vendor to help prevent accidental item sales.
+
+MonitorStatus
+
+Monitor Status shows party member and target status to help healers and warriors alike.
+
+MonkeyMod
+
+Alternative quest log, clock, speed. Info
+
+MontiTchota
+
+MontiTchota's Addon Compilation
+
+Moog_Hud
+
+HUD overlay.
+
+Mortal Kombat
+
+Plays some Mortal Kombat sound effects and other stuff in the future. Info
+
+MountMaster
+
+Mounts: auto-use random mount.
+
+MovableBags
+
+Move bags / UI elements.
+
+MoveAnything
+
+Move any UI frame. Info page
+
+MozzEasyMail
+
+Remember last mail recipient.
+
+MozzFullWorldMap
+
+View unexplored map areas.
+
+MozzSoundVolumeFix
+
+Fix sound issues on Alt+Tab.
+
+Mp3Player
+
+In-game MP3 player.
+
+MSBT
+
+Customizable combat text.
+
+MTLove
+
+Displays the name of the party-member (or NPC as option) that a moused-over mob is attacking. Info
+
+Muc.G.D.UI
+
+Muc.G.D.UI addon compilation.
+
+MusicList
+
+Play list of music files.
+
+myAddOns
+
+Addons manager. Info
+
+MyBags
+
+Single bag & bank.
+
+myBindings2
+
+Key binding interface.
+
+myClock
+
+Simple clock display.
+
+myDebug
+
+Provides debug tools to the AddOns developpers. You can browse a variable like a tree. You can type scripts and execute them. Info
+
+MyInventory
+
+Enlarged inventory.
+
+myMemory
+
+Memory & FPS monitor (CTRL + R).
+
+myMusic
+
+An in-game MP3-player
+
+MyQuests
+
+Create custom quests (/mq create).
+
+MyRolePlay
+
+RP info for roleplayers.
+
+Naked
+
+Quick undress to avoid repair costs.
+
+Name Cycle
+
+Cycle between name display options
+
+NanoStats
+
+DPS/heal monitor.
+
+NapalmedUI
+
+Napalmed UI addon compilation.
+
+Napoleon
+
+Raid: organize & manage heals.
+
+Necessity
+
+Necessity UI pack.
+
+Necronomicon
+
+Necrosis-like spell management.
+
+Necrosis
+
+Warlock spells, demons, stones.
+
+NeedyList
+
+Raid heal & buff monitoring.
+
+NemesisUI
+
+Nemesis UI addon compilation.
+
+NiceDamage
+
+Custom damage fonts.
+
+NIce Papyrus
+
+Enhanced Textpad.
+
+NoJoinLeaveSpam
+
+Remove join/leave chat spam.
+
+NoteIt
+
+Add notes to NPCs/players.
+
+Notes
+
+Simple note-taking.
+
+Notepad
+
+A simple tabbed notepad window.
+
+NovaWatch
+
+Mage: freeze timer display. Info
+
+ntmysFixLoadingTimes
+
+Faster loading times. Info
+
+Nurfed
+
+Complete UI overhaul.
+
+oApplication
+
+Use poisons with right click.
+
+oCB
+
+Custom cast bar.
+
+oCD
+
+Visual display of bar cooldowns.
+
+ODBGTools
+
+BG helper functions.
+
+oGlow
+
+Highlights in inventory.
+
+Omnibus
+
+Notepad.
+
+OneBag
+
+Alternative to Bagnon.
+
+OneBagSorter
+
+Sorting for OneBag.
+
+OneHitWonder
+
+One-click macros for all classes.
+
+OnEventWatch
+
+Estimates OnEvent processing time by frame. Info
+
+OneRaid
+
+Raid frames.
+
+OpenClam
+
+Auto-open loot sinks.
+
+Opium
+
+PvP stats & kill sheets.
+
+oRA2
+
+Raid management (like CT_RaidAssist).
+
+oRogueHelper
+
+Rogue: manage combo points & energy.
+
+oSkin
+
+Custom UI skin (smooth, transparent).
+
+Outfitter
+
+Quick gear/disguise switching.
+
+OzRaid
+
+Compact raid monitor.
+
+Palanoob
+
+Paladin: simplify buffs.
+
+PallyPower
+
+Paladin: buff assignment.
+
+Panza
+
+Healer: buff/removal helper.
+
+Paparazzi
+
+Screenshots & photo management.
+
+Paranoia
+
+Detect enemies in the near vicinity. Detection is done by registering to events which are triggered by enemy players. Info
+
+Parchment
+
+Notepad.
+
+Parrot
+
+Quotes from the Monty Python dead parrot sketch when someone dies.
+
+PartyQuests
+
+Shows party member's quests.
+
+PartyQuestComm
+
+Share quests with party.
+
+PartySpotter
+
+Highlight Party members on the WorldMap and distinguish them from Raid members, and players of the same faction in BattleGrounds.
+
+PartyTabSystem
+
+Cycle through party members using a key binding. Info
+
+PassLoot
+
+Decline loot based on rules.
+
+Peanut
+
+It's Peanut Butter Jelly Time (/Peanut).
+
+PerfectRaid
+
+Minimalistic, but functional raid frames.
+
+PerfectShot
+
+Remove UI/names for screenshots.
+
+Perl_Classic
+
+Classic style UI enhancements. Info
+
+Perl_ColorChange
+
+Colors target frame by reaction.
+
+Perl_Raid_Distance
+
+Show range & status of raid members.
+
+Perl_Target_Target_2D
+
+2D portrait of target.
+
+PetFeeder
+
+Hunter: easy pet feeding.
+
+PetInfo
+
+Remember information about trained pets
+
+Phoenix
+
+Addon Developer Tool.
+
+Pingy
+
+Detects who pings on mini-map.
+
+PlayerLinkMenu
+
+Right-click menu on player names.
+
+PlayerMenu
+
+Extended right-click menu on players.
+
+PocketHelper
+
+Quick loot when using Pick Pocket.
+
+PolyHelper
+
+Mage: warns of polymorph durations. Info
+
+Pong
+
+A two-dimensional sports game that simulates table tennis.
+
+PopBar
+
+PopBar is a highly configurable self hiding action bar.
+
+PowerAuras
+
+Visual effects for procs & cooldowns.
+
+Prat
+
+Extensive chat customization.
+
+PriceEach
+
+Shows cost per item in auctions.
+
+PriceMaster
+
+A script to monitor the vendor price of items.. Info
+
+PriestHelper
+
+Priest: class leader tools.
+
+Priest Quest
+
+Allows one click help with targetting the Priest Epic Quest Enemys. Simply use /pq or /priestquest to enable the Addon.
+
+PrivateChat
+
+Extra private chat channel.
+
+ProcWatcher
+
+Tracks spell/ability procs.
+
+Profession_Helper
+
+Profession trading helper (/ph).
+
+Prowler
+
+Druid: form change & stealth panel.
+
+PVPCooldownReborn
+
+PvP timer.
+
+PvPLog
+
+Logs PvP kills/deaths.
+
+PVPTrinket
+
+Auto-switch PVP trinkets (/pt). Info
+
+qImmunityClock
+
+Timer for PvP CC immunity.
+
+Quanjure
+
+Mage: various functions.
+
+QuestAnnouncer
+
+Announces quest progress.
+
+QuestHistory
+
+Logs all quest activities. An in-game history of quests accepted, completed, and abandoned. Info
+
+QuestHistoryMap
+
+QuestHistoryMap is used to if you have QuestHistory to display all Quests like Gatherer is displaying resources / chests / etc.
+
+QuestItem
+
+Shows quest items in inventory.
+
+QuestLevel
+
+Shows quest levels in log.
+
+QuestLink
+
+Send/receive quest links.
+
+QuestLogLevelPatch
+
+Adds level within paranthesis to the quest log. Example: [62] Order Must Be Restored
+
+Quick Chat
+
+Assign keys for chat commands.
+
+QuickHeal
+
+Raid healing macro (/qh cfg). Info
+
+QuickLoot Plus
+
+Loot window under cursor.
+
+QuickLoot
+
+Basic loot under cursor.
+
+QuickMountEquip
+
+Quick gear change on mount.
+
+QuuRetarget
+
+Retarget after kill.
+
+RABuffs
+
+Raid buff monitor.
+
+Radar
+
+Enemy proximity detection.
+
+RaidCalendar
+
+Guild/raid scheduling.
+
+RaidHealer
+
+Raid healing management.
+
+Raid Reset Times
+
+AddOn that tracks when the various Raid Instances reset.
+
+RaidSummon
+
+Warlock: summon raid.
+
+RaidTarget
+
+Auto-mark raid targets.
+
+RaidTargets
+
+Manage raid icons.
+
+RamzClock
+
+Server time & profession cooldowns.
+
+RandomMount
+
+Bind button for random mount.
+
+RangeHelp
+
+Adjust skills based on distance.
+
+RangeRecolor
+
+Out-of-range spell indicator.
+
+RapidQuestPack
+
+Complete quest helper pack.
+
+RASCT
+
+Relay CT_RaidAssist warnings.
+
+Rauen_Pet
+
+Hunter: pet control.
+
+Rawr
+
+Adds sound & roar effects.
+
+RDM
+
+Damage & DPS monitor.
+
+ReactionBar
+
+Spell panels change based on target’s reaction. Info
+
+ReagentCount
+
+Shows reagent counts on action buttons.
+
+ReagentHelper
+
+Adds the professions that a reagent is used by, to the game tooltip.
+
+ReagentInfo
+
+Displays profession/recipe usage information in item tooltips. Info
+
+RealDropDown
+
+Allows the use of many different dropdown menus on a single page. Info
+
+Recap
+
+Fight stats & DPS.
+
+RecipeBook
+
+Keeps track of which of your alts knows what trade skill recipes, on tooltips. Info
+
+RecipeRadar
+
+Locates vendors who sell recipes in the current region or by profession. Info
+
+Redirection
+
+Helps tank regain aggro.
+
+RedRange
+
+Spell range indicator (red out-of-range).
+
+ReloadUI
+
+Adds /reloadui and a Reload UI Keybinding.
+
+ReMinimap
+
+Customizes mini-map. Info
+
+RepairMyStuff
+
+Automatically repairs your stuff when you speak to a vendor.
+
+Reputation
+
+Displays reputation points.
+
+Reputation2
+
+Reputation info in combat log.
+
+ReputationPercentage
+
+Adds a percentage readout to your reputation level bars. Info
+
+RestedBonus
+
+XP bonus from rest. Reports on your rested bonus.
+
+RicoDev
+
+Developer tools (/ricodev).
+
+RiposteAlert
+
+Alerts you with a whistle whenever a Riposte is ready. Info
+
+rlrp
+
+RP: voice & messaging.
+
+RogueQuickMount
+
+Rogue: stealth & vanish macro.
+
+RogueSpam
+
+Filters out some of the annoying error messages during combat. Info
+
+RogueHelper
+
+Allows you to get a small window with your health, energy, combo points and targets health that you can drag around.
+
+RoleplayingHelper
+
+RP: emotions & cues (/rp).
+
+RollTracker
+
+Track & filter rolls in raids.
+
+Ronsoft Hud
+
+Hud for Player/Target
+
+RPPolice
+
+Makes it easier to report bad names on RP servers (it will also work on normal servers of course!).
+
+RSavedHealer
+
+Heal functions (/rsh).
+
+rSelfCast
+
+Self cast with right-click.
+
+ruRU
+
+Russian localization.
+
+SacredBuff
+
+Paladin: buff panel.
+
+SadarUI
+
+Sadar UI addon compilation.
+
+SafeDistance
+
+Show distance to bosses/debuffs.
+
+SatrinaBuffFrame
+
+Buff/debuff display customization.
+
+ScaledLifeTap
+
+Warlock: Life Tap optimization.
+
+SecretSauce
+
+Secret Sauce makes your frames go faster (maybe).
+
+ScreenPlus
+
+Hides main UI and takes screenshot with shooting informations.
+
+ScreenshotKeyBinding
+
+Will allow you to make a button- or key binding for taking screenshots. Holding down Shift while taking a screenshot will hide the UI when taking it. Info
+
+ScholomanceUI
+
+Undead Mage UI Compilation.
+
+SCT
+
+Damage & event overlay over UI. Adds Scrolling Combat Text above your character. Info
+
+sct_cooldowns
+
+Advanced cooldown display.
+
+sct_killingblows
+
+Announce kills in PvP.
+
+SCTD
+
+Damage overlay. Info
+
+Sea
+
+An organized WoW Function Library. Sea is a set of function libraries designed to make the process of writing new UI mods faster and simpler. It is designed to reflect a Java like library style.
+
+SealJudge
+
+This addon will handle all your Seals and Judgements with a single Key (/sj config).
+
+SelfCast
+
+Supports optional Alt self-casting and auto self-targeting for beneficial spells (/selfcast help). Info
+
+SellEnchant
+
+Auto-sell enchants.
+
+SellValue
+
+Tracks item sale prices.
+
+Serenity
+
+SacredBuff alternative.
+
+SeriousBuffTimers
+
+Buff durations by seconds.
+
+Servitude
+
+Warlock: pet management.
+
+SetWrangler
+
+Tracks gear sets & bonuses.
+
+SexyUI
+
+The compilation that makes your User-Interface look really Sexy with tons of excellent functionality. Info
+
+ShadowBar
+
+This mod will add a bar for all your shadow priest spells.
+
+ShadowCancel
+
+Priests: exit Shadowform.
+
+ShadowcryUI
+
+Shadowcry UI addon compilation.
+
+ShadowPriest
+
+Shapeshift tool for shadow priests
+
+ShamanAid
+
+Shaman: Weapon buff warning system. Info
+
+ShammyBuff
+
+Shaman: buff & poison removal.
+
+ShardAce
+
+Warlock: shard count & info.
+
+ShardTracker
+
+Warlock: shard monitoring.
+
+SheepMod
+
+Mage: polymorph functions & timers.
+
+SheepSafe
+
+Advanced Crowd Control.
+
+SheepWatch
+
+Mage: polymorph timer.
+
+Sheppard
+
+Warns if target is polymorphed.
+
+ShieldLeft
+
+Remaining shields (Priests, Warlocks, Mages).
+
+ShieldsUp
+
+Mage: auto shield assignment.
+
+Shifter2
+
+Druid: form switch macros.
+
+ShirisMod
+
+Compilation of mods. Info
+
+ShowGuild
+
+Display guild name of target. Info
+
+ShowOnlyAvailable
+
+Show only the available items from trainers.
+
+SHunterTimers
+
+Hunter: ability & debuff timers.
+
+SilverDragon
+
+Tracks rare mobs.
+
+SimpleActionSets
+
+Allows all existing actions to be saved to a set which can be changed to later. Info
+
+SimpleAssist
+
+Replace the common /assist macro
+
+SimpleBagStats
+
+Visual bag space info.
+
+SimpleCombatLog
+
+Better, color-coded combat log.
+
+SimpleCompass
+
+A basic, but pretty compass. Info
+
+SimpleFeignHealth
+
+Show party members' feigned death HP.
+
+SimpleMinimap
+
+Move and scale the minimap, drag and hide default minimap buttons. Info
+
+SimpleSelfCast
+
+Self-casting macro.
+
+SimpleTranqShot
+
+Hunter: announce Tranquilize Shot. Info
+
+Sinsmod-basic
+
+Custom profiles for Discord Art and Discord Unit Frames (with the mods included). Info
+
+SkillLevel
+
+Show skill level vs. character level.
+
+SkillStance
+
+Warrior: change stance based on skill.
+
+Skinner
+
+Customize game UI appearance.
+
+SKMap
+
+Tracks PvP/PvE kills & deaths on map.
+
+Skrom's_TotemTimer
+
+Shaman: totem timers.
+
+SlashLib
+
+Slash commands library.
+
+SmartAssist
+
+Improves default assisting and targetting system in groups.
+
+SmartBuff
+
+Automates buffing.
+
+SmartEngineer
+
+Engineer: smart grenade/bomb selection.
+
+SmartExplosives
+
+Best grenade/bomb selection (engineers).
+
+SmartHeal
+
+Smart healing & buffing.
+
+SmartMedic
+
+Best bandages, food, water.
+
+SmartML
+
+Raid loot distribution (DKP).
+
+SmartPet
+
+Hunter: pet control.
+
+SmartRes
+
+Auto-resurrect & heal.
+
+SmartRestore
+
+Restores mana & health efficiently.
+
+SmartShopper
+
+Simple UI mod that provides statistics for items you try on in the Dressing Room. Info
+
+smilie2emote
+
+Converts chat emoticons to emotions.
+
+SnaFu
+
+Warlock: Soul Stone count (/snafu).
+
+SocialMods
+
+Adds "Send Message" and "Send Page" buttons and Player notes!
+
+SolidUI
+
+Solid UI addon compilation.
+
+SortEnchant
+
+Sorts enchants in window. Adds groupings to the Enchanting window, and also includes numorous filtering options.
+
+SoulStamp
+
+Warlock: item soulstone info.
+
+Soundtrack
+
+Music customization system. Info
+
+Spam_Guard_Plus
+
+Protects from spam.
+
+SpamIam
+
+Blocks spam messages.
+
+SpecialTalent
+
+Shows talent trees & builds.
+
+SpellAlert
+
+Warns the player of the spell being casting from the hostile units. Info
+
+SpellAlertSCT
+
+Warns the player of the spell being casting from hostile units through SCT. Info
+
+SpellBookTag
+
+Highlights unlearned spells in red.
+
+SpellCritTip
+
+Shows crit chance for spells.
+
+SpellDPS
+
+Spell damage & DPS in tooltip. Info
+
+SpellDRUID
+
+Druid: optimal spell use.
+
+SpellDuration
+
+Shows duration of buffs/spells.
+
+SpellEmote
+
+Custom chat spell emotes (/spellemote).
+
+SpellMats
+
+Reagent count in action panels.
+
+Spellometer
+
+Tool for tallying the total number of each spell cast by people and on whom they were cast.
+
+SpelloutMacro
+
+Macros named after a spell use the spell's tooltip.
+
+SpellRankCheck
+
+Updates spell ranks in buttons.
+
+rpgo-CharacterProfiler
+
+Export Character Profiles for use out-of-game. Info
+
+rpgo-GuildProfiler
+
+Export Guild Roster for use out-of-game. Info
+
+SpiritSphere
+
+Shaman: totem & spell UI.
+
+SpiritVersusIntellect
+
+Mana regen based on Spirit.
+
+Sprocket
+
+"Wheel" style menu system.
+
+SqueakyWheel
+
+Raid priority & spell management.
+
+Squeenix
+
+Mini-car replacement.
+
+SquidMod
+
+EndCap Graphics Mod. Type /squid for a list of commands. Info
+
+Squishy
+
+Raid monitor with distance & settings.
+
+sRaidFrames
+
+Lightweight raid frames.
+
+SSHonor
+
+Honor point tracker. Enchanted information regarding how much honor you've earned, along with where you earned the honor. Info
+
+SSLibrary
+
+Handles battleground specific data.
+
+SSPVP
+
+PvP-related functions.
+
+Stacker
+
+Auto-stack similar items.
+
+StanceSets3
+
+Warrior stance & weapon set switcher. Info
+
+StarshadowUI
+
+StarshadowUI is a compilation of modules. Info
+
+StatCompare
+
+Detailed stat comparison.
+
+StatRings
+
+Ring indicators for health and mana
+
+StatusBars
+
+HP, mana, rage, energy bars.
+
+sToT
+
+Shows target's target info.
+
+StupidMount2
+
+Will automatically dismount when gathering stuff. Will also dismount on any action that can not be performed mounted.
+
+StunWatch
+
+Rogue: stun/debuff duration.
+
+SuperInspect
+
+Inspect players at distance.
+
+SuperMacro
+
+Advanced macro management.
+
+SuperPlayerLink
+
+Extended right-click player menu.
+
+SW_Stats
+
+Alternative damage meter.
+
+SwiftShift
+
+Druid: form change macros.
+
+Swinger
+
+Adds ranged and melee weapon icon with swing timer (/Swinger).
+
+SystemMessageControlTool
+
+Controls system messages (/smct). Info
+
+Tab
+
+Auto-complete nicknames with Tab.
+
+TackleBox
+
+Makes the fishermans life much easer.
+
+TakHud
+
+Simple HUD overlay.
+
+TalentReminder
+
+Warns about unspent talent points.
+
+TalentSafe
+
+Confirms talent point spending.
+
+TalentTextLink
+
+Shows talent info in chat. Info
+
+TalentWhisper
+
+Share build info (/tw).
+
+TankAlert
+
+Alerts you when your group members are taking hits.
+
+TankAssist
+
+Tanking aid, shows tank targets. Info
+
+TankPoints
+
+Tanking stats overview.
+
+TargetCensus
+
+Tracks mobs & NPCs encountered.
+
+TargetCheck
+
+Who is attacking your target.
+
+TargetFC
+
+Flag carrier info in BGs.
+
+TargetHelper
+
+Targeting aid for DPS.
+
+TargetOnMate
+
+ToM is a plug-in that can be used to inform you when a player in your group/raid takes damage. Info
+
+TargetOfTarget
+
+Info about target's target.
+
+TargetPercent
+
+Adds a percent indicator to the default target frame.
+
+TargetUnique
+
+Selects unique targets.
+
+Targetz
+
+Shows who in your party or raid is targeting an enemy NPC.
+
+Taunt Buddy
+
+Notices Party/Raid members when your taunt gets resisted or when your mocking blow fails.
+
+tcgMobResists
+
+Shows enemy resistances.
+
+Tectonic_Attack_Power
+
+Shows AP in large font.
+
+Tectonic_Damage
+
+Shows damage in large font.
+
+Telepathy
+
+Addon Hidden Chat Communication Library.
+
+Telepathy-Versions
+
+Keeps track of what Telepathy addons/versions everyone is using.
+
+TellParse
+
+Accept tells request from other players for buffs/water/food/healthstone and queue them until you press the assigned hotkey.
+
+TellTrack
+
+Tracks whisper messages.
+
+Telo's LootLink
+
+An in-game browseable, searchable item database, with loot link coloring based on rarity (/ll). Info
+
+TheLowDown
+
+Auto-scroll chat.
+
+TheoryCraft
+
+Gear-based damage calculator. Tells you everything about an ability, right on the tooltip. Info
+
+TheWho
+
+Guild member info on shift+click.
+
+ThoriumRep
+
+Tracks Thorium Brotherhood rep.
+
+Thottbot
+
+Thottbot Profile/Data Module.
+
+Tick
+
+Energy & mana tick timer.
+
+Timers
+
+Event timers & warnings.
+
+TimeToLive
+
+Shows time till target dies (/ttlshow).
+
+tinyClock
+
+Analog clock above mini-map.
+
+TinyPad+Fu
+
+Lightweight notepad mod
+
+TinyTip
+
+Customizes tooltips.
+
+TipBuddy
+
+Tooltip editor. Info
+
+Titan
+
+Classic panel + plugins. Info
+
+TitanADRep
+
+Keeps track Argent Dawn reputation-related items
+
+TitanAggro
+
+Aggro detection, reporting and more.
+
+TitanAlarmClockWrangler
+
+Titan Panel Alarm Clock Wrangler.
+
+TitanAllPlayed
+
+Shows time played for all characters.
+
+TitanAspect
+
+Toggle Hunter Aspects with Titan Panel
+
+TitanAssist
+
+simple assist managment.
+
+TitanAtlas
+
+Provides an Atlas entry on Titan Panel.
+
+TitanBG
+
+Battleground helper for Titanpanel
+
+TitanBGinfo
+
+Plugin for Titan Panel to display Battleground Info.
+
+TitanBuffReagent
+
+Manage yor Reagents you need for buffs.
+
+TitanCheckStone
+
+Shows raid members which are currently soulstoned.
+
+TitanClassTracker
+
+A module to track different items and regeants depending on class.
+
+TitanClockOffsetFix
+
+Fixes the Titan Panel Clock so that its offset is stored per server not per character.
+
+TitanClothTracker
+
+View the quantity of different cloth in your inventory.
+
+TitanCombatInfo
+
+Combat stats in a central location.
+
+TitanCounter
+
+Counts the number of various reagents in your bags.
+
+TitanCritLine
+
+Saves your high normal and critical damage records and flashes a message if your break the record.
+
+TitanDivinityCounter
+
+Counts 'Symbol of Divinity' items and shows the number in Titan.
+
+TitanDPS
+
+Adds a DPS meter to Titan Panel.
+
+TitanEmoteMenu
+
+Titan Plugin that provides the player with categorized emotes.
+
+TitanFactions
+
+A simple factions reputation list for the Titan Panel AddOn.
+
+TitanGuild
+
+A simple guild list for the Titan Panel AddOn.
+
+TitanHawk
+
+Titan wrapper for Inventory Hawk.
+
+TitanHerbTracker
+
+View the quantity of different herbs in your inventory and bank.
+
+TitanHonorMarks
+
+Track the amount of Honor Marks you have in bag/bank.
+
+TitanHonorPlus
+
+Adds Today, This Week, and Progress info to Titan.
+
+TitanInn
+
+A module to show your current Inn home.
+
+TitanItemDed
+
+Drop the cheapest item from your bags.
+
+TitanItemRack
+
+Titan Panel plugin for ItemRack.
+
+TitanKingsCounter
+
+Counts Paladin Symbol of Kings and shows the number in Titan. Info
+
+TitanLog
+
+toggle the built in logging functions on or off using Titan.
+
+TitanMacroMenu
+
+Titan Plugin that provides the player with a menu for macros.
+
+TitanMail
+
+A Titan Plugin to let you know you have mail.  Also remembers any Auction alerts
+
+TitanManaRegged
+
+This Titan Panel Plugin shows you several stats concerning manaregeneration and mana management while in combat.
+
+TitanMyMusic
+
+MyMusic Titan Panel support.
+
+TitanPvPStatus
+
+A module to show PvP Status and Cooldown.
+
+TitanQuests
+
+A quest list for Titan Panel.
+
+TitanReloadUI
+
+A simple ReloadUI button for Titan Panel.
+
+TitanRecap
+
+Titan Panel plugin for Recap
+
+TitanRecZone
+
+Displays level for current zone and recommends zones and instances for your level.
+
+TitanRestPlus
+
+Keeps track of the RestXP amounts and status for all of your characters.
+
+TitanRoguePowder
+
+Displays the number of Flash Powder, Blinding Powder, Thistle Tea, Poisons and Bandages in inventory.
+
+TitanRoll
+
+Clickable dice and roll overview for the Titan Panel AddOn.
+
+TitanSilithusTracker
+
+Track Silithus related items in your inventory.
+
+Titan_Skin_Pack
+
+Skins for Titan.
+
+TitanSkinTracker
+
+View the quantity of different skins in your inventory, bank and mail
+
+TitanSkills
+
+A simple skills list for the Titan Panel AddOn.
+
+TitanSpeed
+
+TitanBar plugin: Show your speed in percent.
+
+TitanSpeedometer
+
+Speedometer for Titan Panel.
+
+TitanStones
+
+Soul Shard and Stone management plugin.
+
+TitanStonescan
+
+Utility functions for TitanShards, HealthStone and Soulstone.
+
+TitanSummoner
+
+Summon Warlock Pets from Titan Panel.
+
+TitanTimers
+
+Titan UI for Advanced Timers.
+
+TitanTracker
+
+Toggle Tracking with Titan Panel.
+
+TitanTradeCooldown
+
+Lists tradeskill cooldowns across all characters.
+
+TitanWardrobe
+
+Provides an Wardrobe entry on Titan Panel.
+
+TitanWWDPS
+
+The DPS mod of the Gimbatuul. Treat it with care.
+
+TitanXPStatus
+
+A module to display a summary of currentXP, totalXP, percentageXP and restedXP.
+
+TitanZeppelinMaster
+
+Titan display for ZeppelinMaster.
+
+TLoc
+
+Locate raid members on map.
+
+TNE_FiveSec
+
+Mana regen delay.
+
+TNE_IsAttacking
+
+Auto-attack macros.
+
+TNE_LowHealthWarning
+
+Warn on low health/mana.
+
+TNE_Nightfall
+
+Warlock: Nightfall alert.
+
+TNE_RareTracker
+
+Rare mob spawn notifier.
+
+TNE_Whispers
+
+Whisper alert overlay.
+
+TooltipsKhaos
+
+Provides a complete package for configuring tooltips.
+
+Toons
+
+Friends tab with detailed info.
+
+topChat
+
+Chat with timestamps & input move.
+
+TopErOff
+
+Spell rank & CP macros.
+
+TOTAlert
+
+Target info display alternative.
+
+TotemBar
+
+Add a bar for all your Shamen Totems.
+
+TotemMenu
+
+Shaman: large totem panel.
+
+TotemTimers
+
+Shaman: totem timers.
+
+Tracer
+
+Helper addon to log debugging messages to a SavedVariables file. Info
+
+TrackerToggle
+
+Search mode toggle button.
+
+TradeDispenser
+
+Distribute water/food (mages). (/tD or /tradeDispenser).
+
+TradesBar
+
+Professions: extra panel.
+
+TrainerSkills
+
+View trainer remotely.
+
+TranquilyShot
+
+Hunter: cooldowns for Tranquilize.
+
+Transcriptor
+
+Boss Encounter Logging Utility
+
+Transmogrifier
+
+Change item appearances.
+
+TrapsBar
+
+Hunter: trap panel.
+
+Traveler
+
+Mages: portal sales for gold.
+
+tri
+
+Bind raid icons to targets.
+
+TricksterUI
+
+Trickster UI addon compilation.
+
+TrinketMenu
+
+Quick trinket switch & cooldowns.
+
+TTCraftAddict
+
+Auto-crafting helper.
+
+TTSpellTimer
+
+Spell, totem & cooldown timers.
+
+TTW_Tooltip
+
+Move tooltip position.
+
+TwinTrinkets
+
+Manage trinkets (/tt).
+
+TypeDebuff
+
+Quickly identify debuff schools by color.
+
+UberActions
+
+Lets you inspect all ActionButtons, Option to set count for spells with reagents, Option to lock ActionButtons so they don't get pulled off accidentally. Info
+
+UberBanish
+
+Warn before Banish ends (Warlock).
+
+UberHeal
+
+Simplify healing with CT_RaidAssist, Squishy.
+
+UberQuest
+
+Improved quest log. Info
+
+UBotD
+
+Ultimate Book of the Dead. Logs your PvE/PvP wins and losses in a book (/aao help). Info
+
+UDThad
+
+Make it very obvious as to what your charge is during the thaddius fight.
+
+Ultimate UI
+
+The UUI Menu that you all have been dreaming about...
+
+Ultimate-ui-4-982
+
+Classic UI replacement. Info
+
+UltroPack
+
+UltroPack addon compilation. Info
+
+UndressButton
+
+Button to undress character.
+
+Universal essentials
+
+Addon compilation. Info
+
+URLCopy
+
+Copy links from chat.
+
+UseByName
+
+Use items by name (/usebyname). Info
+
+Util
+
+Misc functions. Adds short print() function.
+
+Valami
+
+This addon puts your precious epic ranged weapon to your backpack before classcalls, and equips them a few secs later.
+
+VanasKoS
+
+List of friend/foe players (/vanaskos).
+
+vAssist
+
+Tank target info (/va set 1).
+
+vChat
+
+Simple Ace2 chat.
+
+VendingMachine
+
+Auto-sell & distribute water/food (mages).
+
+VendorBags
+
+Opens all bags at vendor.
+
+ViperConfigControl
+
+A GUI for configuring my add-ons. Info
+
+VisibilityOptions
+
+Provides ability to autohide, hide, and change transparency of frames.
+
+VitalWatch
+
+Custom warnings for HP, mana, aggro.
+
+VoicesFromBeyond
+
+Raid boss kill alerts in guild chat.
+
+Wardrobe
+
+Quick gear changes.
+
+Warrior
+
+Warrior: ability macros (/warrior).
+
+WarriorAlert
+
+Warrior: ability readiness notifications.
+
+WarriorButton
+
+Automate warrior abilities. Info
+
+WarriorUI
+
+Warrior UI addon compilation.
+
+WatchCombat
+
+In-combat notifications.
+
+WatchDog
+
+Compact unit frames.
+
+WatchTower
+
+Detailed target info in chat.
+
+WaterboyLoc
+
+Mage: automatic water distribution. Info
+
+WeaponButtons
+
+Gives you a little window that contains your main hand weapon and your off hand weapon for easy weapon switching.
+
+WeaponQuickSwap
+
+Allow you to switch weapons quickly with a single keystroke. Info
+
+WeaponRebuff
+
+Weapon buff reminders & buttons.
+
+Werwolf
+
+Werwolf Interface Collection. Info
+
+WHDB
+
+Old WoWHead comments in quest log.
+
+Wheel Bindings
+
+Provides mouse-wheel bindable actions
+
+Whispercast
+
+Whisper-based buffers.
+
+Whiteboard
+
+For doodling and playing Pictionary.
+
+WhoNeedsThis
+
+Helps you decide which other player to mail your trade items to. Info
+
+WIM
+
+Whisper in dedicated window, with history.
+
+WinterRep
+
+Shows reputation with Wintersaber Trainers.
+
+WitchHunt
+
+Shows who is casting (similar to SpellAlert).
+
+WL_RecipeBox
+
+Tracks recipes across characters (/rb).
+
+WonderBooze
+
+A drinking game for wow. Info
+
+WonderRepp
+
+Tracks reputation & announces in chat.
+
+WorldMapInfo
+
+Add's Player & Cursor Coordinates to the world map frame.
+
+wowChess
+
+In-game chess minigame.
+
+WoWGuru
+
+Collects data for use with the WoW Guru Patcher.
+
+WoWTexasHoldem
+
+Texas Holdem Poker mod. Info
+
+WoWTexasHoldemFlopOdds
+
+Designed to help you play better poker while using WoW Texas Holdem (/flopodds). Info
+
+WOWXML
+
+Program that would help beginners create the required XML code. Info
+
+WT_ZoningTimeFix
+
+Speeds up zoning times. Info
+
+XAD
+
+Panel with food & potions.
+
+Xcalc
+
+In-game calculator.
+
+XLoot
+
+Improved loot window.
+
+XpCounter
+
+Custom XP bar & info.
+
+X-Perl
+
+Replaces the normal unit, party, target, pet frames and adds target-of-target. Info
+
+XPerl_TeamSpeak
+
+Ventrilo/TS overlay.
+
+XPToGo
+
+Display XP remaining until level on XP bar
+
+XRaid
+
+Another Raid Addon.
+
+XRI
+
+Ability to ignore ppl from other servers in cross-realm BGs.
+
+XRS
+
+Raid: show who is buffed & ready.
+
+Yatlas
+
+Highly detailed map with points of interest.
+
+Yule
+
+Night/holiday log.
+
+ZAssist
+
+A quick and easy assist mod, allowing assigning of MA and SA and swapping between them.
+
+zBar
+
+Custom action panels.
+
+Zenmas
+
+Zenmas Addon Pack
+
+ZepShipMaster
+
+Tracks airship/ship arrival times.
+
+ZGCount
+
+Counts coins/jewels from ZG.
+
+ZhunterMod
+
+Hunter: spell & pet icons. Includes several features to make a hunter's life easier. Info
+
+ZoneLevel
+
+Displays current zone level.
+
+Zorlen
+
+Library for macros & functions. Info
+
+Zuxana's ModelCitizen
+
+Adjustable 3D model portraits.
+
+ZGLoot
+
+ZG, AQ20/40 and raid trash auto-roller.
+
+UTF8
+
+Adds utf8 compatible versions of some string library methods. For use by other addons, doesn't do anything on its own.
+
+TranqRotation
+
+Hunter tranquilizing shot coordination.
+
+Tankalyze
+
+Customizable tank alerts (cooldowns, missed taunt, mocking, challenging etc) Warriors and Druids.
+
+TankPoints
+
+Warrior Tank survivability rating. It only measures "tankiness", not threat or other parts of the tanking role.
+
+RollTracker
+
+Random roll tracking and announcing.
+
+NoSalvForTank
+
+Automatically removes Blessing of Salvation and Blessing of Protection from warriors in defensive, druids in bear and paladins with RF up and a shield equipped.
+
+NabuFiveSec
+
+Bar tracking 5 second rule time for mana regen.
+
+NCCM_ForPaladins
+
+Nefarian Class Call for Paladins. Automatic cancellation of the "Siphon Blessing" buff. Does not work on all servers.
+
+NCCM_ForHunters
+
+Nefarian Class Call for Hunters. Automatic weapon swap before hunter class call and swap back after it's done.
+
+MrPlow
+
+Sorts stacks and defragments bags and bank.
+
+MacroTips
+
+#showtooltip replacement for showing spell, item or inventory slot tooltips in macros.
+
+LootHog
+
+Loot and roll tracker.
+
+GuildReRank
+
+Allows a guild leader to mass move guild members among ranks.
+
+ES_GuildCheck
+
+Track and monitor guild roster changes. /egc for options.
+
+EkWaitList
+
+Standby raid list addon with main / alt support.
+
+EkRaidAttend
+
+Raid Attendance logger with import export. Can optionally work with EkWaitList for logging standby.
+
+EkBomb
+
+Warnings for Bomb type raid debuffs.
+
+EgoCast
+
+Intelligent auto-self-cast that doesn't interfere with addons that require the Blizzard self-cast option to be 'off'.
+
+DragonTracker
+
+Replaces the tracking blip on the minimap with a blinking dragon and removes other blips. Good for Hunters tracking Onyxia position in P2.
+
+DeclineTaxiSummon
+
+Automatically declines warlock summon while on a gryphon with a message to summoner (it will waste the summoner's shard) to workaround de-sync bug on some servers.
+
+ClassMasterLoot
+
+Masterloot menu organized by class instead of groups, random assign from the menu, self-assign and roll requests. Intended for default LootFrame (not pfUI or XLoot).
+
+Cancellation
+
+Alert or auto-remove unwanted buffs (eg. Blessing of Protection).
+
+BadApples
+
+Rate and make notes for other players with various warnings.
+
+TinyTipOptions
+
+Slash command interface for TinyTip
+
+AHFavorites
+
+Saves AH searches in a favorites list
+
+CornerMinimap
+
+Makes the minimap fit to the right up corner
+
+TabletLib
+
+A library to provide an efficient, featureful tooltip-style display.
+
+Slash_GM
+
+Command-line mechanism to open GM petition pane
+
+MetaMapZSM
+
+ZoneShift module for German and French clients.
+
+WandCancel
+
+Cancels wand casting upon trying to cast a spell
+
+TitanDivinityCounter
+
+Counts Paladin Symbol of Divinity and shows the number in Titan. Info
+
+BEBOptions
+
+Options menu for BEB (BasicExperienceBar)
+
+UUIVersion
+
+Welcome to the first day of the new Era.
+
+OneView
+
+OneView is a all in one inventory and bank viewer.  It allows you to view the inventory and bank of your alts, or your main away from the bank.  Its a compainion for OneBag.
+
+EnchanterAdShrinker
+
+Enchanter Ad Shrinker
+
+GuildEventManager2
+
+Allows creating/scheduling/managing future raid instances; players can register/join/cancel.
+
+Magellan
+
+This mod will populate the the Map with MapNotes for all the local landmarks
+
+idChat2_Timestamps
+
+Adds timestamps to all messages in all chatframes.
+
+QuuSpellAlert
+
+Puts messages when a non party member is going to cast a spell in the center of the screen.
+
+Perl_Player_Pet
+
+Copies the configuration of X-Perl from old folder to new. Do not re-enable this mod after it has been run once
+
+sctd_options
+
+Options menu for SCTD (LoadOnDemand)
+
+UltimateUI
+
+The UUI Menu that you all have been dreaming about...
+
+Enchantrix
+
+Display information in item tooltips pertaining to the results of disenchanting said item. Info
+
+solColorChatNicks
+
+recolors the chat nicknames in the Class color of the chatter. Mousewheel scrolling, timestamping, supress channel name.
+
+ZGLI
+
+Zul'Gurub-Loot-Info
+
+DiscordLibrary
+
+Common library for all mods by Lozareth.
+
+Perl_CombatDisplay
+
+Displays a movable bar that displays health, rage/energy/mana, and combo points.
+
+Nurfed_CombatLog
+
+Nurfed Combat Log Based on HitsMode
+
+LootLinkAddDB
+
+Add lootlink data from over 39000 items. Info
+
+SuperInspect_UI
+
+This is the UI that is loaded when SuperInspect loads.
+
+LS_Chat
+
+Open Up with /lschat command - Removes the chat buttons , enabled mousewheel scrolling and timestamps chat messages.
+
+Fubar_KCIFu
+
+A handy addon for managing KC_Items functions using only your mouse
+
+XPerl_RaidAdmin
+
+Provides useful raid admin tools for todays raid leader.
+
+SupplyAndDemand
+
+A versatile Load on Demand stub
+
+Minesweeper
+
+Basically this mod is just the standard Minesweeper game that comes with Windows.
+
+MetaMapCVT
+
+Conversions and imports module
+
+bc_AutoMailSubject
+
+Sets the subject of a mail message to the name of the attachment when it's added.
+
+Bagnon_Options
+
+A configuration menu for Bagnon
+
+FuBar_ItemBonusesFu
+
+Easy display of item bonus info on FuBar
+
+Nurfed_Utility
+
+Library for the Nurfed AddOns
+
+TrackerAssist
+
+Assists the Track ability
+
+simpleMinimap_Skins
+
+minimap re-skin module for simpleMinimap
+
+MCom
+
+Set of utility functions to simplify addon creation
+
+CooldownCountFlexBar
+
+CooldownCount for FlexBar
+
+MetaMapQST
+
+Displays your quests and keeps a history database.
+
+Bartender2_Dreamlayout
+
+Maia's Mockup layout
+
+linkSnag
+
+Allows you to click on url's and copy them into a browser. Also keeps a list of all url's seen.
+
+Informant
+
+Displays detailed item information in tooltips, and can produce item reports by binding an information window to a keypress.
+
+FuBartender2
+
+FuBar 2.0 Plugin for Bartender2
+
+!ChatBox
+
+Removes the chat buttons, enabled mousewheel scrolling, Relink items, stickychat, custom chats strings, etc.
+
+idChat2_Buttons
+
+Module for idChat2 that toggles the chat menu and chat window buttons on and off (default=off).
+
+Perl
+
+Copies the configuration of X-Perl from old folder to new. Do not re-enable this mod after it has been run once
+
+Banknon
+
+Display's the player's bank in a single frame.
+
+MinigamesUI
+
+Minigames! Use /minig
+
+XPerl_PartyPet
+
+Replaces the default party's pet frames.
+
+Gems
+
+A silly gem-based minigame.
+
+Timex
+
+Timex is a versatile timing library, providing core timing functions, customizable timer bars, and chat command integrations. It is compatible with Chronos and offers tools for both developers and players.
+
+FlightTime
+
+Measures flight times and displays them for you.
+
+DiscordFrameModifier
+
+Lets you configure any frame in your UI in any way it's possible to configure that frame.
+
+Bagnon_Core
+
+Core functionality for Bagnon and Banknon
+
+simpleMinimap_Autozoom
+
+timed auto zoom-out module for simpleMinimap
+
+MetaMapFWM
+
+Overlay module which shows unexplored areas of the WorldMap.
+
+CombatCaller
+
+Allows the user to set up a way so that the client will start telling everyone that it has low mana/hitpoints.
+
+Fubar_AtlasFu2
+
+A FuBar button to load Atlas.
+
+MyAcePerc
+
+Shows percentage value of mana total on spell mouseover
+
+simpleMinimap_Pings
+
+pinger name popup module for simpleMinimap
+
+SelfElite
+
+Makes your character texture 1 of 4 styles (elite/rare/raremob/normal).
+
+Stubby
+
+Allows on-demand addons to load automatically based upon simple event notification hooks
+
+SpellAlertOptions
+
+Load on demand option windows for SpellAlert (modified again).
+
+TooltipsBase
+
+Provides a base mod for moving and modifying tooltips
+
+Bongos_Options
+
+An options menu for Bongos
+
+Bongos_RollBar
+
+Makes the frame for rolling on items movable
+
+SimpleTip
+
+Simple tooltip enhancements
+
+AceLoot
+
+Automatically positions the most relevant part of the loot window under your cursor.
+
+ChatScroll
+
+Makes chat windows scrollable with the mouse wheel.
+
+DiscordArtOptions
+
+Options window for Discord Art.
+
+BanzaiLib
+
+Aggro notification library.
+
+OneBank
+
+OneBank is a replacement for the default bank frame that combines all the bags into one frame.
+
+PetBindings
+
+Adds several key bindings to the UI that deal with pets.
+
+DeShift
+
+Auto DeShifts you to humanoid form if you want to talk.
+
+DynamicDataItem
+
+DynamicData aims to be for dynamic data in WoW what Sea is for lua functions - a library with stuff that gets updated in a timely manner.
+
+simpleMinimap_Movers
+
+Mover frames module for simpleMinimap
+
+ProfessionLevel
+
+Shows the minimum gathering level of profession resource nodes on mouseover.
+
+SCT_ManaGain
+
+Shows the mana you regen while drinking, Spirit Tapped, or Evocating.
+
+Nurfed_PlayerFrame
+
+Customizes the default player frame. It moves the frame, adds health/mana/experience displays, and enables various visual and interaction modifications.
+
+GuildRaidSnapShot
+
+Takes snapshots of raids and loot, and has an in-game DKP interface for bidding, rolling, and dkp lookups.
+
+EnhTooltip
+
+Used to display enhanced tooltips under the original tooltip or in the original tooltip, contains hooking functions for almost all major in game item tooltips.
+
+ChatrBacklog
+
+Records recent chat messages, specifically whispers and notes, and allows you to review them later.
+
+myTargetModel
+
+Just a little dragable frame of your target's model.
+
+ComboEnergyBar
+
+Adds a window displaying combo points and energy bar for Rogues and Druids.
+
+FuBar_DamageMetersFu
+
+Damage Meters control and data via the FuBaR interface.
+
+Backdrop
+
+Adds a few resizable backdrops to the UI
+
+MetaMapBWP
+
+Waypoints system module
+
+Bongos_MapBar
+
+A customizable, movable minimap
+
+AcePlayerMenu
+
+Hook extra menu to friend list, guild list and chat player
+
+Solitaire
+
+This is just a recreation of the solitaire game.
+
+whopinged
+
+helps identify players who ping the minimap
+
+MetaMapWKB
+
+MetaMapWKB adds a user database of MoBs/NPCs from aquired targets.
+
+DiscordActionBarsOptions
+
+Load on demand options window for Discord Action Bars.
+
+SimpleMail
+
+Preserve recipient's name and autofill subject line.
+
+MetaMapBLT
+
+Adds Boss Loot Tables to MetaMap, edited by Daviesh and based on AtlasLoot Enhanced by Daviesh
+
+TinyTipExtras
+
+Adds extra features to your tooltip, such as pvp icon, buffs, etc.
+
+Bongos_ActionBar
+
+A replacement for the main actionbar
+
+FuBar_SWStatsFu
+
+Fubar 2 plugin for SW_Stats
+
+MetaMapHLP
+
+Help module for MetaMap.
+
+XPerl_RaidHelper
+
+Replaces CTRA MT Targets window with extra functionality, and provides assists frame.
+
+sct_options
+
+Options menu for SCT (LoadOnDemand)
+
+WinAce
+
+This tool provides an easy way for you to keep your Ace addons up to date.
+
+FuBar_CombatTimeFu
+
+Shows how long you've been in combat
+
+XPerl_RaidFrames
+
+Enhances and customizes the default raid interface
+
+XPerl_PlayerPet
+
+Replaces the default player's pet frame.
+
+CT_RABossRazorgore
+
+An extension to CT_RABossMods that adds Razorgore to the encounters.
+
+myModel
+
+Just a little dragable frame of your model.
+
+ZoomMap
+
+Bind a key to inflate the minimap
+
+ZubanLib
+
+Library functions used by various addons.
+
+simpleMinimap_GUI
+
+GUI options module for simpleMinimap
+
+DHUD_Options
+
+Drathals HUD Options. Type /dhud menu for Options
+
+CooldownCountCT
+
+CooldownCount for CT
+
+Nurfed_General
+
+Provides more functionality to the base UI.
+
+idChat2_Scroll
+
+Enables scrolling with the mousewheel, shift+scroll to go to the top/bottom.
+
+Nurfed_Options
+
+Nurfed's Options Menu.
+
+Bagnon_Forever
+
+Allows the viewing of the bank from anywhere and the inventory of your other characters.
+
+MetaMapBKP
+
+Backup module for data backup and restore.
+
+FuBar_RecapFu
+
+FuBar Panel plugin for Recap
+
+DiscordUnitFramesOptions
+
+Provides an options window for Discord Unit Frames.
+
+GoodInspect
+
+Improves inspect function
+
+simpleMinimap_Coords
+
+minimap coordinates frame module for simpleMinimap
+
+OutfitDisplayFrame
+
+A utility frame to display a set of equipable items.
+
+AvailableOnly
+
+This hides unavailable spells/skills by default when visiting a trainer.
+
+MetaMapEXP
+
+MetaMap export module.
+
+Sudoku
+
+Sudoku puzzle game.
+
+Bagnon_Spot
+
+Simple search for Bagnon
+
+WoWonid
+
+Brick-breaking game
+
+Buffalo
+
+Customizing your buff display
+
+XPerl_TargetTarget
+
+Replaces the default Target of Target frame.
+
+Non-Addon Game Modifications[]
+
+Looking to boost performance? Autoloot without needing to hold shift? Improve graphics a bit? Change the models and textures and sounds of the game? See also, for these non-addon ways you can further tweak your Turtle WoW setup:
+
+Client Fixes and Tweaks Client Mods Sound Mods Making Custom Sounds 3D Model Guide Mod Primer Guide
+
+For Addon Developers[]
+
+First Steps To Creating Addons[]
+
+Do you have a secret dream of becoming a famous addon developer superstar and get all the nerdy wow girls like Shagu? Take your first steps to achieve the dream by reading a short tutorial from the man himself. Also consider reading the FirstSteps guide.
+
+Basic loop to write an Addon[]
+
+Write Lua, XML, .toc as text file, and place them in a folder in game's Interface/AddOns. You could use an IDE like Visual Studio or a text editor like Notepad++ to do this. Run the game to see if the addon is working. If there is bug, the easiest way is to use message("string") or DEFAULT_CHAT_FRAME:AddMessage("string") trying to output some info from your program to find the bug. If you need advanced debug feature like Step by Step Execution or Call Stack Inspector, you could try the UnitXP_SP3 full package, it includes an advanced Lua debugger for the game. DEMO Lua debugger Step by step Lua execution for in-game Lua
+
+1.12 Addon Development Resources[]
+
+Lua global space full dump. All available APIs of Turtle which you could call/use in your addon. It's a full dump of all function and data names.
+
+Interface Customization - WoWWiki Interface Customization Main Menu (Wayback machine)
+
+API Functions. This is a link to the wiki dated right before December 5th, 2006, when the 2.0 update was released. Make sure you always look at wiki edits from before this date.
+
+API Events - Shagu's git for 1.12.1 Event-Listing.
+
+1.12.1-Development - Kabinner documenting the experience of learning to write addons.
+
+Interface Textures - Export of vanilla WoW interface textures converted to .png.
+
+UI Macros - a large collection of useful macros that can be copied and used on turtle wow.
+
+Lua Definitions - Lua definitions for statically typed addon development using Luanalysis IDE.
+
+API Type Definitions - Dokka's🏹 git for type definitions to much of the 1.12.1 API.
+
+Turtle WoW UI Source - the user interface source code for Turtle WoW.
+
+Hex to RGBA - Hex to RGBA Converter.
+
+WoWUIDesigner - Helps with the creation of add-ons interface elements.
+
+TextureCoordsCalculator - Calculates texture coordinates automatically, by selecting off the desired area directly through your .BLP file.
+
+Library Addons for Addon Developers[]
+
+Abacus-2.0 - A library to provide tools for formatting money and time.
+
+Ace2 - embeddable framework for rapid WoW addon development.
+
+Ace3v - port of Ace3 framework for Vanilla WoW.
+
+AnchorsAway-1.0 - Row stacking and anchoring template.
+
+AnimationGroup - A library to provide Retail-like frame animations.
+
+Babble-Boss-2.0, 2.1, 2.2 and 2.3 - A library to provide localizations for bosses.
+
+Babble-Class-2.0, 2.1 and 2.2 - A library to provide localizations for classes.
+
+Babble-Faction-2.2 - A library to provide localizations for factions.
+
+Babble-Item-2.0 - A library to provide localizations for items.
+
+Babble-ItemSet-2.2 - A library to provide localizations for factions.
+
+Babble-Race-2.0, 2.1 and 2.2 - A library to provide localizations for races.
+
+Babble-Spell-2.0, 2.1, 2.2 and 2.3 - A library to provide localizations for spells.
+
+Babble-SpellTree-2.0, 2.1 and 2.2 - A library to provide localizations for spell and talent trees.
+
+Babble-Zone-2.0, 2.1 and 2.2 - A library to provide localizations for zones.
+
+Banzai-1.0 and 1.1 - Aggro notification library.
+
+CallbackHandler-1.0 - back-end utility library that makes it easy for a library to fire its events to interested parties. It removes the need for addons to be aware of e.g. AceEvent.
+
+CandyBar-2.0 - A timer bars library.
+
+CandyBar-2.1 - A timer bars library.
+
+CastLib-1.0 - A library to provide information about casts.
+
+ChatThrottleLib - A library that keeps outbound chat and addon communication from exceeding the output rate limit in WoW that otherwise causes players to disconnect from the server.
+
+Chronos - A library that managers time. You can schedule a function to be called in X seconds, with or without an id. You can request a timer, which tracks the elapsed duration since the timer was started.
+
+Classy-1.0 - A wrapper for defining classes that inherit from widgets.
+
+CommChannel-1.0 - A library that manages three communication channels ("guild", "raid" and "sync") and allows addons to use a RPC mechanism.
+
+Compost-2.0 - Recycle tables to reduce garbage generation.
+
+Crayon-2.0 - A library to provide coloring tools.
+
+Deformat-2.0 - A library to deformat format strings.
+
+Dewdrop-2.0 - A library to provide a clean dropdown menu interface.
+
+DruidManaLib-1.0 - A library to provide mana values while in shape shift.
+
+FAIAP - A library for syntax highlighting and indentation.
+
+FiveSecLib-1.0 - A library to provide feedback about the five second rule for casters.
+
+FuBarPlugin-2.0 - Plugin for FuBar.
+
+GetSpellInfoVanilla - addon to help developers access information about spells.
+
+Glory-2.0 - A library for PvP and Battlegrounds.
+
+GraphLib-1.0 - Allows for easy creation of graphs.
+
+Gratuity-2.0 - Tooltip parsing library.
+
+HealComm-1.0 - A library to provide communication of heals and resurrections.
+
+IFrameFactory-1.0 - A library that helps to create and re-use dynamically created frames.
+
+ItemBonusLib-1.0 - A library that scans your equipment for cumulative item bonuses and sums them up.
+
+ItemClasses-2.0 - A set of classes used to describe and execute usable items/actions (spells, macros, etc...).
+
+Jostle-2.0 - A library to handle rearrangement of blizzard's frames when bars are added to the sides of the screen.
+
+LegoBlock - A library to create blocks for displaying information.
+
+LibCompress - A compression and decompression library implemented entirely in WoW-friendly Lua. It supports the LZW and Huffman algorithms.
+
+LibCraftingProfessions-1.0 - A small library designed to provide a universal interface for crafting professions.
+
+LibCrafts-1.0 - A library designed to provide an embeddable database of crafting spells, recipes, reagents, results, sources etc. Supersedes ReagentData, TradeSkillsData and TradeSkillsData-turtle (not as a drop-in replacement; i.e., it is not meant to be installed as an addon! It will be included within addons that require it).
+
+LibDataBroker-1.1 - A library designed to provide a MVC interface for use in various addons.
+
+LibDBIcon-1.0 - A library for creating minimap icons.
+
+LibSharedMedia-3.0 - Shared handling of media data (fonts, sounds, textures, ...) between addons.
+
+LibStub - minimalistic versioning library that allows other libraries to easily register themselves and upgrade. It is meant to be a cross-community library sharing system.
+
+LibVendorValue-1.0 - A library for vendor item values in World of Warcraft 1.12.1.
+
+LzwLib-1.0 - A simple lua LZW compression library.
+
+MD5-1.0 - MD5 (Message-Digest algorithm 5) implementation.
+
+Metrognome-2.0 - OnUpdate timer managing library.
+
+NPCDB-1.0 - A library to provide localizations for relevant npcs.
+
+OneStorage-2.0 - A universal persistent pooled database for bank, inventory, and equipment data.
+
+PaintChips-2.0 - Color managing library.
+
+ParserLib-1.1 - An embedded combat log parser, which works on all localizations.
+
+PeriodicTable and PeriodicTable-2.0 (also Core-2.0 and Misc-2.0) - Optimized itemid database. Ace alternative to ReagentData library.
+
+ProximityLib - A library to track raid/party unit's general range.
+
+Quixote-1.0 - Abstracts out questlog handling.
+
+ReagentData - comprehensive set of all reagents and components used by trade skills. Superseded by LibCrafts, which is included in future addons that require it as a library.
+
+RosterLib-2.0 - party/raid roster management.
+
+Satellite - A tool for slash command enchancement.
+
+SeaString - A mini-library for string functions.
+
+SharedMedia-1.0 - Shared handling of media data (fonts, sounds, textures, ...) between addons.
+
+Sink-1.0 - Library that handles chat output.
+
+Sol-1.0 - Sol reimplements common Lua functions that are only available in Lua versions post 5.0.
+
+SpecialEvents-Aura-2.0 - Special events for Aura's, (de)buffs gained, lost etc.
+
+SpecialEvents-Bags-2.0 - Special events for bag/slot changes.
+
+SpecialEvents-Breath-2.0 - Special events for player holding breath (swimming).
+
+SpecialEvents-Equipped-2.0 - Special events for equipment changes.
+
+SpecialEvents-Keys-2.0 - Special events for modifier (ctrl, alt, shift) keypresses.
+
+SpecialEvents-LearnSpell-2.0 - Special events for mail (received, auction notices, etc).
+
+SpecialEvents-Mail-2.0 - Special events for mail (received, auction notices, etc).
+
+SpecialEvents-Mount-2.0 - Special events for mounting.
+
+SpecialEvents-Movement-2.0 - Special events for movement.
+
+SpellCache-1.0 - Library that caches spells to speed up look ups.
+
+SpellStatus-1.0 - Status library that simplifies retrieving spell status information from the player.
+
+SpellStatus-AimedShot-1.0 - Addon library for SpellStatus-1.0 to allow support for Hunter's Aimed Shot.
+
+SpellTimes-1.0 - A library to provide buff times and cooldowns for spells.
+
+Surface-1.0 - Shared handling of StatusBar textures between add ons.
+
+Tablet-2.0 - A library to provide an efficient, featureful tooltip-style display.
+
+TEALib-1.0 - Tiny Encryption Algorythm implementation.
+
+TipLib-1.0 - A library of common functions to tooltips. Can be used to create a psuedo tooltip.
+
+TradeSkillsData - provides database of vanilla trade skill recipes, vendors and sources. Superseded by LibCrafts, which is included in future addons that require it as a library.
+
+TradeSkillsData-turtle - turtle-specific database extension for TradeSkillsData. Superseded by LibCrafts, which is included in future addons that require it as a library.
+
+Toolbox-1.0 - Collection of various utility functions.
+
+Tourist-2.0 - A library to provide information about zones and instances.
+
+Vector-2.0 - A simple set of vector libraries.
+
+Waterfall-1.0 - GUI configuration library.
+
+Addons In Need of Fixes[]
+
+These addons work on normal 1.12 servers, but because of Turtle WoW's changes, these addons are known to suffer lua errors or other serious issues. If you are an addon developer and choose to fix up these addons, please share your fixed fork on the working addons list above.
+
+Questie - A standalone Vanilla QuestHelper. Has far less features than the 2024 Classic version most people know. Completely lacks support for new Turtle quests and changes. [Vid1]. Consider instead: pfQuest + pfQuest-turtle
+
+ElvUI - Complete User Interface replacement and overhaul. This is an incomplete backport from later WoW versions. [Img1] Consider instead: pfUI + pfUI-turtle
+
+MacroExtender - allows you to create conditional statement macros that are found in TBC+ and more [Read] Consider instead: Roid-Macros

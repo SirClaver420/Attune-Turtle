@@ -1,0 +1,16 @@
+API TYPE LOOTMETHOD
+
+ 
+
+These are the loot methods used by GetLootMethod()
+
+VALUES[]
+
+	* "freeforall" Free-for-all, everyone can loot corpses. 	*
+"roundrobin" Round-robin, looting cycles evenly through group members.
+	* "group" Group loot, round-robin for normal items, rolling for
+special ones. 	* "needbeforegreed" Need before greed, round-robin for
+normal items, selective rolling for special ones. 	* "master" Master
+looter, designated player distributes loot.
+
+ 

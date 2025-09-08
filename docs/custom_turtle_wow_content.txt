@@ -1,0 +1,123 @@
+CUSTOM TURTLE WOW CONTENT
+
+ 
+
+While Turtle WoW "Mysteries of Azeroth" is based on World of Warcraft
+client version 1.12.2, it features a range of custom additions to the
+vanilla basegame.
+
+CLASS CHANGES, NEW RACES & RACE-CLASS COMBINATIONS[]
+
+CLASS CHANGES[]
+
+All classes have received changes on Turtle WoW, with alterations and
+additions to their abilities and talent trees. See respective articles
+for details:
+Druid | Hunter | Mage | Paladin | Priest | Rogue | Shaman | Warlock |
+Warrior
+
+NEW PLAYABLE ALLIANCE RACE: HIGH ELVES[]
+
+	* Reputation faction: Silvermoon Remnants
+ 	* Starting zone: Thalassian Highlands
+ 	* Classes: Warrior, Hunter, Rogue, Priest, Mage, Paladin
+
+	* Traits: 
+
+	* Arcane Resistance (+10)
+ 	* Bow Specialization (+5)
+ 	* Quel'dorei Meditation (channeled mana/rage/energy regen for 5s)
+ 	* Enchanting Specialization (+10)
+
+NEW PLAYABLE HORDE RACE: GOBLINS[]
+
+	* Reputation faction: Durotar Labor Union
+ 	* Starting zone: Blackstone Island
+ 	* Classes: Warrior, Hunter, Rogue, Mage, Warlock
+
+	* Traits: 
+
+	* Chemical Superfreak (Alchemy +10)
+ 	* Prospecting (Mining +10)
+ 	* Exit Strategy (+30% movement for 5s)
+ 	* Aggressive Negotiations (daggers & maces +5)
+
+NEW RACE-CLASS COMBINATIONS[]
+
+	* Mage: Orc, Dwarf
+ 	* Hunter: Gnome, Undead, Human
+ 	* Warlock: Troll
+
+NEW CONTENT[]
+
+In addition to the new zones, subzones, and instances listed here, all
+vanilla zones and almost all vanilla dungeons have new custom quests
+added to them in Turtle WoW.
+
+NEW ZONES[]
+
+NEW/REVAMPED SUBZONES & QUESTHUBS[]
+
+	* Lvl 1-10 Dun Morogh: Gnomeregan Reclamation Facility (lvl 10-38,
+Gnomeregan Exiles faction capital) | Ironforge Airfield[1]
+ 	* Lvl 1-10 Durotar: Sparkwater Port (lvl 1-36, Durotar Labor Union
+faction capital)
+ 	* Lvl 1-10 Mulgore: Redcloud Roost | Suntail Pass
+ 	* Lvl 1-10 Tirisfal: Tirisfal uplands (lvl 15-20 Horde; lvl 30
+Alliance)
+ 	* Lvl 1-60 Stormwind: Stormwind Harbor | Little Silvermoon |
+Davenburg
+ 	* Lvl 10-20 The Barrens: Anchor's Edge
+ 	* Lvl 15-25 Stonetalon Mountains: Amani'alor (lvl 10-12, Revantusk
+Trolls faction capital) | Bramblethorn Pass | Powder Town | Blacksand
+Oil Fields | Bael Hardul | Venture Camp | Broken Cliff Mine
+ 	* Lvl 19-30 Ashenvale: Forest Song | Thalanaar | Talonbranch Glade |
+Demon Fall Ridge | Warsong Lumber Camp
+ 	* Lvl 20-30 Wetlands: Dun Agrath | Hawk's Vigil | Green Belt Gnoll
+Camp
+ 	* Lvl 30-40 Arathi Highlands: Wildtusk Village | Ruins of Zul'rasaz
+(lvl 40-43) | Farwell Stead | Gallant Square | Livingstone Croft
+ 	* Lvl 36-43 Swamp of Sorrows: Sorrowguard Keep
+ 	* Lvl 36-45 Badlands: Ruins of Corthan | Scalebane Ridge |
+Crystalline Oasis | Crystalline Pinnacle | Redbrand's Digsite | Angor
+Digsite | Ruins of Zeth
+ 	* Lvl 36-46 Dustwallow Marsh: Westhaven Hollow | Blackhorn Village |
+Deserter's Hideout | Hermit of the East Coast
+ 	* Lvl 40-50 Tanaris: Sandmoon Village
+ 	* Lvl 41-60 Feralas: Ronae'Thalas | Chimaera Roost Vale
+ 	* Lvl 42-55 Azshara: Flaxwhisker Front | Bloodfist Point | Rethress
+Sanctum
+ 	* Lvl 47-54 Felwood: Bloodvenom Post | Shrine of the Betrayer
+ 	* Lvl 50-59 Burning Steppes: Karfang Hold
+ 	* Lvl 54-59 Eastern Plaguelands: Forlorn Summit
+
+NEW DUNGEONS[]
+
+DUNGEON EXTENSIONS[]
+
+NEW DUNGEON QUESTS[]
+
+NEW RAIDS[]
+
+NEW WORLD BOSSES[]
+
+NEW BATTLEGROUNDS[]
+
+	* Sunnyglade Valley
+
+NEW ITEMS[]
+
+NEW EQUIPPABLE ITEMS[]
+
+NEW MOUNTS[]
+
+NEW VANITY PETS[]
+
+NEW PROFESSIONS & RECIPES[]
+
+REFERENCES & NOTES[]
+
+ 	* ↑ 1.0 1.1 1.2 Zone or subzone is populated with monsters/NPCs,
+but has no quests. 
+
+ 

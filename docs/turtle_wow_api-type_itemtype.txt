@@ -1,0 +1,101 @@
+API TYPE ITEMTYPE
+
+ 
+
+These are the possible 5th and 6th returns of GetItemInfo.
+
+ITEM TYPES AND ITEM SUB TYPES[]
+
+Every item in the game has an type and subtype of some kind. No valid
+item will return nil for either of these values.
+
+POSSIBLE ITEMTYPE RETURNS[]
+
+"Armor", "Consumable", "Container", "Key", "Miscellaneous", "Reagent",
+"Recipe", "Projectile", "Quest", "Quiver", "Trade Goods", "Weapon"
+
+SORTED TYPES AND SUBTYPES[]
+
+ARMOR
+
+	* "Cloth"
+ 	* "Idols"
+ 	* "Leather"
+ 	* "Librams"
+ 	* "Mail"
+ 	* "Miscellaneous"
+ 	* "Shields"
+ 	* "Totems"
+ 	* "Plate"
+
+CONSUMABLE
+
+	* "Consumable"
+
+CONTAINER
+
+	* "Bag"
+ 	* "Enchanting Bag"
+ 	* "Engineering Bag" - (exists in Auction house, no known item in
+game uses this subtype).
+ 	* "Herb Bag"
+ 	* "Soul Bag"
+
+KEY
+
+MISCELLANEOUS
+
+REAGENT
+
+RECIPE
+
+	* "Alchemy"
+ 	* "Blacksmithing"
+ 	* "Book"
+ 	* "Cooking"
+ 	* "Enchanting"
+ 	* "Engineering"
+ 	* "First Aid"
+ 	* "Leatherworking"
+ 	* "Tailoring"
+
+PROJECTILE
+
+	* "Arrow"
+ 	* "Bullet"
+
+QUEST
+
+QUIVER
+
+	* "Ammo Pouch"
+ 	* "Quiver"
+
+TRADE GOODS
+
+	* "Devices"
+ 	* "Explosives"
+ 	* "Parts"
+ 	* "Trade Goods"
+
+WEAPON
+
+	* "Bows"
+ 	* "Crossbows"
+ 	* "Daggers"
+ 	* "Guns"
+ 	* "Fishing Pole"
+ 	* "Fist Weapons"
+ 	* "Miscellaneous"
+ 	* "One-Handed Axes"
+ 	* "One-Handed Maces"
+ 	* "One-Handed Swords"
+ 	* "Polearms"
+ 	* "Staves"
+ 	* "Thrown"
+ 	* "Two-Handed Axes"
+ 	* "Two-Handed Maces"
+ 	* "Two-Handed Swords"
+ 	* "Wands"
+
+ 

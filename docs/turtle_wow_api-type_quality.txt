@@ -1,0 +1,25 @@
+API TYPE QUALITY
+
+ 
+
+DESCRIPTION[]
+
+The quality of an item is represented in API code as a non-negative
+integer.
+
+Known values:
+
+	* 0 = Poor
+ 	* 1 = Common
+ 	* 2 = Uncommon
+ 	* 3 = Rare
+ 	* 4 = Epic
+ 	* 5 = Legendary
+ 	* 6 = Artifact
+
+API USAGE[]
+
+Quality is the third value returned by GetItemInfo().
+
+Given a quality value, the color used to represent it may be found
+using GetItemQualityColor().

@@ -1,0 +1,53 @@
+API TYPE BOOLEAN
+
+ 
+
+A BOOLEAN data type is one that by definition only has two states,
+"true" and "false".
+
+BOOLEANS IN LUA[]
+
+In Lua, the programming language used by the World of Warcraft User
+Interface, real booleans were not introduced until version 5.0.
+
+Early versions of World of Warcraft used Lua v4, which shows in that
+the majority of APIs still return 1 for "true", and NIL for "false".
+
+In Lua, there are only two values that evaluate to a boolean false:
+FALSE and NIL.
+
+ALL OTHER VALUES EVALUATE TO TRUE. Including 0, which is an important
+distinction for e.g. C/C++ programmers.
+
+GOTCHAS WITH BOOLEANS IN LUA[]
+
+When used in IF ... THEN clauses a 1 result is the same as a TRUE
+result, so you do not have to worry there. But beware of _comparing_
+the returns of supposedly-boolean functions with eachother without
+forcing them to actually be boolean.
+
+Example:
+
+function Func1() return 1; end     -- old-style function returning 1 for true
+function Func2() return true; end  -- new-style function actually using true
+
+if(Func1() == Func2()) then
+  print "They're both the same!";
+else
+  print "They're different!";
+end
+
+This would output "THEY'RE DIFFERENT!", because _1 and true are not
+the same thing in Lua_.
+
+You can force a value to be boolean by NOTing it twice, like so:
+
+definitelyBoolean = not not kindaBoolean;
+
+In the earlier disfunctional example, we'd get away with NOTing it
+just once since we're only testing if they're the same:
+
+if( (not Func1()) == (not Func2()) ) then
+  ...
+
+ 

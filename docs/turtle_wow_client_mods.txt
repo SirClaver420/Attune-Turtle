@@ -1,0 +1,278 @@
+CLIENT MODS
+
+The Turtle WoW client could be enhanced by adding mods known as packed
+files of data (.mpq files) for your TWoW client to load, which similar
+to the concept of addon. These MODS ARE UNSUPPORTED BY THE TURTLE WOW
+STAFF! You must remember how to uninstall and reinstall these mods if
+they cause any problems you experience! Messing with your Data/ folder
+can interfere with gameplay and cripple your client if you are
+careless about the potential risks. In the latest Turtle WoW Launcher
+(Supported Two OS; WINDOWS: TurtleWow.exe, LINUX: TurtleWoW.AppImage),
+you may manually enable / disable them accordingly.
+
+! WARNING: USING THIS AT YOUR OWN RISK.[]
+
+All these may break the game. In case things are not working properly
+disable or remove those custom mods via the Official Launcher,
+
+INSTALLATION[]
+
+To install a client mod, download the .mpq file, and drag it into
+TurtleWoW/Data/. To uninstall a mod, just delete the corresponding
+.mpq file from the Data folder. When using TURTLEWOW Launcher, do
+enable those install mods in the 'Mods' Tab via refers to picture
+attached.
+
+SOMETIMES TWO MODS SHARE THE SAME NAME AND CONFLICT. That is okay
+since you can easily rename these mods to different patch letters and
+numbers. Turtle WoW uses the early numbers for its own client mods
+that allow the client to function, so avoid using numbers and early
+letters, and keep to using later letters first.
+
+The client loads the mods in order, STARTING with patch-1.mpq, ENDING
+in patch-Z.mpq.
+
+ 		FILENAME (*.MPQ) 
+ 		INFORMATION 
+ 		REMARK 
+
+ 		patch-9.mpq 
+ 		Pretty Night Sky 
+
+ 		patch-A.mpq 
+ 		Turtle HD 
+ 		N/A for 1.17.2 patch 
+
+ 		patch-B.mpq 
+ 		BIKINI MOD 
+
+ 		patch-C.mpq 
+ 		Old Vanilla Ogres 
+
+ 		patch-E.mpq 
+ 		Alt HD 
+ 		enhanced environment 
+
+ 		patch-F.mpq 
+ 		WotLK Feral Forms 
+
+ 		patch-I.mpq 
+ 		Incubus 
+
+ 		patch-T.mpq 
+ 		Turtle Restoration Project (TRP) 
+
+ 		patch-W.mpq 
+ 		CLASSIIC HD 
+ 		enhances buildings and items, requiring Turtle/Alt HD for character
+and creature updates. 
+
+ 		patch-X.mpq 
+ 		high elf modification 
+ 		Depends on TurtleHD, Alt-mod , high elf eyes glow 
+
+ 		patch-Z.mpq 
+ 		Darker Night 
+ 		N/A for 1.17.2 patch (Not recommended)
+note that Patch-z also known conflict naming pattern with Chinese
+client patch.
+
+AVAILABLE MODS[]
+
+Community member RETROCRO has salvaged links from archived and cached
+pages to provide a one-stop collection of links for all mods listed
+here on their Github.
+
+TURTLE HD* (NOT SUPPORTED FOR LATEST PATCH 1.17.2)[]
+
+This mod backports many character models and textures, as well as
+environment textures, from Legion and later WoW versions, to Turtle's
+vanilla client. As with many, this is quite a hefty mod that changes
+quite a lot of assets, so be sure to check the forums post and
+consider contacting the author with any issues/concerns.
+
+ALT HD[]
+
+This mod, similar to Turtle HD, backports some assets from retail but
+with a bigger emphasis on overhauling ground clutter and tilesets.
+
+BANJO - KAZOOIE & BANJO - TOOIE MUSIC MOD[]
+
+This mod adds music from the games Banjo Kazooie and Banjo Tooie to
+Turtle WoW.
+
+Download the latest version here
+
+BE SILENT DEMON[]
+
+This mod removes/mutes the warlock pet voice lines. They get pretty
+annoying. Optional imp-only version too.
+
+Download
+
+DARKER NIGHTS[]
+
+While the brightness of night time in 2006 wow is rather dark compared
+to modern wow, this mod aims to darken things down significantly for a
+much more immersive feel. Duskwood is even darker than the rest,
+making Darkshire actually true to its name! IMPORTANT: This mod used
+to be called Patch-Z but TWoW is using that internally for language
+localization. Renamed to Patch-Y. for the time being. This version of
+Dark Nights has been modified to work better under Turtle WoW,
+
+DEAMON HUNTER SKIN[]
+
+This simple mod change in HD mod Demon Hunter Skin for females Night
+elf's to more demonic one.
+
+PRETTY NIGHT SKY[]
+
+Port over from one of Legion's Sky box to create a beautiful night
+sky.
+
+WOTLK FERAL FORMS[]
+
+This backports the WotLK model for both Night Elf and Tauren Druids'
+bear and cat forms.
+
+INCUBUS[]
+
+This replaces the Warlock Succubus pet with an Incubus.
+
+HIGH ELF MODIFICATIONS[]
+
+A few small mods aiming to modify the High Elf race, requires TURTLE
+HD.
+
+ENHANCED HD WATER[]
+
+This mod replaces Vanilla's water textures, softening them and making
+them generally less noisy to look at.
+
+BLOOD ENHANCED[]
+
+This mod downports the blood mod from the WoW WotLK v3.3.5 client to
+enhance blood visuals in combat.
+
+FOG PUSHBACK[]
+
+Pushes back fog significantly to increase view distance. Recommended
+to use this with VanillaTweaks for FarClip distance enhancement,
+details on the wiki page here.
+
+WARCRAFT 3 CURSORS[]
+
+This mod made a little Warcraft 3 Cursor Interface Addon, should go
+well with Fiur's Warcraft 3 UI. Please follow Readme.txt Instructions
+for proper Installation.
+
+BIKINI MOD[]
+
+Alters multiple female equipment and armor sets to be significantly
+more revealing/skimpy as well as fixing specific issues with chest
+pieces and bras.
+
+[]
+
+This mod introduces significant geometry, animation and texture
+changes to female high elves, night elves and humans to provide
+aesthetic body and character model changes.
+
+AUTUMN ELWYNN RESKIN[]
+
+Replaces and edits a few textures in Stormwind, Elwynn Forest,
+Redridge, and Westfall to add fall foliage, replace flowers with
+leaves etc.
+
+DRUID BEAST WARRIOR FORMS FOR NE AND TA[]
+
+This patch replaces your Bear/Dire Bear Forms to Furbolg Form; Cat
+Form is changed to Tigon form (boss in ZG). Both new forms have
+faction-specific coloring.
+
+BETTER UNDERWEAR FOR HIGH ELVES[]
+
+The design will vary depending on the skin color you choose, so it
+will be a surprise every time you create a new character.
+
+	* Downloads and more info on the forum post here.
+
+BIGGER MOUSE CURSOR[]
+
+Vanilla WoW client has a hard-coded 32x32 pixel sized mouse cursor. We
+can't adjust it by UI scale nor display resolution. When running the
+game on a modern high DPI display like 4K resolution, the cursor would
+be too small. Vanilla client don't have the in-game option to set
+cursor size like Retail client.
+
+So here is a modified DXVK which gives a 2X sized cursor (64x64 pixel)
+which should be enough for 4K display resolution. It could even
+enlarge cursor into 3X or 4X size for 8K if needed, by its option. It
+could also load user-provided images into cursor. Maximum size is
+128x128 pixel. Note that editing .MPQ file can't surpass 32x32 pixel
+limitation.
+
+	* Downloads for modified DXVK and more info on Github here.
+ 	* High-resolution custom cursors available on Github here.
+
+IMPROVED 2FA LOGIN[]
+
+Improves the 2FA Interface so you can enter your 2FA in as text rather
+than clicking the numbers. There are 2 versions of this patch. Use
+only ONE of these patches as they are incompatible with one another!
+
+ARACHNOPHOBIA[]
+
+Arachnophobia patches. Crab, Rock Flayer, and Ravager. Modifies
+certain spider enemies into other monsters for those who have
+arachnophobia.
+
+OLD VANILLA OGRES[]
+
+Old Vanilla Ogres Model of Twow. Adapted for Twow by AMBEREMBER.
+
+TURTLE WOW GBANK FIX FOR SUPERWOW[]
+
+A client fix for SuperWoW users. This mod fixes an error message that
+occurs when being near the guild bank NPC without the guild bank open,
+and the interaction of items with charges when trying to deposit. This
+mod goes in your Data folder.
+
+TURTLE RESTORATION PROJECT (TRP)[]
+
+The TURTLE RESTORATION PROJECT (TRP) enhances the world maps and
+loading screens of World of Warcraft’s classic era (version 1.12.1)
+through machine learning upscaling, tailored SPECIFICALLY FOR TURTLE
+WOW. Created to complement the server’s fan-made expansion,
+_Mysteries of Azeroth_, TRP aligns with the server’s mission to
+deepen players’ connection to the VANILLA WOW world, capturing
+Azeroth’s timeless sense of adventure.
+
+CLASSIIC HD PATCH[]
+
+The Classic HD Patch provides a focused visual update for Vanilla WoW,
+improving specific elements of the game:
+
+	* TIER 2 ARMOR SETS: All Tier 2 armor sets have been upgraded with
+high-definition textures, adding greater detail and a polished look to
+these iconic designs.
+ 	* CROSSROADS BUILDINGS: Key buildings in the Crossroads have been
+revamped with updated WMO models, bringing a more refined appearance
+to this bustling Barrens hub.
+
+This patch exclusively enhances WMO (buildings) and M2 (items) models.
+To enjoy character and creature upgrades, the HD PATCH is required
+alongside this update. Together, they offer a comprehensive visual
+overhaul while keeping compatibility with Vanilla WoW servers.
+
+direct Download link here
+
+BETTER FLIRTS MOD[]
+
+This mod replaces the /flirt emote voice lines for certain races with
+new ones. Some funny, some romantic.
+
+download from the forums
+
+SEE ALSO[]
+

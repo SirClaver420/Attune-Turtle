@@ -1,0 +1,52 @@
+API TYPE ITEMLINK
+
+ 
+
+ITEMLINK API TYPE (STRING)[]
+
+ItemLinks are returned by several functions, e.g.
+GetAuctionItemLink(), GetContainerItemLink(), GetInventoryItemLink(),
+etc.
+
+In essence, they are itemStrings with additional formatting to make
+in-game text controls display them as clickable hyperlinks.
+
+|cff9d9d9d|Hitem:7073:0:0:0:0:0:0:0|h[Broken Fang]|h|r
+
+Broken up in its components:
+
+	* "|CFF9D9D9D" – Colorizes the link with a medium grey color
+(Broken Fang is vendortrash) 
+
+	* The first two characters after pipe-c may be the alpha level, where
+ff is fully opaque.
+ 	* The next three sets of two characters represent the red, green,
+and blue levels, just like HTML.
+
+ 	* "|H" – "Hyperlink link data starts here"
+ 	* "ITEM:7073:0:0:0:0:0:0:0" – Read more at itemString.
+ 	* "|H" – "End of link, text follows"
+ 	* "[BROKEN FANG]" – The actual text displayed
+ 	* "|H" – "End of hyperlink"
+ 	* "|R" – Restores color to normal
+
+You can extract the itemString from a given itemLink with the
+following LUA-code:
+
+local found, _, itemString = string.find(itemLink, "^|%x+|H(.+)|h%[.+%]")
+
+PRINTING LINKS FOR DEBUG[]
+
+Printing out the contents of an item link is perhaps not so obvious;
+displaying it anywhere in-game will just show you a clickable link.
+Reformat it slightly to ruin the escape sequences and you'll see what
+it really looks like:
+
+link = GetContainerItemLink(0, 1);
+printable = gsub(link, "\124", "\124\124");
+ChatFrame1:AddMessage("Here's what it really looks like: \"" .. printable .. "\"");
+
+"124" is the ascii value of the "|" character. If you are writing this
+in a regular .lua file, feel free to go ahead and just use "|" and
+"||". However, if you're typing it in an in-game editor, it's better
+to use the ascii code escape to avoid problems.
